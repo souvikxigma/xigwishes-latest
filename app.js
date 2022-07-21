@@ -46,39 +46,49 @@ app.set('layout', 'front/layouts/layout'); //front  layoub
 
 // // index page
 
+
 app.get('/', function(req, res) {
-  return res.render('front/pages/home.ejs');
+  return res.redirect('/home');
 });
 
-app.get('/login', function(req, res) {
-    return res.render('front/pages/Auth/signin.ejs',{ layout: 'front/layouts/authlayout' });
-});
 
-app.get('/admin', function(req, res) {
-    return res.render('admin/pages/home.ejs',{ layout: 'admin/layouts/adminlayout' });
-});
 
-app.get('/admin/login', function(req, res) {
-    return res.render('admin/layouts/adminauthlayout',{ layout: false });
-});
+
+
+// app.get('/admin', function(req, res) {
+//     return res.render('admin/pages/home.ejs',{ layout: 'admin/layouts/adminlayout' });
+// });
+
+// app.get('/admin/login', function(req, res) {
+//     return res.render('admin/layouts/adminauthlayout',{ layout: false });
+// });
+
 
 ///define router//
-
 const contactRouter = require('./routers/front/contactRouter');
 const staticListRouter = require('./routers/front/staticListRouter');
-// const userRouter = require('./routers/front/');
-// const othersRouter = require('./routers/othersRouter');
-//cron
-// const cronRouter = require('./routers/cronRouter');
+const userRouter = require('./routers/front/userRouter');
+const cronRouter = require('./routers/front/cronRouter');
+const tempRouter = require('./routers/front/tempRouter');
+const homeRouter = require('./routers/front/homeRouter');
 
 // ////define all controller ////
-
 app.use(`/contact`,contactRouter);
 app.use(`/others`,staticListRouter);
-// app.use(`/cron`,cronRouter);
-// app.use(`/`,userRouter);
+app.use(`/cron`,cronRouter);
+app.use(`/temp`,tempRouter);
+app.use(`/`,userRouter);
+app.use(`/home`,homeRouter);
 ///end define router//
 
+// admin 404
+app.get('/admin/*', function(req, res){
+  res.send('what admin???', 404);
+});
+// user 404
+app.get('*', function(req, res){
+  res.send('what user???', 404);
+});
 
 const server = http.createServer(app);
 

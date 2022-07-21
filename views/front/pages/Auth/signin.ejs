@@ -3,8 +3,9 @@
     <div class="container">
         <div class="row" >
             <div class="col-lg-3"></div>
-            <form id="adminpro-form" class="adminpro-form">
+            <form id="adminpro-form" class="adminpro-form" method="POST" action="/login/action">
                 <div class="col-lg-6" style="margin-top: 20px;">
+                    <%- include('../../includes/alert.ejs') %>
                     <div class="login-bg">
                         <div class="row">
                             <div class="col-lg-12">
@@ -17,19 +18,19 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="login-title">
-                                    <h1>Login Form</h1>
+                                    <h1>Xigwish Login Form</h1>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="login-input-head">
-                                    <p>E-mail</p>
+                                    <p>Email</p>
                                 </div>
                             </div>
                             <div class="col-lg-8">
                                 <div class="login-input-area">
-                                    <input type="email" name="email" />
+                                    <input type="email" name="email"   placeholder="Please enter email" />
                                     <i class="fa fa-envelope login-user" aria-hidden="true"></i>
                                 </div>
                             </div>
@@ -42,17 +43,17 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="login-input-area">
-                                    <input type="password" name="password" />
+                                    <input type="password" name="password" placeholder="Please enter password" />
                                     <i class="fa fa-lock login-user"></i>
                                 </div>
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-lg-12">
                                         <div class="forgot-password">
                                             <a href="#">Forgot password?</a>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
+                                </div> -->
+                                <!-- <div class="row">
                                     <div class="col-lg-12">
                                         <div class="login-keep-me">
                                             <label class="checkbox">
@@ -60,7 +61,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="row">
@@ -69,8 +70,8 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="login-button-pro">
-                                    <button type="submit" class="login-button login-button-rg">Register</button>
-                                    <button type="submit" class="login-button login-button-lg">Log in</button>
+                                    <button type="submit" class="login-button login-button-rg">Log In</button>
+                                    <a href="/signup" class="login-button login-button-lg">Register</a>
                                 </div>
                             </div>
                         </div>
