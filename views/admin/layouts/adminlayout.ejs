@@ -1,0 +1,28 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <%- include('../includes/head.ejs') %>
+
+<body class="darklayout">
+    <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <!-- Header top area start-->
+    
+    <div class="wrapper-pro">
+        <!-- sidebar include -->
+        <%- include('../includes/sidebar.ejs') %>
+        <div class="content-inner-all">
+            <!-- navbar include -->
+            <%- include('../includes/navbar.ejs') %>
+            <!-- Breadcome start-->
+            
+            <%- body %>
+            
+        </div>
+    </div>
+    
+    <%- include('../includes/footer.ejs') %>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<style>
+    /* .tmp-background{
+            background-image: url('http://localhost:9091/uploads/themes/<%= theme.name %>');
+            height: auto;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        } */
+</style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col-6">
+                <h1>Create Image Template</h1>
+            </div>
+            <div class="col-6 mt-2">
+                <button class="btn btn-primary" id="download">Download</button>
+                <a href="/contact/temp" class="btn btn-primary">Back</a>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-12" id="photo">
+                <div class="row theme-card">
+                    <div class="col-12 theme-img-box theme-header">
+                        <div class="">
+
+                        </div>
+                        <!-- <img class="theme-img" src="http://localhost:9091/uploads/themes/<%= theme.name %>" /> -->
+                        <img class="theme-img" src="<%= process.env.THEMEPATH %>/<%= theme.name %>" />
+                    </div>
+                    <div class="row theme-footer">
+                        <div class="col-8 col-lg-8 col-md-8 col-sm-12 theme-list">
+                            <ul>
+                                <li>
+                                    <%= userInfo.mobile %>
+                                </li>
+                                <li>
+                                    <%= userInfo.email %>
+                                </li>
+                                <li>
+                                    <%= userInfo.homeAddress %>
+                                </li>
+                                <li>
+                                    <%= userInfo.officeAddress %>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-4 col-lg-4 col-md-4 col-sm-12 theme-logo-box">
+                            <img class="theme-logo-img" src="/uploads/companyLogo/<%= userInfo.companyLogo %>" />
+                        </div>
+                    </div>
+                </div>
+                <!-- <img src="/front/assets/background.jpg" /> -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+
+        // function themeSelect(index, themename) {
+        //     // var url = 'http://localhost:9091/uploads/themes/' + themename;
+        //     // $('#photo').css("background-image", "url(" + url + ")");
+        // }
+
+        // $(document).ready(function () {
+        //     var themLength = '<%=theme.length%>';
+        //    console.log(themLength);
+        //     for(let i=0;i<themLength;i++){
+        //         console.log(i)
+        //         $('#imgthm-'+i).click(function () {
+        //             console.log('hello'+i)
+        //             var href = $(this).attr('src');
+        //             // var url = 'http://localhost:9091/uploads/themes/' + href; 
+        //             $('#photo').css("background-image", "url(" + href + ")"); 
+        //         });
+        //     }
+            // $('#imgthm-0').click(function () {
+            //     $(this).toggleClass('on');
+            //     $('.DownvoteButton').removeClass('on');
+            // });
+
+
+
+
+            // $('#temp-3').click(function(){
+            //     $('#photo').css("background-image", "url(/front/assets/background.jpg)");  
+            // });
+
+            // $('#temp-3').click(function(){
+            //     $('#photo').css("background-image", "url(/front/assets/background.jpg)");  
+            // });
+
+            // $('#temp-2').click(function(){
+            //     $('#photo').css("background-image", "url(/front/assets/background2.jpg)");  
+            // });
+
+
+
+
+
+
+
+
+
+        // });
+    </script>

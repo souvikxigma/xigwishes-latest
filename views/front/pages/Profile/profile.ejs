@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-2">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8"></div>
+                <!-- <div class="col-2">
+                    <a href="/contact" class="btn btn-primary">Back</a>
+                </div> -->
+            </div>
+        </div>
+        <div class="col-12 mt-2">
+
+
+            <section class="bg-light py-5">
+                <div class="container px-5 my-5 px-5">
+                    <div class="text-center mb-5">
+                        <!-- <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i
+                                class="bi bi-envelope"></i></div> -->
+                        <h2 class="fw-bolder">Profile</h2>
+                        <!-- <p class="lead mb-0">We'd love to hear from you</p> -->
+                    </div>
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-6">
+                            <%- include('../../partials/alert.ejs') %>
+
+                                <form action="/user/profile/action" method="POST" enctype="multipart/form-data">
+
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="name" type="text"
+                                            placeholder="Enter your name..." name="name"
+                                            value="<%= data.name %>"
+                                            data-sb-validations="required" />
+                                        <label for="name">name</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="email" id="email" type="email"
+                                            data-sb-validations="required" value="<%= data.email %>" readonly />
+                                            <label for="email">Email</label>
+                                        
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="tel" type="tel"
+                                            placeholder="Enter your name..." name="mobile"
+                                            value="<%= data.mobile %>"
+                                            data-sb-validations="required" />
+                                        <label for="tel">mobile</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="cname" type="text"
+                                            placeholder="Enter your name..." name="companyName"
+                                            value="<%= data.companyName %>"
+                                            data-sb-validations="required" />
+                                        <label for="cname">company name</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" id="clogo" type="file"
+                                            placeholder="Enter your name..." name="companyLogo"
+                                            data-sb-validations="required" />
+                                       <% if(data.companyLogo){ %> <img class="img-fluid" style="width: 90px;" src="/uploads/companyLogo/<%= data.companyLogo %>">  <% } %>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <textarea class="form-control" name="homeAddress" id="homeAddress"><%= data.homeAddress %></textarea>
+                                        <label for="homeAddress">homeAddress</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        <textarea class="form-control" name="officeAddress" id="officeAddress"><%= data.officeAddress %></textarea>
+                                        <label for="officeAddress">officeAddress</label>
+                                    </div>
+
+                                    <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton"
+                                            type="submit">Update</button></div>
+
+
+                                </form>
+                                <!-- /////////////////////// -->
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
