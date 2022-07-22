@@ -39,7 +39,19 @@ async function templateReview(req, res) {
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
   const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/templateReview', {
+  return res.render('front/pages/Temp/Birthday/templateReview', {
+    page_name: 'template',
+    userInfo: userInfo,
+    theme: theme,
+  });
+}
+
+async function templateReviewTypeTwo(req, res) {
+  let userId = req.params.id;
+  let uniqueCode = req.params.uniqueCode;
+  const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
+  return res.render('front/pages/Temp/Birthday/templateReviewtwo', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
@@ -50,4 +62,5 @@ module.exports = {
   templateSubmit: templateSubmit,
   templateSubmitAction: templateSubmitAction,
   templateReview: templateReview,
+  templateReviewTypeTwo: templateReviewTypeTwo,
 };

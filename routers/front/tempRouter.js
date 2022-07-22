@@ -7,6 +7,8 @@ const router = express.Router();
 router.get('/',authUserCheck.authUser,tempController.templateSubmit);
 router.post('/action', tempController.templateSubmitAction);
 router.get('/review/:id/:uniqueCode',tempController.templateReview);
+//typetwo//
+router.get('/review-two/:id/:uniqueCode',tempController.templateReviewTypeTwo);
 
 
 module.exports = router;
