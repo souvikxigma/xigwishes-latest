@@ -12,11 +12,11 @@ async function templateSubmit(req, res) {
     req.flash('success', 'Please login to get themes');
     return res.redirect('/login');
   }
-  if (!userInfo.themes) {
+  const theme = await Models.Theme.findAll({});
+  if (!theme) {
     req.flash('success', 'Themes not available');
     return res.redirect('/home');
   }
-  var theme = await Models.Theme.findAll({});
   return res.render('front/pages/Temp/templat', {
     page_name: 'template',
     userInfo: userInfo,

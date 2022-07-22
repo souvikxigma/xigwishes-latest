@@ -1,32 +1,55 @@
-
-
-</head>
-
-<body>
+<div class="breadcome-area mg-t-40 mg-b-30">
     <div class="container">
-        <div class="row mt-2">
-            <div class="col-6">
-                <h1>Create Image Template</h1>
-            </div>
-            <div class="col-6 mt-2">
-                <button class="btn btn-primary" id="download">Download</button>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcome-list shadow-reset">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="breadcome-heading">
+                                <h2>Template</h2>
+                            </div>
+                            <ul class="breadcome-menu">
+                                <li><a href="/">Home</a> <span class="bread-slash">/</span>
+                                </li>
+                                <li><span class="bread-blod"><a href="/temp">Template</a> </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+</div>
+
+<div class="data-table-area mg-b-40">
+    <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-lg-12">
                 <div class="row">
                     <% for(var i=0; i< theme.length; i++) { %>
-                        <div class="col-4">
-                            <!-- <img class="img-fluid" src="http://localhost:9091/uploads/themes/<%= theme[i].name %>" /> -->
-                            <img class="img-fluid" src="/<%= theme[i].name %>" />
-                            <a href="/contact/temp/review/<%= userInfo.id %>/<%= theme[i].uniqueCode %>">Preview</a>                        </div>
-
+                        <div class="col-lg-3">
+                            <div class="income-dashone-total shadow-reset nt-mg-b-30">
+                                <div class="income-title">
+                                    <div class="main-income-head">
+                                        <h1>Theme :</h1>
+                                        <h6>
+                                            <%= theme[i].uniqueCode %>
+                                        </h6>
+                                        <div class="main-income-phara">
+                                            <p><a href="/temp/review/<%= userInfo.id %>/<%= theme[i].uniqueCode %>"
+                                                    class="color-white">Preview</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="income-dashone-pro">
+                                    <img class="img-fluid" src="/uploads/themes/<%= theme[i].name %>" style="height:250px;width:250px;"  />
+                                </div>
+                            </div>
+                        </div>
                         <% } %>
                 </div>
             </div>
-     
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</div>

@@ -83,11 +83,11 @@ app.use(`/home`,homeRouter);
 
 // admin 404
 app.get('/admin/*', function(req, res){
-  res.send('what admin???', 404);
+  res.status(404).send('what admin???');
 });
 // user 404
 app.get('*', function(req, res){
-  res.send('what user???', 404);
+  res.status(404).send('what user???');
 });
 
 const server = http.createServer(app);

@@ -110,12 +110,14 @@
                                                             <label class="login2 pull-right pull-right-pro">Company
                                                                 Logo</label>
                                                         </div>
-                                                        <div class="col-lg-9">
+                                                        <div class="col-lg-6">
                                                             <input id="clogo" type="file"
                                                                 placeholder="Enter your name..." name="companyLogo"
                                                                 class="form-control" />
-                                                            <% if(data.companyLogo){ %> <img class="img-fluid"
-                                                                    style="width: 90px;"
+                                                        </div>
+                                                        <div class="col-lg-3">
+                                                            <% if(data.companyLogo){ %>
+                                                                <img class="img-fluid" style="width: 90px;"
                                                                     src="/uploads/companyLogo/<%= data.companyLogo %>">
                                                                 <% } %>
                                                         </div>
