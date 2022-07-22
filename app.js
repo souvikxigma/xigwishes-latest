@@ -64,7 +64,7 @@ app.get('/', function(req, res) {
 // });
 
 
-///define router//
+///import router //
 const contactRouter = require('./routers/front/contactRouter');
 const staticListRouter = require('./routers/front/staticListRouter');
 const userRouter = require('./routers/front/userRouter');
@@ -72,7 +72,7 @@ const cronRouter = require('./routers/front/cronRouter');
 const tempRouter = require('./routers/front/tempRouter');
 const homeRouter = require('./routers/front/homeRouter');
 
-// ////define all controller ////
+// ////define all router ////
 app.use(`/contact`,contactRouter);
 app.use(`/others`,staticListRouter);
 app.use(`/cron`,cronRouter);
@@ -80,6 +80,19 @@ app.use(`/temp`,tempRouter);
 app.use(`/`,userRouter);
 app.use(`/home`,homeRouter);
 ///end define router//
+
+
+
+// admin route
+const adminAuthRouter = require('./routers/admin/adminAuthRouter');
+const adminDashboardRouter = require('./routers/admin/adminDashboardRouter');
+const adminThemeRouter = require('./routers/admin/adminThemeRouter');
+
+//admin //
+app.use(`/admin`,adminAuthRouter);
+app.use(`/admin/dashboard`,adminDashboardRouter);
+app.use(`/admin/theme`,adminThemeRouter);
+
 
 // admin 404
 app.get('/admin/*', function(req, res){

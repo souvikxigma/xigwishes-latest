@@ -3,6 +3,7 @@ function authNotUser(req, res, next) {
     res.clearCookie();
     console.log('auth not check',req.cookies.token);
     // return res.redirect('/home');
+   // return res.redirect('/');
   }
   next();
 }
