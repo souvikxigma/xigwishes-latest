@@ -34,6 +34,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: true
       },
+      contactPic: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       theme:{
         type: Sequelize.STRING,
         allowNull: true,

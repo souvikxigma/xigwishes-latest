@@ -23,6 +23,7 @@ function add(req, res) {
 }
 
 async function addAction(req, res) {
+  console.log(req.files);
   var name = req.body.name;
   var birthday = req.body.birthday;
   var gender = req.body.gender;
@@ -51,6 +52,24 @@ async function addAction(req, res) {
     return res.redirect('/contact/add');
   }
   //validation end
+
+   //image upload//
+   if (req.files && req.files.contactPic) {
+    var documentFile = req.files.contactPic;
+    var imgString = documentFile.name;
+    var imgArr = imgString.split('.');
+    var imgname = 'contact-pic-' + Date.now() + '.' + imgArr[1];
+    console.log(imgname);
+    documentFile.mv('public/uploads/birthdayContact/' + imgname, function (err) {
+      if (err) {
+        req.flash('error', 'Image not uploaded');
+        res.redirect('/user/profile');
+      }
+    });
+  }
+  console.log('jkol',imgname);
+  //end image upload//
+
   const newContact = {
     userId: req.id,
     name: req.body.name,
@@ -59,6 +78,7 @@ async function addAction(req, res) {
     gender: req.body.gender,
     email: req.body.email,
     mobile: req.body.mobile,
+    contactPic: imgname,
   };
   var created_contact = await Models.Contact.create(newContact);
   if (created_contact) {
