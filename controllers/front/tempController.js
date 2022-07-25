@@ -34,33 +34,56 @@ function templateSubmitAction(req, res) {
   });
 }
 
-async function templateReview(req, res) {
+async function templateReview1(req, res) {
   let userId = req.params.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
   const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/Birthday/templateReview', {
+  return res.render('front/pages/Temp/Birthday/templateReview1', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
   });
 }
 
-async function templateReviewTypeTwo(req, res) {
+async function templateReview2(req, res) {
   let userId = req.params.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
   const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/Birthday/templateReviewtwo', {
+  return res.render('front/pages/Temp/Birthday/templateReview2', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
   });
 }
-
+async function templateReview3(req, res) {
+  let userId = req.params.id;
+  let uniqueCode = req.params.uniqueCode;
+  const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
+  return res.render('front/pages/Temp/Birthday/templateReview3', {
+    page_name: 'template',
+    userInfo: userInfo,
+    theme: theme,
+  });
+}
+async function templateReview4(req, res) {
+  let userId = req.params.id;
+  let uniqueCode = req.params.uniqueCode;
+  const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
+  return res.render('front/pages/Temp/Birthday/templateReview4', {
+    page_name: 'template',
+    userInfo: userInfo,
+    theme: theme,
+  });
+}
 module.exports = {
   templateSubmit: templateSubmit,
   templateSubmitAction: templateSubmitAction,
-  templateReview: templateReview,
-  templateReviewTypeTwo: templateReviewTypeTwo,
+  templateReview1: templateReview1,
+  templateReview2: templateReview2,
+  templateReview3: templateReview3,
+  templateReview4: templateReview4,
 };

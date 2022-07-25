@@ -1,34 +1,141 @@
-.admin-logo img{
-    width: 200px;
-    height: 30px;
-}
+/* general */
 #photo{
     background-color: #11ffee00;
+}
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: start;
+}
+
+.text-right{
+    text-align: end;
 }
 .color-white{
     color: white;
     line-height: 1.2em;
 }
-.card-theme-img-css {
-    width: 100%;
-    aspect-ratio: 2 / 1;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-.card-middle-css{
-    height: auto !important;
-}
-
-.card-footer-css {
+/* end general */
+/* temp1 */
+.temp1 .card-footer-css {
     background-color: #333333;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-radius: 10px;
+    height: max-content;
 }
 
-.card-footer-logo {
-    width: 60px;
-    height: 60px;
+.temp1 .card-footer-logo {
+    margin-top: 15rem;
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 13rem;
+}
+.temp1 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
     border: 5px solid white;
     background-color: white;
     border-radius: 50%;
 }
+/* end temp1 */
+
+/* temp2 */
+.temp2 .color-white{
+    color: black;
+    line-height: 1.2em;
+}
+
+.temp2 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp2 .card-footer-logo {
+    margin-top: 10rem;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.temp2 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+.temp2 .footer{
+    padding-top: 15rem;
+}
+/* end temp2 */
+
+
+/* temp3 */
+.temp3 .color-white{
+    color: white;
+    line-height: 1.2em;
+}
+
+.temp3 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp3 .card-footer-logo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.temp3 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+.temp3 .footer{
+    padding-top: 10rem;
+}
+/* end temp3 */
+
+/* temp4 */
+.temp4 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp4 .card-footer-logo {
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 13rem;
+}
+.temp4 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+/* end temp4 */
+
+
+

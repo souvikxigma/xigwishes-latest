@@ -6,9 +6,10 @@ const router = express.Router();
 
 router.get('/',authUserCheck.authUser,tempController.templateSubmit);
 router.post('/action', tempController.templateSubmitAction);
-router.get('/review/:id/:uniqueCode',tempController.templateReview);
-//typetwo//
-router.get('/review-two/:id/:uniqueCode',tempController.templateReviewTypeTwo);
+router.get('/review/1/:id/:uniqueCode',tempController.templateReview1);
+router.get('/review/2/:id/:uniqueCode',tempController.templateReview2);
+router.get('/review/3/:id/:uniqueCode',tempController.templateReview3);
+router.get('/review/4/:id/:uniqueCode',tempController.templateReview4);
 
 
 module.exports = router;
