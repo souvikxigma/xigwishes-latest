@@ -38,11 +38,13 @@ async function templateReview1(req, res) {
   let userId = req.params.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const contact = await Models.Contact.findOne({ where: { userId: userId } });
   const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Birthday/templateReview1', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
+    contact: contact,
   });
 }
 
@@ -50,33 +52,52 @@ async function templateReview2(req, res) {
   let userId = req.params.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const contact = await Models.Contact.findOne({ where: { userId: userId } });
   const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Birthday/templateReview2', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
+    contact: contact,
   });
 }
 async function templateReview3(req, res) {
   let userId = req.params.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const contact = await Models.Contact.findOne({ where: { userId: userId } });
   const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Birthday/templateReview3', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
+    contact: contact,
   });
 }
 async function templateReview4(req, res) {
   let userId = req.params.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const contact = await Models.Contact.findOne({ where: { userId: userId } });
   const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Birthday/templateReview4', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
+    contact: contact,
+  });
+}
+async function templateReview5(req, res) {
+  let userId = req.params.id;
+  let uniqueCode = req.params.uniqueCode;
+  const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const contact = await Models.Contact.findOne({ where: { userId: userId } });
+  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
+  return res.render('front/pages/Temp/Birthday/templateReview5', {
+    page_name: 'template',
+    userInfo: userInfo,
+    theme: theme,
+    contact: contact,
   });
 }
 module.exports = {
@@ -86,4 +107,5 @@ module.exports = {
   templateReview2: templateReview2,
   templateReview3: templateReview3,
   templateReview4: templateReview4,
+  templateReview5: templateReview5,
 };

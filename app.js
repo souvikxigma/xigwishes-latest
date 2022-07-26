@@ -12,7 +12,7 @@ var cookieParser = require('cookie-parser')
 var app = express();
 
 const db = require("./models");
-db.sequelize.sync({force:false})
+db.sequelize.sync({alter:true})
   .then(() => {
     console.log("Synced db.");
   })

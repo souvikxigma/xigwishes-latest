@@ -10,6 +10,7 @@ router.get('/review/1/:id/:uniqueCode',tempController.templateReview1);
 router.get('/review/2/:id/:uniqueCode',tempController.templateReview2);
 router.get('/review/3/:id/:uniqueCode',tempController.templateReview3);
 router.get('/review/4/:id/:uniqueCode',tempController.templateReview4);
+router.get('/review/5/:id/:uniqueCode',tempController.templateReview5);
 
 
 module.exports = router;
