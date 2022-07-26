@@ -139,6 +139,429 @@
 
 /* temp5 */
 
+/* general */
+#photo{
+    background-color: #11ffee00;
+}
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: start;
+}
+
+.text-right{
+    text-align: end;
+}
+.color-white{
+    color: white;
+    line-height: 1.2em;
+}
+/* end general */
+/* temp1 */
+.temp1 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp1 .card-footer-logo {
+    margin-top: 15rem;
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 13rem;
+}
+.temp1 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+/* end temp1 */
+
+/* temp2 */
+.temp2 .color-white{
+    color: black;
+    line-height: 1.2em;
+}
+
+.temp2 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp2 .card-footer-logo {
+    margin-top: 10rem;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.temp2 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+.temp2 .footer{
+    padding-top: 15rem;
+}
+/* end temp2 */
+
+
+/* temp3 */
+.temp3 .color-white{
+    color: white;
+    line-height: 1.2em;
+}
+
+.temp3 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp3 .card-footer-logo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.temp3 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+.temp3 .footer{
+    padding-top: 10rem;
+}
+/* end temp3 */
+
+/* temp4 */
+.temp4 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp4 .card-footer-logo {
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 13rem;
+}
+.temp4 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+/* end temp4 */
+
+/* temp5 */
+
+/* general */
+#photo{
+    background-color: #11ffee00;
+}
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: start;
+}
+
+.text-right{
+    text-align: end;
+}
+.color-white{
+    color: white;
+    line-height: 1.2em;
+}
+/* end general */
+/* temp1 */
+.temp1 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp1 .card-footer-logo {
+    margin-top: 15rem;
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 13rem;
+}
+.temp1 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+/* end temp1 */
+
+/* temp2 */
+.temp2 .color-white{
+    color: black;
+    line-height: 1.2em;
+}
+
+.temp2 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp2 .card-footer-logo {
+    margin-top: 10rem;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.temp2 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+.temp2 .footer{
+    padding-top: 15rem;
+}
+/* end temp2 */
+
+
+/* temp3 */
+.temp3 .color-white{
+    color: white;
+    line-height: 1.2em;
+}
+
+.temp3 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp3 .card-footer-logo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.temp3 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+.temp3 .footer{
+    padding-top: 10rem;
+}
+/* end temp3 */
+
+/* temp4 */
+.temp4 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp4 .card-footer-logo {
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 13rem;
+}
+.temp4 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+/* end temp4 */
+
+/* temp5 */
+
+/* general */
+#photo{
+    background-color: #11ffee00;
+}
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: start;
+}
+
+.text-right{
+    text-align: end;
+}
+.color-white{
+    color: white;
+    line-height: 1.2em;
+}
+/* end general */
+/* temp1 */
+.temp1 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp1 .card-footer-logo {
+    margin-top: 15rem;
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 13rem;
+}
+.temp1 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+/* end temp1 */
+
+/* temp2 */
+.temp2 .color-white{
+    color: black;
+    line-height: 1.2em;
+}
+
+.temp2 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp2 .card-footer-logo {
+    margin-top: 10rem;
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.temp2 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+.temp2 .footer{
+    padding-top: 15rem;
+}
+/* end temp2 */
+
+
+/* temp3 */
+.temp3 .color-white{
+    color: white;
+    line-height: 1.2em;
+}
+
+.temp3 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp3 .card-footer-logo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+.temp3 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+.temp3 .footer{
+    padding-top: 10rem;
+}
+/* end temp3 */
+
+/* temp4 */
+.temp4 .card-footer-css {
+    background-color: #333333;
+    border-radius: 10px;
+    height: max-content;
+}
+
+.temp4 .card-footer-logo {
+    width: 50%;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    margin-bottom: 13rem;
+}
+.temp4 .card-footer-company-logo{
+    margin-bottom: 1rem;
+    width: 50px;
+    aspect-ratio: 1/1;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+}
+/* end temp4 */
+
+/* temp5 */
+
 
 .temp5 img{
     max-width: 100%;
@@ -150,10 +573,11 @@
     max-width: 605px;
     width: 100%;
     margin: 30px  auto;
-    min-height: 507px;
+    min-height: 500px;
     padding: 20px;
     box-sizing: border-box;
     position: relative;
+    background-size: cover!important;
 }
 
 .temp5 .logo {
@@ -174,13 +598,14 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    text-align: right;
     margin-top: 100px;
+    text-align:center;
 }
 
 .temp5 .titel-box h2 {
-    font-size: 48px;
+    font-size: 27px;
     font-weight: 600;
+    
 }
 .temp5 .titel-box p {
     font-size: 18px;
@@ -193,20 +618,36 @@
     height: 150px;
     border: #d58d8d 10px solid;
     border-radius: 50%;
-    float: right;
-    margin-top: 20px;
+    /* float: right; */
+    margin: 20px auto;
+    overflow: hidden;
 }
 
 .temp5 .bottom-box {
-    width: 90%;
-    position: absolute;
-    bottom: 20px;
+    width: 100%;
+    /* position: absolute; */
+    /* bottom: 90px; */
     border-radius: 0;
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
-    font-size: 18px;
+    justify-content: end;
+    font-size: 14px;
     font-weight: 600;
+    gap: 1rem;
+}
+
+.temp5 .address {
+    width: 70%;
+    /* position: absolute; */
+    bottom: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 400;
+    display: flex;
+    /* justify-content: end; */
+    text-align: right;
+    margin-top: 20px;
+    float: right;
 }
 
 
@@ -228,6 +669,7 @@
     }
 
   }
+
 
 
 
