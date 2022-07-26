@@ -139,3 +139,9 @@
 
 
 
+
+/* html2canvas fixed screenshot */
+
+
+.html2canvas-container { width: 3000px !important; height: 3000px !important; }
+
