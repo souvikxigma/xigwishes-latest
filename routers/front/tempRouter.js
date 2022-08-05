@@ -11,6 +11,10 @@ router.post('/action', tempController.templateSubmitAction);
 router.get('/review/:uniqueCode',authUserCheck.authUser,tempController.templateReview1);
 router.get('/anniversary-review/:uniqueCode',authUserCheck.authUser,tempController.templateReviewForAnniversary);
 
+// template download
+router.get('/review/download/:userId/:uniqueCode/:contactId',tempController.templateReviewBirthdayDownload);
+router.get('/anniversary-review/download/:userId/:uniqueCode/:contactId',tempController.templateReviewForAnniversaryDownload);
+
 //ajax//
 router.post('/review/birthday/ajax-theme-set',authUserCheck.authUser,tempController.setDefaultBirthdayImage);
 router.post('/review/anniversary/ajax-theme-set',authUserCheck.authUser,tempController.setDefaultAnniversaryImage);

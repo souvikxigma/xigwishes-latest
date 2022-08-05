@@ -66,11 +66,21 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      accountExpireDate: {
+        allowNull: true,
+        type: Sequelize.DATEONLY,
+        defaultValue: Sequelize.NOW
+      },
+      accountActiveStatus: {
+        type: Sequelize.ENUM,
+        values: ['0', '1'],
+        defaultValue: '1',
+      },
       delflag:{
         type: Sequelize.ENUM,
         values: ['Y', 'N'],
         defaultValue: 'N',
-      }
+      },
     });
     return User;
   };

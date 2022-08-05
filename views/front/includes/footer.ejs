@@ -84,6 +84,7 @@
         jQuery("#download").click(function(){
             screenshot();
         });
+        screenshotDownload();
     });
 
     function screenshot(){
@@ -117,4 +118,9 @@
     }
 
 
+    function screenshotDownload(){
+        html2canvas(document.getElementById("photodownload"),{allowTaint: true,useCORS: true}).then(function(canvas){
+            downloadImage(canvas.toDataURL(),"template.png");
+        });
+    }
 </script>

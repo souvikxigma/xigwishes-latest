@@ -17,7 +17,11 @@ module.exports = (sequelize, Sequelize) => {
       password: {
         type: Sequelize.STRING,
         allowNull: false,
-      }
+      },trialDays: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: '7'
+      },
     });
     return Admin;
   };

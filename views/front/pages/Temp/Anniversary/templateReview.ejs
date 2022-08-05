@@ -38,89 +38,98 @@
                 <div class="row">
                     <div class="col-lg-3"></div>
 
-<div class="main-warp" style="background: url('/uploads/sample/<%= theme.subcategoryImage %>') no-repeat;">
-        <!-- background image -->
-        <div class="logo">
-            <a href="#">
-                <img src="/uploads/companyLogo/<%= userInfo.companyLogo %>">
-            </a>
-        </div>
-        <div class="titel-box">
-            <h2>Happy Anniversary</h2>
+                    <div class="main-warp" id="photo"
+                        style="background: url('/uploads/sample/<%= theme.subcategoryImage %>') no-repeat;">
+                        <!-- background image -->
+                        <div class="logo">
+                            <a href="#">
+                                <img src="/uploads/companyLogo/<%= userInfo.companyLogo %>">
+                            </a>
+                        </div>
+                        <div class="titel-box">
+                            <h2>Happy Anniversary</h2>
 
-        </div>
-        <div class="middle-box">
-            <img src="/front/assets/img/profile.png">
-        </div>
+                        </div>
+                        <div class="middle-box">
+                            <img src="/front/assets/img/profile.png">
+                        </div>
 
-        <div class="address">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>2nd Floor, Shaila Tower, J1/16, Sector V, Bidhannagar, Kolkata, West Bengal 700091
-        </div>
-        <div class="bottom-box">
-            <div><i class="fa fa-phone-square" aria-hidden="true"></i> 9874585253</div>
-            <div><i class="fa fa-envelope" aria-hidden="true"></i> example@gmail.com</div>
-        </div>
+                        <div class="address">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>2nd Floor, Shaila Tower, J1/16, Sector V,
+                            Bidhannagar, Kolkata, West Bengal 700091
+                        </div>
+                        <div class="bottom-box">
+                            <div><i class="fa fa-phone-square" aria-hidden="true"></i> 9874585253</div>
+                            <div><i class="fa fa-envelope" aria-hidden="true"></i> example@gmail.com</div>
+                        </div>
 
-        <div class="service">
-             
-         
-        <div class="service-text">
-            <a class="servicename" href="#"><h4>web design</h4></a>
-            
-        </div>
-
-        <div class="service-text">
-           <a class="servicename" href="#"><h4>webpage</h4></a>
-            
-        </div>
-        
-        <div class="service-text">
-            <a class="servicename" href="#"><h4>web development</h4></a>
-            
-        </div>
-         </div>
+                        <div class="service">
 
 
+                            <div class="service-text">
+                                <a class="servicename" href="#">
+                                    <h4>web design</h4>
+                                </a>
+
+                            </div>
+
+                            <div class="service-text">
+                                <a class="servicename" href="#">
+                                    <h4>webpage</h4>
+                                </a>
+
+                            </div>
+
+                            <div class="service-text">
+                                <a class="servicename" href="#">
+                                    <h4>web development</h4>
+                                </a>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="col-lg-3"></div>
+
+                    <form>
+                        <input type="hidden" value="<%= theme.subcategoryUniqueCode %>" id="themecode" />
+                        <a class="btn btn-danger" id="setbtn">Set This Theme For Anniversary Wish</a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <div class="col-lg-3"></div>
-
-    <form>
-        <input type="hidden" value="<%= theme.subcategoryUniqueCode %>" id="themecode" />
-        <a class="btn btn-danger" id="setbtn" >Set This Theme For Anniversary Wish</a>
-    </form>
-
-</div>
-</div>
-</div>
-</div>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <script>
-  $(document).ready(function () {
-    
-    $('#setbtn').on('click', function () {
-        var uniqueThemeCode =$('#themecode').val();
-      $.ajax({
-        url: "http://localhost:9128/temp/review/anniversary/ajax-theme-set",
-        type: "POST",
-        data: { defaultAnniversaryTheme: uniqueThemeCode },
-        dataType: 'json',
-        success: function (result) {
+    $(document).ready(function () {
 
-            Toastify({text: result.msg,duration: 3000,style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },}).showToast();         
-       
-        }, error: function (err) {
-          console.log(err);
-        }
-     })
+        $('#setbtn').on('click', function () {
+            var uniqueThemeCode = $('#themecode').val();
+            $.ajax({
+                url: "http://localhost:9128/temp/review/anniversary/ajax-theme-set",
+                type: "POST",
+                data: { defaultAnniversaryTheme: uniqueThemeCode },
+                dataType: 'json',
+                success: function (result) {
+
+                    Toastify({
+                        text: result.msg, duration: 3000, style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                    }).showToast();
+
+                }, error: function (err) {
+                    console.log(err);
+                }
+            })
+        });
+
     });
-
-  });
 </script>
-

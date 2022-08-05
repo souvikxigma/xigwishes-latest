@@ -17,6 +17,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.User = require("./user.js")(sequelize, Sequelize);
 db.Payment = require("./payment.js")(sequelize, Sequelize);
+db.Package = require("./package.js")(sequelize, Sequelize);
 db.Contact = require("./contact.js")(sequelize, Sequelize);
 db.Theme = require("./theme.js")(sequelize, Sequelize);
 db.Admin = require("./admin.js")(sequelize, Sequelize);
@@ -52,6 +53,14 @@ db.Subcategory.belongsTo(db.Festivalsubcategory,{foreignKey: {
   name: 'festivalSubCategoryId'
 }})
 
+db.Payment.belongsTo(db.Package,{foreignKey: {
+  name: 'packageId'
+}})
+
+db.Package.hasMany(db.Payment,{foreignKey: {
+  name: 'packageId', targetKey: 'id',
+  // as: "gh"
+}})
 
 //category and subcategory relationship ////
 

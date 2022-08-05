@@ -10,7 +10,6 @@ const cors = require('cors');
 var cookieParser = require('cookie-parser')
 
 
-
 var app = express();
 
 const db = require("./models");

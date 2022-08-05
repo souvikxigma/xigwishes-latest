@@ -86,6 +86,24 @@ async function templateReview1(req, res) {
   });
 }
 
+
+async function templateReviewBirthdayDownload(req, res) {
+  //return res.status(200).send({"id":ab});
+  // let userId = req.params.id;
+  let userId = req.params.userId;
+  let uniqueCode = req.params.uniqueCode;
+  let contactId = req.params.contactId;
+  const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const contact = await Models.Contact.findOne({ where: { id: contactId } });
+  const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
+  return res.render('front/pages/Temp/Birthday/templateReviewDownload', {
+    page_name: 'template',
+    userInfo: userInfo,
+    theme: theme,
+    contact: contact,
+  });
+}
+
 async function templateReviewForAnniversary(req, res) {
   let userId = req.id;
   let uniqueCode = req.params.uniqueCode;
@@ -93,6 +111,21 @@ async function templateReviewForAnniversary(req, res) {
   const contact = await Models.Contact.findOne({ where: { userId: userId } });
   const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Anniversary/templateReview', {
+    page_name: 'template',
+    userInfo: userInfo,
+    theme: theme,
+    contact: contact,
+  });
+}
+
+async function templateReviewForAnniversaryDownload(req, res) {
+  let userId = req.params.userId;
+  let uniqueCode = req.params.uniqueCode;
+  let contactId = req.params.contactId;
+  const userInfo = await Models.User.findOne({ where: { id: userId } });
+  const contact = await Models.Contact.findOne({ where: { id: contactId } });
+  const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
+  return res.render('front/pages/Temp/Anniversary/templateReviewDownload', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
@@ -180,4 +213,6 @@ module.exports = {
   setDefaultBirthdayImage: setDefaultBirthdayImage,
   setDefaultAnniversaryImage: setDefaultAnniversaryImage,
   getFestivalAjaxSort: getFestivalAjaxSort,
+  templateReviewBirthdayDownload:templateReviewBirthdayDownload,
+  templateReviewForAnniversaryDownload:templateReviewForAnniversaryDownload
 };

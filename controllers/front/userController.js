@@ -3,6 +3,7 @@ var format = require('date-format');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
+var {customDateFormat,customDateAdd} = require('../../helpers/format');
 
 function signup(req, res) {
   return res.render('front/pages/Auth/signup', {
@@ -38,11 +39,19 @@ async function signupAction(req, res) {
   }
   //validation end
   const salt = await bcrypt.genSalt(10);
+  var AdminInfo = await Models.Admin.findOne({});
+  var trialDays = AdminInfo.trialDays;
+
+  var date = new Date(); // Now
+  var accountExpireDate = customDateAdd(date,trialDays)
+
+ 
   var usr = {
     name: req.body.name,
     email: req.body.email,
     password: await bcrypt.hash(req.body.password, salt),
     mobile: req.body.mobile,
+    accountExpireDate:accountExpireDate
   };
   var created_user = await Models.User.create(usr);
   if (created_user) {
@@ -101,6 +110,15 @@ async function loginAction(req, res) {
         }
       );
       res.cookie('token', token);
+      
+   
+
+      var today = customDateFormat(new Date());
+
+      if(today > user.accountExpireDate){
+        await user.update({ accountActiveStatus: '0'});
+      }
+
       return res.redirect('/contact');
     } else {
       req.flash('error', 'Password Incorrect');
@@ -193,6 +211,8 @@ async function logout(req, res) {
   req.flash('success', 'Logout Successfully');
   return res.redirect('/login');
 }
+
+
 
 module.exports = {
   signup: signup,
