@@ -16,9 +16,11 @@ async function index(req, res) {
   }
 }
 
-function add(req, res) {
+async function add(req, res) {
+  const categoryList = await Models.Category.findAll({});
   return res.render('front/pages/Contact/addcontact', {
     page_name: 'contact',
+    categoryList: categoryList
   });
 }
 
@@ -34,14 +36,14 @@ async function addAction(req, res) {
   const validationResponse = validator.validate(
     {
       name: name,
-      birthday: birthday,
+      // birthday: birthday,
       gender: gender,
       email: email,
       mobile: mobile,
     },
     {
       name: { type: 'string', empty: false, max: '100' },
-      birthday: { type: 'string', empty: false, max: '100' },
+      // birthday: { type: 'string', empty: false, max: '100' },
       gender: { type: 'string', empty: false, max: '100' },
       email: { type: 'string', empty: false, max: '100' },
       mobile: { type: 'string', empty: false, max: '100' },
@@ -73,7 +75,8 @@ async function addAction(req, res) {
   const newContact = {
     userId: req.id,
     name: req.body.name,
-    birthday: format(req.body.birthday),
+    birthday: req.body.birthday ? format(req.body.birthday) : null,
+    anniversary: req.body.anniversary ? format(req.body.anniversary) : null,
     companyName: req.body.companyName,
     gender: req.body.gender,
     email: req.body.email,

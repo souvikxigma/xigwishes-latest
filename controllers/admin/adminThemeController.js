@@ -18,10 +18,12 @@ async function adminThemeList(req, res) {
 
 }
 
-function adminAddTheme(req, res) {
+async function adminAddTheme(req, res) {
+    const allCategory = await Models.Category.findAll({});
     return res.render('admin/pages/Theme/addtheme', {
         page_name: 'admin-theme',
-        layout: 'admin/layouts/adminlayout'
+        layout: 'admin/layouts/adminlayout',
+        data:allCategory
     });
 }
 
@@ -46,6 +48,8 @@ async function adminAddThemeAction(req, res) {
             ///
             let themeData = {
                 uniqueCode: uniqueCode,
+                categoryId: req.body.event,
+                subcategoryId: req.body.sub_category,
                 name: imgname,
             };
 
@@ -63,8 +67,26 @@ async function adminAddThemeAction(req, res) {
 
 }
 
+////ajax//////
+async function getSubcategoryBycategoryAjax(req, res){
+
+    let category_id = req.body.cat_id;
+
+    const allsubcatdata = await Models.Subcategory.findAll({
+        where: { categoryId: category_id }
+    });
+    console.log('hhhhh',allsubcatdata);
+    
+
+   return res.json({
+        msg: 'success',
+        subcat: allsubcatdata
+        });
+}
+
 module.exports = {
     adminThemeList: adminThemeList,
     adminAddTheme: adminAddTheme,
     adminAddThemeAction: adminAddThemeAction,
+    getSubcategoryBycategoryAjax: getSubcategoryBycategoryAjax
 };

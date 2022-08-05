@@ -18,6 +18,18 @@
             <p>Dashboard</p>
           </a>
         </li>
+        <li <% if (page_name === 'admin-event') { %>class="active" <% } %> >
+          <a href="/admin/event">
+            <i class="now-ui-icons design_palette"></i>
+            <p>Events</p>
+          </a>
+        </li>
+        <li <% if (page_name === 'admin-sub-event') { %>class="active" <% } %> >
+          <a href="/admin/sub-event">
+            <i class="now-ui-icons design_palette"></i>
+            <p>Sub Events</p>
+          </a>
+        </li>
         <li <% if (page_name === 'admin-theme') { %>class="active" <% } %> >
           <a href="/admin/theme">
             <i class="now-ui-icons design_palette"></i>

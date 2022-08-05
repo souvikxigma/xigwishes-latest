@@ -1,0 +1,153 @@
+<div class="main-panel" id="main-panel">
+  <!-- Navbar -->
+  <%- include('../../includes/navbar.ejs') %>
+    <!-- End Navbar -->
+    <div class="panel-header panel-header-sm">
+
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="title">Sub Event Add</h5>
+              <a class="btn btn-dark" href="/admin/sub-event">Back</a>
+            </div>
+            <div class="card-body">
+              <%- include('../../includes/alert.ejs') %>
+                <form action="/admin/sub-event/add/action" method="POST" enctype='multipart/form-data'>
+                  <div class="row">
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Events</label>
+                        <select class="form-control" name="event" id="event">
+                          <option selected="true" disabled="disabled">Choose Events</option>
+                          <% if(data.length){ for(var i=0; i< data.length; i++) {%>
+                            <option value="<%= data[i].id%>">
+                              <%= data[i].name%>
+                            </option>
+                            <% } } %>
+
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 pr-1" id="festdivid">
+                      <div class="form-group">
+                        <label for="state">Festival Sub Category</label>
+                        <select class="form-control" name="festival_sub_category" id="sub_cate">
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>subcategoryTitle</label>
+                        <input type="text" name="subcategoryTitle" class="form-control">
+                      </div>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" name="subcategory_icon" class="form-control"
+                          style="opacity: 1; position: relative;">
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <button class="btn btn-success" type="submit">Submit</button>
+
+
+                </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <footer class="footer">
+      <div class=" container-fluid ">
+        <nav>
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Creative Tim
+              </a>
+            </li>
+            <li>
+              <a href="http://presentation.creative-tim.com">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright" id="copyright">
+          &copy;
+          <script>
+            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+          </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a
+            href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+        </div>
+      </div>
+    </footer>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // Javascript method's body can be found in assets/js/demos.js
+    $("#festdivid").hide();
+    $('#event').on('change', function () {
+      var category_id = this.value;
+      if (category_id == 3) {
+        $("#festdivid").show();
+        $("#sub_cate").html('');
+        $.ajax({
+          url: "http://localhost:9128/admin/sub-event/ajaxsubfestival",
+          type: "POST",
+          data: { cat_id: category_id },
+          dataType: 'json',
+          success: function (result) {
+            $('#sub_cate').html('<option value="">Select Sub Event</option>');
+            if (result.subcat.length > 0) {
+              $.each(result.subcat, function (key, value) {
+                
+                $("#sub_cate").append('<option value="' + value.id + '" >' + value.festivalName + '</option>');
+
+              });
+
+            } else {
+              alert('There are no sub events avaliable under this events');
+            }
+          }, error: function (err) {
+            console.log(err);
+          }
+        })
+      }
+
+    });
+
+
+    //////////////
+
+    $('#sub_cate').on('click', function () {
+
+      if ($('#sub_cate').has('option').length == 0) {
+        alert('please select category first')
+      }
+
+    })
+
+
+  });
+</script>

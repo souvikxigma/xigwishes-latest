@@ -1,9 +1,9 @@
 <div class="main-panel" id="main-panel">
-    <!-- Navbar -->
-    <%- include('../../includes/navbar.ejs') %>
+  <!-- Navbar -->
+  <%- include('../../includes/navbar.ejs') %>
     <!-- End Navbar -->
     <div class="panel-header panel-header-sm">
-        
+
     </div>
     <div class="content">
       <div class="row">
@@ -14,29 +14,62 @@
               <a class="btn btn-dark" href="/admin/theme">Back</a>
             </div>
             <div class="card-body">
-                <%- include('../../includes/alert.ejs') %>
-              <form action="/admin/theme/add/action" method="POST" enctype='multipart/form-data'>
-                <div class="row">
+              <%- include('../../includes/alert.ejs') %>
+                <form action="/admin/theme/add/action" method="POST" enctype='multipart/form-data'>
+                  <div class="row">
 
-                  <div class="col-md-12">
-                    <div class="form-group">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Events</label>
+                        <select class="form-control" name="event" id="catid">
+                          <option selected="true" disabled="disabled">Choose Events</option>
+                          <% if(data.length){ for(var i=0; i< data.length; i++) {%>
+                            <option value="<%= data[i].id%>">
+                              <%= data[i].name%>
+                            </option>
+                            <% } } %>
+
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <label for="state">Sub Category</label>
+                        <select class="form-control" name="sub_category" id="sub_cate">
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- <div class="col-md-12 pr-1">
+                      <div class="form-group">
+                        <select class="form-control" id="example" name="currency">
+                          <option value="btc" data-icon="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"> Bitcoin (BTC) </option>
+                          <option value="eth" data-icon="https://cdn.xxl.thumbs.canstockphoto.com/deep-purple-fantasy-landscape-stock-illustrations_csp19951772.jpg"> Ethereum (ETH) </option>
+                        </select>
+                      </div>
+                    </div> -->
+                    
+
+
+
+                    <div class="col-md-12">
+                      <div class="form-group">
                         <label>Image</label>
                         <input type="file" name="theme" class="form-control" style="opacity: 1; position: relative;">
-
+                      </div>
                     </div>
 
                   </div>
-                  
-                </div>
-                
-                <button class="btn btn-success" type="submit">Submit</button>
-                
-                
-              </form>
+
+                  <button class="btn btn-success" type="submit">Submit</button>
+
+
+                </form>
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
     <footer class="footer">
@@ -61,10 +94,75 @@
           </ul>
         </nav>
         <div class="copyright" id="copyright">
-          &copy; <script>
+          &copy;
+          <script>
             document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
-          </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+          </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a
+            href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
         </div>
       </div>
     </footer>
-  </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/adminpanel/assets/js/customselectbox/custom-selectbox.js"></script>
+<script>
+  $('#sub_cates').IconSelectBox(true); // isImg: boolean 
+  $('#example').IconSelectBox(false); // isImg: boolean 
+</script>
+<script>
+  $(document).ready(function () {
+    // Javascript method's body can be found in assets/js/demos.js
+
+    $('#catid').on('change', function () {
+      var category_id = this.value;
+      $("#sub_cate").html('');
+      $.ajax({
+        url: "http://localhost:9128/admin/theme/add/subthemeajax",
+        type: "POST",
+        data: { cat_id: category_id },
+        dataType: 'json',
+        success: function (result) {
+          $('#sub_cate').html('<option value="">Select Sub Event</option>');
+          if (result.subcat.length > 0) {
+            $.each(result.subcat, function (key, value) {
+              var imgname = "/uploads/sample/" + value.subcategoryImage;
+              var html = '<option value="' + value.id + '">' + '<img class="img-fluid" style="width: 90px;" src =' + imgname + ' >' + '</option>';
+              // $("#sub_cate").append(html);
+              var staticImg = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg";
+              // $('selector').css('backgroundImage','url(images/example.jpg)');
+              
+              // $("#sub_cate").append('<option id="'+key+'" value="' + value.id + '">' + value.subcategoryImage + '');
+              //   $('#'+key).css("background-image", "url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg')");
+              
+              $("#sub_cate").append('<option value="' + value.id + '" >' + value.subcategoryTitle + '</option>'); 
+            
+  
+            });
+
+          } else {
+            alert('There are no sub events avaliable under this events');
+          }
+        }, error: function (err) {
+          console.log(err);
+        }
+      })
+    });
+
+
+    //////////////
+
+    $('#sub_cate').on('click', function () {
+
+      if ($('#sub_cate').has('option').length == 0) {
+        alert('please select category first')
+      }
+
+    })
+    //////////////////////
+
+    // $("#txtEditor").Editor();
+
+  });
+</script>

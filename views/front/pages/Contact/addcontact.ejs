@@ -50,6 +50,27 @@
                                         <%- include('../../includes/alert.ejs') %>
                                             <form action="/contact/add/action" method="POST" enctype="multipart/form-data">
 
+                                                <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label
+                                                                class="login2 pull-right pull-right-pro">Category</label>
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            <select class="form-control" name="category" id="category">
+                                                                <option selected="true" disabled="disabled">Choose Category</option>
+                                                                <% if(categoryList.length){
+                                                                    for(var i = 0; i< categoryList.length; i++) {%> 
+                                                                    <option value="<%= categoryList[i].id%>">
+                                                                    <%= categoryList[i].name%>
+                                                                    </option>
+                                                                <% } } %>
+                                                                
+                                                                <option value="3">Both</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <div class="form-group-inner">
                                                     <div class="row">
@@ -63,7 +84,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="form-group-inner">
+                                                <div class="form-group-inner" id="birthdaydiv">
                                                     <div class="row">
                                                         <div class="col-lg-3">
                                                             <label
@@ -71,6 +92,18 @@
                                                         </div>
                                                         <div class="col-lg-9">
                                                             <input name="birthday" id="birthday" type="date"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group-inner" id="anniversarydiv">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label
+                                                                class="login2 pull-right pull-right-pro">Anniversary</label>
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            <input name="anniversary" id="anniversary" type="date"
                                                                 class="form-control" />
                                                         </div>
                                                     </div>
@@ -173,3 +206,33 @@
         </div>
     </div>
 </div>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.slim.js"
+  integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+  crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function(){
+        //by defeault all (birthday+anniversary) hide
+        $("#anniversarydiv").hide();
+        $("#birthdaydiv").hide();
+    });
+
+    $('#category').on('change', function() {
+        var categoryValue = $('#category').val();
+        
+        if(categoryValue == 1){
+            //1 = birthday, anniversary hide //
+            $("#anniversarydiv").hide();
+            $("#birthdaydiv").show();
+
+        }else if(categoryValue == 2){
+            //2 = anniversary, birthday hide //
+            $("#birthdaydiv").hide();
+            $("#anniversarydiv").show();
+        }else if(categoryValue == 3){
+            //both birthday + anniversary
+            $("#anniversarydiv").show();
+            $("#birthdaydiv").show();
+        }
+    });
+</script>

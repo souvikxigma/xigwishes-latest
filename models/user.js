@@ -5,7 +5,7 @@ module.exports = (sequelize, Sequelize) => {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true,
-    },
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -50,11 +50,19 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.TEXT,
         allowNull: true,
       },
-      defaultTheme:{
+      defaultBirthdayTheme:{
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      defaultAnniversaryTheme:{
         type: Sequelize.STRING,
         allowNull: true,
       },
       defaultText:{
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      stripeCustomerid:{
         type: Sequelize.STRING,
         allowNull: true,
       },

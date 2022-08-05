@@ -15,7 +15,11 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false
       },
       birthday: {
-        allowNull: false,
+        allowNull: true,
+        type: Sequelize.DATEONLY
+      },
+      anniversary: {
+        allowNull: true,
         type: Sequelize.DATEONLY
       },
       companyName: {

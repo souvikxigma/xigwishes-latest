@@ -9,6 +9,8 @@ const fileUpload = require('express-fileupload');
 const cors = require('cors');
 var cookieParser = require('cookie-parser')
 
+
+
 var app = express();
 
 const db = require("./models");
@@ -71,14 +73,17 @@ const userRouter = require('./routers/front/userRouter');
 const cronRouter = require('./routers/front/cronRouter');
 const tempRouter = require('./routers/front/tempRouter');
 const homeRouter = require('./routers/front/homeRouter');
+const packageRouter = require('./routers/front/packageRouter');
 
 // ////define all router ////
 app.use(`/contact`,contactRouter);
 app.use(`/others`,staticListRouter);
 app.use(`/cron`,cronRouter);
 app.use(`/temp`,tempRouter);
-app.use(`/`,userRouter);
 app.use(`/home`,homeRouter);
+app.use(`/package`,packageRouter);
+app.use(`/`,userRouter);
+
 ///end define router//
 
 
@@ -87,11 +92,15 @@ app.use(`/home`,homeRouter);
 const adminAuthRouter = require('./routers/admin/adminAuthRouter');
 const adminDashboardRouter = require('./routers/admin/adminDashboardRouter');
 const adminThemeRouter = require('./routers/admin/adminThemeRouter');
+const adminEventRouter = require('./routers/admin/adminEventRouter');
+const adminSubEventRouter = require('./routers/admin/adminSubEventRouter');
 
 //admin //
 app.use(`/admin`,adminAuthRouter);
 app.use(`/admin/dashboard`,adminDashboardRouter);
 app.use(`/admin/theme`,adminThemeRouter);
+app.use(`/admin/event`,adminEventRouter);
+app.use(`/admin/sub-event`,adminSubEventRouter);
 
 
 // admin 404

@@ -16,7 +16,44 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.User = require("./user.js")(sequelize, Sequelize);
+db.Payment = require("./payment.js")(sequelize, Sequelize);
 db.Contact = require("./contact.js")(sequelize, Sequelize);
 db.Theme = require("./theme.js")(sequelize, Sequelize);
 db.Admin = require("./admin.js")(sequelize, Sequelize);
+db.Category = require("./category.js")(sequelize, Sequelize);
+db.Subcategory = require("./subcategory.js")(sequelize, Sequelize);
+db.Festivalsubcategory = require("./festivalsubcategory")(sequelize, Sequelize);
+
+//category and subcategory relationship ////
+
+db.Category.hasMany(db.Subcategory,{foreignKey: {
+  name: 'categoryId', targetKey: 'id',
+  // as: "gh"
+}})
+db.Subcategory.belongsTo(db.Category,{foreignKey: {
+  name: 'categoryId'
+}})
+//////////////////
+
+db.Category.hasMany(db.Festivalsubcategory,{foreignKey: {
+  name: 'catId', targetKey: 'id',
+  // as: "gh"
+}})
+db.Festivalsubcategory.belongsTo(db.Category,{foreignKey: {
+  name: 'catId'
+}})
+
+db.Festivalsubcategory.hasMany(db.Subcategory,{foreignKey: {
+  name: 'festivalSubCategoryId', targetKey: 'id',
+  // as: "gh"
+}})
+
+db.Subcategory.belongsTo(db.Festivalsubcategory,{foreignKey: {
+  name: 'festivalSubCategoryId'
+}})
+
+
+//category and subcategory relationship ////
+
+
 module.exports = db;

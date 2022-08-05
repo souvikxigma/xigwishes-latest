@@ -6,11 +6,17 @@ const router = express.Router();
 
 router.get('/',authUserCheck.authUser,tempController.templateSubmit);
 router.post('/action', tempController.templateSubmitAction);
-router.get('/review/1/:id/:uniqueCode',tempController.templateReview1);
-router.get('/review/2/:id/:uniqueCode',tempController.templateReview2);
-router.get('/review/3/:id/:uniqueCode',tempController.templateReview3);
-router.get('/review/4/:id/:uniqueCode',tempController.templateReview4);
-router.get('/review/5/:id/:uniqueCode',tempController.templateReview5);
+
+
+router.get('/review/:uniqueCode',authUserCheck.authUser,tempController.templateReview1);
+router.get('/anniversary-review/:uniqueCode',authUserCheck.authUser,tempController.templateReviewForAnniversary);
+
+//ajax//
+router.post('/review/birthday/ajax-theme-set',authUserCheck.authUser,tempController.setDefaultBirthdayImage);
+router.post('/review/anniversary/ajax-theme-set',authUserCheck.authUser,tempController.setDefaultAnniversaryImage);
+
+
+router.post('/festivalAjax',authUserCheck.authUser,tempController.getFestivalAjaxSort);
 
 
 module.exports = router;

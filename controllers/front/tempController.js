@@ -13,6 +13,38 @@ async function templateSubmit(req, res) {
     return res.redirect('/login');
   }
   const theme = await Models.Theme.findAll({});
+
+  const allBirthdayData = await Models.Subcategory.findAll({
+    where: { categoryId: 1 },
+    include: [{
+      model: Models.Category,
+      attributes: ["name"],
+    }]
+  });
+
+  const allAnniversaryData = await Models.Subcategory.findAll({
+    where: { categoryId: 2 },
+    include: [{
+      model: Models.Category,
+      attributes: ["name"],
+    }]
+  });
+
+  const allFestivalData = await Models.Subcategory.findAll({
+    where: { categoryId: 3 },
+    include: [{
+      model: Models.Category,
+      attributes: ["name", "id"],
+      include: [{
+        model: Models.Festivalsubcategory,
+      }]
+    }]
+  });
+
+  const FestivalInfo = await Models.Festivalsubcategory.findAll({});
+
+  //console.log(allFestivalData[0].category.festivalsubcategories);
+
   if (!theme) {
     req.flash('success', 'Themes not available');
     return res.redirect('/home');
@@ -20,7 +52,11 @@ async function templateSubmit(req, res) {
   return res.render('front/pages/Temp/templat', {
     page_name: 'template',
     userInfo: userInfo,
-    theme: theme,
+    // theme: theme,
+    theme: allBirthdayData,
+    themeAnniversary: allAnniversaryData,
+    themeFestival: allFestivalData,
+    fest: FestivalInfo,
   });
 }
 
@@ -35,11 +71,13 @@ function templateSubmitAction(req, res) {
 }
 
 async function templateReview1(req, res) {
-  let userId = req.params.id;
+  let userId = req.id;
+  //return res.status(200).send({"id":ab});
+  // let userId = req.params.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
   const contact = await Models.Contact.findOne({ where: { userId: userId } });
-  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
+  const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Birthday/templateReview1', {
     page_name: 'template',
     userInfo: userInfo,
@@ -48,64 +86,98 @@ async function templateReview1(req, res) {
   });
 }
 
-async function templateReview2(req, res) {
-  let userId = req.params.id;
+async function templateReviewForAnniversary(req, res) {
+  let userId = req.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
   const contact = await Models.Contact.findOne({ where: { userId: userId } });
-  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/Birthday/templateReview2', {
+  const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
+  return res.render('front/pages/Temp/Anniversary/templateReview', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
     contact: contact,
   });
 }
-async function templateReview3(req, res) {
-  let userId = req.params.id;
-  let uniqueCode = req.params.uniqueCode;
-  const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Contact.findOne({ where: { userId: userId } });
-  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/Birthday/templateReview3', {
-    page_name: 'template',
-    userInfo: userInfo,
-    theme: theme,
-    contact: contact,
+
+
+///ajax birthday theme set /////
+async function setDefaultBirthdayImage(req, res) {
+  let defaultBirthDayTheme = req.body.defaultBirthDayTheme;
+  let userId = req.id;
+
+  const updateDefaultBirthdayImage = {
+    defaultBirthdayTheme: defaultBirthDayTheme,
+  };
+  let updateBirthdayImg = await Models.User.update(updateDefaultBirthdayImage, {
+    where: { id: userId },
   });
+
+  if (updateBirthdayImg) {
+    return res.json({
+      msg: 'Default Birthday Image update successfully',
+    });
+  } else {
+    return res.json({
+      msg: 'error',
+    });
+  }
+
 }
-async function templateReview4(req, res) {
-  let userId = req.params.id;
-  let uniqueCode = req.params.uniqueCode;
-  const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Contact.findOne({ where: { userId: userId } });
-  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/Birthday/templateReview4', {
-    page_name: 'template',
-    userInfo: userInfo,
-    theme: theme,
-    contact: contact,
+
+///ajax anniversary theme set /////
+async function setDefaultAnniversaryImage(req, res) {
+  let defaultAnniversaryTheme = req.body.defaultAnniversaryTheme;
+  let userId = req.id;
+
+  const updateDefaultAnniversaryImage = {
+    defaultAnniversaryTheme: defaultAnniversaryTheme,
+  };
+  let updateAnniversaryImg = await Models.User.update(updateDefaultAnniversaryImage, {
+    where: { id: userId },
   });
+
+  if (updateAnniversaryImg) {
+    return res.json({
+      msg: 'Default Anniversary Image updated successfully',
+    });
+  } else {
+    return res.json({
+      msg: 'error',
+    });
+  }
+
 }
-async function templateReview5(req, res) {
-  let userId = req.params.id;
-  let uniqueCode = req.params.uniqueCode;
-  const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Contact.findOne({ where: { userId: userId } });
-  const theme = await Models.Theme.findOne({ where: { uniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/Birthday/templateReview5', {
-    page_name: 'template',
-    userInfo: userInfo,
-    theme: theme,
-    contact: contact,
-  });
+
+//ajax festival
+async function getFestivalAjaxSort(req, res) {
+  let festival_id = req.body.festival_id;
+  var allfestivalResultSort ;
+  if (festival_id != "all") {
+    allfestivalResultSort = await Models.Subcategory.findAll({
+      where: { festivalSubCategoryId: festival_id },
+      include: [{
+        model: Models.Festivalsubcategory,
+      }]
+    });
+  }else{
+    allfestivalResultSort = await Models.Subcategory.findAll({
+      where: { categoryId: 3 },
+      include: [{
+        model: Models.Festivalsubcategory,
+      }]
+    });
+  }
+  console.log('hhhhh', allfestivalResultSort);
+  return res.json({ msg: 'success', subcategorys: allfestivalResultSort });
 }
+
 module.exports = {
   templateSubmit: templateSubmit,
   templateSubmitAction: templateSubmitAction,
   templateReview1: templateReview1,
-  templateReview2: templateReview2,
-  templateReview3: templateReview3,
-  templateReview4: templateReview4,
-  templateReview5: templateReview5,
+  templateReviewForAnniversary: templateReviewForAnniversary,
+  setDefaultBirthdayImage: setDefaultBirthdayImage,
+  setDefaultAnniversaryImage: setDefaultAnniversaryImage,
+  getFestivalAjaxSort: getFestivalAjaxSort,
 };
