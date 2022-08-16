@@ -7,8 +7,9 @@ const http = require('http');
 const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
-var cookieParser = require('cookie-parser')
-
+var cookieParser = require('cookie-parser');
+var csrf = require('csurf');
+var os = require('os');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(session({resave: true, saveUninitialized: true, secret: 'xig2022#wishesd
 // set the view engine to ejs
 app.use(expressLayouts);
 app.use(cookieParser())
+// app.use(csrf({ cookie: true }))
 app.use(flash());
 app.use(fileUpload());
 app.set('view engine', 'ejs');
@@ -93,6 +95,7 @@ const adminDashboardRouter = require('./routers/admin/adminDashboardRouter');
 const adminThemeRouter = require('./routers/admin/adminThemeRouter');
 const adminEventRouter = require('./routers/admin/adminEventRouter');
 const adminSubEventRouter = require('./routers/admin/adminSubEventRouter');
+const adminUserRouter = require('./routers/admin/adminUserRouter');
 
 //admin //
 app.use(`/admin`,adminAuthRouter);
@@ -100,6 +103,7 @@ app.use(`/admin/dashboard`,adminDashboardRouter);
 app.use(`/admin/theme`,adminThemeRouter);
 app.use(`/admin/event`,adminEventRouter);
 app.use(`/admin/sub-event`,adminSubEventRouter);
+app.use(`/admin/user`,adminUserRouter);
 
 
 // admin 404
@@ -114,5 +118,7 @@ app.get('*', function(req, res){
 const server = http.createServer(app);
 
 server.listen(process.env.PORT,()=>{
-  console.log(`server is working on ${process.env.PORT}`);
+  console.log(`server is working on ${process.env.PORT}||`);
+  //console.log('Server listening:', `${os.userInfo()}`);
+
 });

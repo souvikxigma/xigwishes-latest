@@ -50,6 +50,7 @@
                                         <%- include('../../includes/alert.ejs') %>
                                             <form action="/user/profile/action" method="POST"
                                                 enctype="multipart/form-data">
+                                              
 
 
                                                 <div class="form-group-inner">
@@ -147,6 +148,48 @@
                                                             <textarea class="form-control" name="officeAddress"
                                                                 id="officeAddress"><%= data.officeAddress %></textarea>
 
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label
+                                                                class="login2 pull-right pull-right-pro">Service 1</label>
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            <input name="service1" id="service1" type="text"
+                                                                value="<%= data.service1 %>"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label
+                                                                class="login2 pull-right pull-right-pro">Service 2</label>
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            <input name="service2" id="service2" type="text"
+                                                                value="<%= data.service2 %>"
+                                                                class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group-inner">
+                                                    <div class="row">
+                                                        <div class="col-lg-3">
+                                                            <label
+                                                                class="login2 pull-right pull-right-pro">Service 3</label>
+                                                        </div>
+                                                        <div class="col-lg-9">
+                                                            <input name="service3" id="service3" type="text"
+                                                                value="<%= data.service3 %>"
+                                                                class="form-control" />
                                                         </div>
                                                     </div>
                                                 </div>

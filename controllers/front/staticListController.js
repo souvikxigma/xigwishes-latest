@@ -29,6 +29,12 @@ function cancelationRefund(req, res) {
     });
 }
 
+function aboutUs(req,res){
+    return res.render('front/pages/Others/aboutus', {
+        page_name: 'aboutus'
+    });
+}
+
 
 
 module.exports = {
@@ -36,4 +42,5 @@ module.exports = {
     termsCondition: termsCondition,
     privacyPolicy: privacyPolicy,
     cancelationRefund: cancelationRefund,
+    aboutUs: aboutUs,
 }

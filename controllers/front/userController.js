@@ -3,9 +3,15 @@ var format = require('date-format');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Models = require('../../models');
+const nodemailer = require("nodemailer");
 var {customDateFormat,customDateAdd} = require('../../helpers/format');
+var {generateRandomToken} = require('../../helpers/generateToken');
 
 function signup(req, res) {
+
+  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  console.log('info',req.protocol + '://' + req.get('host'));
+
   return res.render('front/pages/Auth/signup', {
     page_name: 'signup',
     layout: 'front/layouts/authlayout',
@@ -13,9 +19,11 @@ function signup(req, res) {
 }
 
 async function signupAction(req, res) {
+  var emailtokentemp = generateRandomToken();
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
+  var emailtoken = emailtokentemp;
   var mobile = req.body.mobile;
   //validation start
   const validator = new Validator();
@@ -45,16 +53,43 @@ async function signupAction(req, res) {
   var date = new Date(); // Now
   var accountExpireDate = customDateAdd(date,trialDays)
 
+  // var furl = process.env.BASE_URL;
+  // var baseurl = process.env.BASE_URL;
+  // if(process.env.APP_PRODUCTION_MODE){
+  //   baseurl = process.env.LIVE_BASE_URL;
+  // }
+  let basepath = req.protocol + '://' + req.get('host');
  
   var usr = {
     name: req.body.name,
     email: req.body.email,
     password: await bcrypt.hash(req.body.password, salt),
+    emailToken: emailtoken,
     mobile: req.body.mobile,
     accountExpireDate:accountExpireDate
   };
   var created_user = await Models.User.create(usr);
   if (created_user) {
+    //mail//
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAIL_HOST,
+      port: process.env.MAIL_PORT,
+      secure: true,
+      auth: {
+        user: process.env.MAIL_AUTH_USER,
+        pass: process.env.MAIL_AUTH_PASSWORD,
+      },
+    });
+
+    let info = transporter.sendMail({
+      from: process.env.MAIL_AUTH_USER,
+      to: req.body.email,
+      subject: `Xigwish Account Activation Mail`,
+      //text: 'hi xigwish',
+      html: `<div style="height:150px"><p style="font-size: 18px;">Please click this button to activate your account</p><br/>
+      <a style="text-decoration:none;border:1px solid beige;border-radius:10px;background-color:#e67e22;color:white;padding:12px;" href="${basepath}/email/verification/${emailtoken}/${req.body.email}">verification link</a></div>`
+    });
+    ///////
     req.flash('success', 'User added successfully');
     return res.redirect('/login');
   } else {
@@ -93,6 +128,10 @@ async function loginAction(req, res) {
   const user = await Models.User.findOne({ where: { email: req.body.email } });
 
   if (user) {
+    if(user.emailVerification == 0){
+      req.flash('error', 'Please verify your email');
+      return res.redirect('/login')
+    }
     const password_valid = await bcrypt.compare(
       req.body.password,
       user.password
@@ -193,6 +232,10 @@ async function profileUpdate(req, res) {
     companyLogo: imgname,
     homeAddress: req.body.homeAddress,
     officeAddress: req.body.officeAddress,
+    //
+    service1: req.body.service1 ? req.body.service1 : null,
+    service2: req.body.service2 ? req.body.service2 : null,
+    service3: req.body.service3 ? req.body.service3 : null,
   };
   let updateInfo = await Models.User.update(updateUser, {
     where: { id: userId },
@@ -203,6 +246,57 @@ async function profileUpdate(req, res) {
   } else {
     req.flash('error', 'Profile is not updated');
     res.redirect('/user/profile');
+  }
+}
+
+async function emailVerification(req,res){
+  let emailtoken = req.params.token;
+  let emailid = req.params.emailid;
+  let basepath = req.protocol + '://' + req.get('host');
+
+  let userInfo = await Models.User.findOne({ where: { email: emailid } });
+  if(!userInfo.emailToken){
+    req.flash('error', 'You have already verified your account');
+    return res.redirect('/login');
+  }
+  let dbToken = userInfo.emailToken;
+  if(dbToken == emailtoken){
+    const updateUser = {
+      emailVerification: '1',
+      emailToken: null
+    };
+  
+    let updateInfo = await Models.User.update(updateUser, {
+      where: { id: userInfo.id },
+    });
+
+    //mail//
+    const transporter = nodemailer.createTransport({
+      host: process.env.MAIL_HOST,
+      port: process.env.MAIL_PORT,
+      secure: true,
+      auth: {
+        user: process.env.MAIL_AUTH_USER,
+        pass: process.env.MAIL_AUTH_PASSWORD,
+      },
+    });
+
+    let info = transporter.sendMail({
+      from: process.env.MAIL_AUTH_USER,
+      to: userInfo.email,
+      subject: `Xigwish Account Activated Mail`,
+      //text: 'hi xigwish',
+      html: `<div style="height:150px"><p style="font-size: 18px;">Account successfully activated.</p><br/>
+      <p>Click here to login <a style="text-decoration:none;border:1px solid beige;border-radius:10px;background-color:#e67e22;color:white;padding:12px;" href="${basepath}">Login</a></p></div>`
+    });
+    ///////
+
+    req.flash('success', 'Email Verification Completed.Now you can login your account');
+    return res.redirect('/login');
+
+  }else{
+    req.flash('error', 'Email Verification is not Completed');
+    return res.redirect('/login');
   }
 }
 
@@ -222,4 +316,5 @@ module.exports = {
   logout: logout,
   profile: profile,
   profileUpdate: profileUpdate,
+  emailVerification: emailVerification,
 };

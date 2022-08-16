@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+img {
+    max-width: 100%;
+}
+
+.main-warp {
+    max-width: 605px;
+    width: 100%;
+    margin: 30px auto;
+    min-height: 500px;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    background-size: cover !important;
+    border: 1px solid gray;
+}
+.logo {
+    width: 100px;
+    height: 94px;
+    background: #fff;
+    border-radius: 50px;
+    float: left;
+    overflow: hidden;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.titel-box {
+    width: 99%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.titel-box h2 {
+    font-size: 27px;
+    font-weight: 600;
+    color: #ffffff;
+
+}
+
+.logo img {
+    max-width: 100%;
+}
+.titel-box p {
+    font-size: 18px;
+    padding-right: 10px;
+    margin-top: 10px;
+}
+
+
+.middle-box {
+    width: 150px;
+    height: 150px;
+    border: #381113 5px solid;
+    border-radius: 50%;
+    margin: 20px 191px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+
+.address {
+    width: 80%;
+    bottom: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    margin-top: 45px;
+    float: left;
+    color: #ffffff;
+}
+
+.bottom-box {
+    width: 49%;
+    border-radius: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 14px;
+}
+
+.service{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40%;
+
+    margin-top: -15px ;
+        padding-left: 2px;
+        margin-bottom: -10px;
+    margin-top: 2px;
+}
+
+
+.service-text{
+    font-size: 13px;
+
+}
+.service-text h4{
+    color: #ffffff;
+}
+.servicename{
+    text-decoration: none;
+}
+
+
+
+
+@media only screen and (max-width: 600px) {
+    .middle-box {
+        width: 100px;
+        height: 100px;
+    }
+
+    .titel-box h2 {
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .main-warp {
+        margin: 0px auto;
+    }
+
+    .bottom-box {
+        font-size: 16px;
+        width: 53px;
+    }
+
+}

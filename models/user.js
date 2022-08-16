@@ -62,6 +62,18 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      service1: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      service2: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      service3: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       stripeCustomerid:{
         type: Sequelize.STRING,
         allowNull: true,
@@ -75,6 +87,11 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.ENUM,
         values: ['0', '1'],
         defaultValue: '1',
+      },
+      emailVerification: {
+        type: Sequelize.ENUM,
+        values: ['0', '1'],
+        defaultValue: '0',
       },
       delflag:{
         type: Sequelize.ENUM,

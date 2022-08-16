@@ -12,6 +12,9 @@ router.post('/signup/action', userController.signupAction);
 router.get('/login',authNotUserCheck.authNotUser, userController.login);
 router.post('/login/action', userController.loginAction);
 
+
+router.get('/email/verification/:token/:emailid', userController.emailVerification);
+
 router.get('/user/profile',authUserCheck.authUser, userController.profile);
 router.post('/user/profile/action',authUserCheck.authUser, userController.profileUpdate);
 
