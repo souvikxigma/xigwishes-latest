@@ -5,6 +5,6 @@ const authUserCheck = require('../../middleware/front/AuthCheck');
 
 const router = express.Router();
 
-router.get('/',authUserCheck.authUser, homeController.home);
+router.get('/', homeController.home);
 
 module.exports = router;

@@ -1,163 +1,197 @@
-<!-- income order visit user Start -->
-<div class="income-order-visit-user-area mg-t-40">
-    <div class="container">
-        <div class="row">
-            <%- include('../../includes/alert.ejs') %>
-            <div class="col-lg-3">
-                <div class="income-dashone-total shadow-reset nt-mg-b-30">
-                    <div class="income-title">
-                        <div class="main-income-head">
-                            <h2>Income</h2>
-                            <div class="main-income-phara">
-                                <p>Monthly</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="income-dashone-pro">
-                        <div class="income-rate-total">
-                            <div class="price-adminpro-rate">
-                                <h3><span>$</span><span class="counter">60888200</span></h3>
-                            </div>
-                            <div class="price-graph">
-                                <span id="sparkline1"></span>
-                            </div>
-                        </div>
-                        <div class="income-range">
-                            <p>Total income</p>
-                            <span class="income-percentange">98% <i class="fa fa-bolt"></i></span>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="income-dashone-total shadow-reset nt-mg-b-30">
-                    <div class="income-title">
-                        <div class="main-income-head">
-                            <h2>Orders</h2>
-                            <div class="main-income-phara order-cl">
-                                <p>Annual</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="income-dashone-pro">
-                        <div class="income-rate-total">
-                            <div class="price-adminpro-rate">
-                                <h3><span class="counter">72320</span></h3>
-                            </div>
-                            <div class="price-graph">
-                                <span id="sparkline6"></span>
-                            </div>
-                        </div>
-                        <div class="income-range order-cl">
-                            <p>New Orders</p>
-                            <span class="income-percentange">66% <i class="fa fa-level-up"></i></span>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="income-dashone-total shadow-reset nt-mg-b-30">
-                    <div class="income-title">
-                        <div class="main-income-head">
-                            <h2>Visitor</h2>
-                            <div class="main-income-phara visitor-cl">
-                                <p>Today</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="income-dashone-pro">
-                        <div class="income-rate-total">
-                            <div class="price-adminpro-rate">
-                                <h3><span class="counter">888200</span></h3>
-                            </div>
-                            <div class="price-graph">
-                                <span id="sparkline2"></span>
-                            </div>
-                        </div>
-                        <div class="income-range visitor-cl">
-                            <p>New Visitor</p>
-                            <span class="income-percentange">55% <i class="fa fa-level-up"></i></span>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="income-dashone-total shadow-reset nt-mg-b-30">
-                    <div class="income-title">
-                        <div class="main-income-head">
-                            <h2>User activity</h2>
-                            <div class="main-income-phara low-value-cl">
-                                <p>Low Value</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="income-dashone-pro">
-                        <div class="income-rate-total">
-                            <div class="price-adminpro-rate">
-                                <h3><span class="counter">88200</span></h3>
-                            </div>
-                            <div class="price-graph">
-                                <span id="sparkline5"></span>
-                            </div>
-                        </div>
-                        <div class="income-range low-value-cl">
-                            <p>In first month</p>
-                            <span class="income-percentange">33% <i class="fa fa-level-down"></i></span>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>
+<section class="banner-panel">
+    <div class="owl-carousel owl-theme">
+        <div class="item">
+            <img alt="" src="/front/assets/images/banner.jpg">
+        </div>
+        <div class="item">
+            <img alt="" src="/front/assets/images/banner.jpg">
+        </div>
+        <div class="item">
+            <img alt="" src="/front/assets/images/banner.jpg">
         </div>
     </div>
-</div>
-<!-- income order visit user End -->
-<div class="dashtwo-order-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="dashtwo-order-list shadow-reset">
-                    <div class="row">
-                        <div class="col-lg-9">
-                            <div class="flot-chart flot-chart-dashtwo">
-                                <div class="flot-chart-content" id="flot-dashboard-chart"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="skill-content-3">
-                                <div class="skill">
-                                    <div class="progress">
-                                        <div class="lead-content">
-                                            <h3>2,346</h3>
-                                            <p>Total orders in period</p>
-                                        </div>
-                                        <div class="progress-bar wow fadeInLeft" data-progress="95%" style="width: 95%;" data-wow-duration="1.5s" data-wow-delay="1.2s"> <span>95%</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="lead-content">
-                                            <h3>9,346</h3>
-                                            <p>Orders in last month</p>
-                                        </div>
-                                        <div class="progress-bar wow fadeInLeft" data-progress="85%" style="width: 85%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>85%</span> </div>
-                                    </div>
-                                    <div class="progress progress-bt">
-                                        <div class="lead-content">
-                                            <h3>2,34,600</h3>
-                                            <p>Monthly income from order</p>
-                                        </div>
-                                        <div class="progress-bar wow fadeInLeft" data-progress="93%" style="width: 93%;" data-wow-duration="1.5s" data-wow-delay="1.2s"><span>93%</span> </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="popup-box">
+        <%- include('../../includes/signupComponent.ejs') %>
     </div>
-</div>
+</section>
 
+<section class="work-panel">
+    <div class="container">
+        <div class="row text-center ">
+            <div class="col-md-12">
+                <h2>
+                    How It works
+                </h2>
+                <p>
+                    With xigwishes it's easy to wish and send greetings to your<br> 
+                    friends family employees and corporates
+                </p>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-around">
+            <div class="col-md-7">
+                <div class="gift-box">
+                    <img alt="" src="/front/assets/images/gift--box.jpg">
+                </div>
+            </div>
+        </div>
+
+        <div class="row d-flex justify-content-between">
+            <div class="col-md-4 text-center">
+                <div class="step-box">
+                    <h3>Step 01</h3>
+                    <p>
+                        Choose your favorite design for any occasion
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="step-box">
+                    <h3>Step 02</h3>
+                    <p>
+                        Choose your favorite design for any occasion
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="step-box">
+                    <h3>Step 03</h3>
+                    <p>
+                        Choose your favorite design for any occasion
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="end-less-panel">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Endless ways to make</h2>
+                <p>your design your own.</p>
+            </div>
+        </div>
+        
+        <div class="slider-box">
+            <div class="owl-carousel music owl-theme">
+                <div class="item">
+                    <img alt="" src="/front/assets/images/music1.jpg">
+                    <h4>MUSIC</h4>
+                    <p>Upload or choose from playlist</p>
+                </div>
+                <div class="item">
+                    <img alt="" src="/front/assets/images/music2.jpg">
+                    <h4>UNLIMITED STORAGE</h4>
+                    <p>Enough room for all your creations</p>
+                </div>
+                <div class="item">
+                    <img alt="" src="/front/assets/images/music3.jpg">
+                    <h4>IMAGE</h4>
+                    <p>Add your favorite photos</p>
+                </div>
+                <div class="item">
+                    <img alt="" src="/front/assets/images/music4.jpg">
+                    <h4>TEXT</h4>
+                    <p>Customize your message</p>
+                </div>
+                <div class="item">
+                    <img alt="" src="/front/assets/images/music5.jpg">
+                    <h4>RSVP</h4>
+                    <p>Track guest attendance</p>
+                </div>
+                <div class="item">
+                    <img alt="" src="/front/assets/images/music1.jpg">
+                    <h4>MUSIC</h4>
+                    <p>Upload or choose from playlist</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="callto-action">
+            Get Started
+        </div>
+        
+        <div class="col-md-12 mt-5">
+            <hr>
+        </div>
+
+    </div>
+</section>
+
+<section class="featured-panel">
+    <div class="container">
+        <div class="row text-center ">
+            <div class="col-md-12">
+                <h2>
+                    Features
+                </h2>
+                <p>
+                    Quickly create beautiful invitations, slideshows, cards and collages, <br>
+                    then share them with the people you love.
+
+                </p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <div class="grid-box-panel">
+                            <div class="image-small">
+                                <img src="/front/assets/images/weddding.jpg">
+                            </div>
+                            <h3>Wedding</h3>
+                            <p>
+                                Quickly create beautiful invitations, slideshows, cards and collages, 
+                                then share them with the people you love.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="grid-box-panel">
+                            <div class="image-small">
+                                <img alt="" src="/front/assets/images/party.jpg">
+                            </div>
+                            <h3>Private Party</h3>
+                            <p>
+                                Quickly create beautiful invitations, slideshows, cards and collages, 
+                                then share them with the people you love.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 text-center">
+                        <div class="grid-box-panel">
+                            <div class="image-small">
+                                <img src="/front/assets/images/birthday.jpg">
+                            </div>
+                            <h3>Birthday party</h3>
+                            <p>
+                                Quickly create beautiful invitations, slideshows, cards and collages, 
+                                then share them with the people you love.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="grid-box-panel">
+                            <div class="image-small">
+                                <img src="/front/assets/images/party2.jpg">
+                            </div>
+                            <h3>Corporate Party</h3>
+                            <p>
+                                Quickly create beautiful invitations, slideshows, cards and collages, 
+                                then share them with the people you love.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                asas
+            </div>
+        </div>
+    </div>
+</section>

@@ -8,9 +8,11 @@ const router = express.Router();
 
 router.get('/signup',authNotUserCheck.authNotUser, userController.signup);
 router.post('/signup/action', userController.signupAction);
+router.post('/signup/action/ajax', userController.signupActionAjax);
 
 router.get('/login',authNotUserCheck.authNotUser, userController.login);
 router.post('/login/action', userController.loginAction);
+router.post('/login/action/ajax', userController.loginActionAjax);
 
 
 router.get('/email/verification/:token/:emailid', userController.emailVerification);

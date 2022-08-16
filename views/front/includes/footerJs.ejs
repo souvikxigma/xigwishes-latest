@@ -1,0 +1,119 @@
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <%- include('./loginComponent.ejs') %>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <%- include('./signupComponent.ejs') %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/front/assets/js/jquery.min.js"></script>
+<script src="/front/assets/js/owl.carousel.js"></script>
+<script src="/front/assets/js/popper.min.js"></script>
+<script src="/front/assets/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            margin: 10,
+            dots: false,
+            nav: true,
+            loop: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
+            }
+        })
+    })
+    $('.music').owlCarousel({
+        loop: true,
+        margin: 10,
+        dots: false,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 5
+            }
+        }
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        var loginSubmitForm = $('#loginSubmitForm');
+        loginSubmitForm.submit(function (e) {
+            e.preventDefault();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            $.ajax({
+                url: loginSubmitForm.attr('action'),
+                type: loginSubmitForm.attr('method'),
+                data: { email: email, password: password },
+                dataType: 'json',
+                success: function (result) {
+                    if (result.status) {
+                        window.location.href = "http://localhost:9128/home"
+                    } else {
+                        alert(result.message);
+                    }
+                }, error: function (err) {
+                    console.log(err);
+                }
+            })
+        });
+        var signupSubmitForm = $('#signupSubmitForm');
+        signupSubmitForm.submit(function (e) {
+            e.preventDefault();
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var mobile = $('#mobile').val();
+            var password = $('#password').val();
+            $.ajax({
+                url: signupSubmitForm.attr('action'),
+                type: signupSubmitForm.attr('method'),
+                data: { name: name, email: email, mobile: mobile, password: password },
+                dataType: 'json',
+                success: function (result) {
+                    if (result.status) {
+                        if(result.message){
+                            alert(result.message);
+                        }
+                        window.location.href = "http://localhost:9128/home"
+                    } else {
+                        alert(result.message);
+                    }
+                }, error: function (err) {
+                    console.log(err);
+                }
+            })
+        });
+
+
+    });
+</script>
