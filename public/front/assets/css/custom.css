@@ -380,6 +380,113 @@ display: none;
   font-size: 22px;
 }
 
+.bg-deepblus{
+  background: #143c5f;
+}
+.right-panel{
+ padding: 40px 20px 0px 20px;
+}
+
+.right-panel h3 {
+  font-size: 27px;
+  color: #fff;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+
+.venue-list{
+  list-style: none;
+}
+
+.venue-list li{
+  line-height: 32px;
+}
+
+
+
+.venue-list li a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.mar-b0{
+  margin-bottom: 0;
+}
+
+.view-m {
+  background: transparent;
+  margin: 50px 0 0 0;
+  color: #fff;
+  font-weight: 600;
+}
+
+.right-panel p{
+  color: #fff;
+}
+
+
+.testimosials{
+  padding: 50px 0;
+}
+.testimonilas-box{
+  padding: 30px 0;
+}
+.testimonials-titel  {
+  color: #2a2b2d;
+  
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.testimonials .item {
+  text-align: center;
+  position: relative;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 0px 20px;
+  line-height: 30px;
+}
+
+.testimonials .item::before {
+  position: absolute;
+  content: "\f10d";
+  font: normal normal normal 14px/1 FontAwesome;
+  top: 0px;
+  left: 0;
+  font-size: 18px;
+  color: #b71818;
+}
+
+/*=================end bottom slider panel=================*/
+
+.faq{
+ 
+}
+
+.faq p{
+  font-size: 30px;
+}
+
+.faq-titel{
+  font-weight: 600;
+}
+
+.card-header {
+  background-color:transparent!important;
+}
+
+.card-header h5 .btn-link {
+  color: #000;
+  font-weight: 600;
+  font-size: 18px;
+}
+.faq .card{
+  border: none;
+}
+
+
 
 .bd_title {
     font-family: Noto Serif JP, serif;
