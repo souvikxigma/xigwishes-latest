@@ -5,9 +5,13 @@ const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 
 function home(req, res) {
+  console.log(loginAuthCheck);
   return res.render('front/pages/Home/home', {
-    page_name: 'signup',
+    page_name: 'home',
   });
+  //console.log('home tok: ',req.cookies.token);
+  //var usertoken = req.cookies.token;
+  
 }
 
 module.exports = {

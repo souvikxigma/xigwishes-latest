@@ -7,14 +7,19 @@ async function authUser(req, res, next) {
     const token = req.cookies.token;
     jwt.verify(token, process.env.SECRET, async function (err, data) {
       if (err) {
-        req.flash('error', err);
-        res.clearCookie();
-        return res.redirect('/login');
+        //req.flash('error', err);
+        res.clearCookie('token');
+        res.clearCookie('userID');
+        res.clearCookie('userEmail');
+        req.flash('error', 'your token is expired.please login...');
+        // return res.redirect('/login');
+        return res.redirect('/home');
       }
 
       if (data) {
         var userid = data.id;
         const user = await Models.User.findOne({ where: { id: userid } });
+        global.fullUserInfo = user;
 
         if (user) {
           req.id = userid;
@@ -25,13 +30,14 @@ async function authUser(req, res, next) {
         } else {
           req.flash('error', 'User not found');
           res.clearCookie();
-          return res.redirect('/login');
+          //eturn res.redirect('/login');
+          return res.redirect('/home');
         }
       }
     });
   } else {    
-    // req.flash('error', 'Invalid or expired token');
-    return res.redirect('/login');
+    req.flash('error', 'please login first ..');
+    return res.redirect('/home');
   }
 }
 

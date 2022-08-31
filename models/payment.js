@@ -14,6 +14,18 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      subscriptionId: {
+        type: Sequelize.TEXT,
+        allowNull: false,
+      },
+      paymentType: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      subscriptionType: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       customerId: {
         type: Sequelize.STRING,
         allowNull: false,

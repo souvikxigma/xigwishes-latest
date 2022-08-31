@@ -10,8 +10,49 @@ const cors = require('cors');
 var cookieParser = require('cookie-parser');
 var csrf = require('csurf');
 var os = require('os');
+var jwt = require('jsonwebtoken');
+const Models = require("./models");
+const passport = require('passport');
+const cookieSession = require('cookie-session');
 
+//passport//
 var app = express();
+require('./passport');
+app.use(
+  cookieSession({
+    name: 'google-auth-session',
+    keys: ['key1', 'key2'],
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+
+//google Auth
+app.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] })
+);
+//facebook Auth
+app.get(
+  '/auth/facebook',
+  passport.authenticate('facebook', { scope: ['public_profile', 'email'] })
+);
+//google Auth Callback
+app.get(
+  '/auth/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/auth/google/callback/success',
+    failureRedirect: '/auth/google/callback/failure',
+  })
+);
+//facebook Auth Callback
+app.get(
+  '/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/auth/facebook/callback/success',
+    failureRedirect: '/auth/facebook/callback/failure',
+  })
+);
 
 const db = require("./models");
 db.sequelize.sync({alter:true})
@@ -37,6 +78,8 @@ app.use(session({resave: true, saveUninitialized: true, secret: 'xig2022#wishesd
 app.use(expressLayouts);
 app.use(cookieParser())
 // app.use(csrf({ cookie: true }))
+
+
 app.use(flash());
 app.use(fileUpload());
 app.set('view engine', 'ejs');
@@ -55,7 +98,19 @@ app.get('/', function(req, res) {
 });
 
 
-
+// global variables across routes
+app.use(async (req, res, next) => {
+  try {
+    // res.locals.login = req.isAuthenticated();
+    // res.locals.session = req.session;
+    // res.locals.currentUser = req.user;
+    // const categories = await Category.find({}).sort({ title: 1 }).exec();
+    res.locals.boka = "categories";
+    next();
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 
 // app.get('/admin', function(req, res) {
@@ -75,15 +130,65 @@ const cronRouter = require('./routers/front/cronRouter');
 const tempRouter = require('./routers/front/tempRouter');
 const homeRouter = require('./routers/front/homeRouter');
 const packageRouter = require('./routers/front/packageRouter');
+const anniversaryRouter = require('./routers/front/anniversaryRouter');
+const birthdayRouter = require('./routers/front/birthdayRouter');
+const festivalRouter = require('./routers/front/festivalRouter');
 
 // ////define all router ////
-app.use(`/contact`,contactRouter);
+app.use(function (req, res, next) {
+  // res.clearCookie('token');
+  // res.clearCookie('userID');
+  // res.clearCookie('userEmail');
+  // global.loginAuthCheck = 0;
+  // next();
+  global.loginAuthCheck = req.cookies.userID;
+  global.loginAuthEmail = req.cookies.userEmail;
+  next();
+});
+
+// app.use(`/birthday`,contactRouter);
+// app.use(function (req, res, next) {
+//   req.someVariable = 123;
+//   //const token = req.cookies.token;
+//   const token = "12111";
+//   global.loginAuthCheck = 0;
+//   //
+//   jwt.verify(token, process.env.SECRET, async function (err, data) {
+
+//     if (err) {
+//       global.loginAuthCheck = 0;
+//       next();
+//     }
+
+//     if (data) {
+//       var userid = data.id;
+//       const user = await Models.User.findOne({ where: { id: userid } });
+
+//       if (user) {
+//         global.loginAuthCheck = 1;
+//         next();
+//       } else {
+//         global.loginAuthCheck = 0;
+//         next();
+//       }
+//     }
+//   });
+//   //
+//   next();
+// });
+
+app.use(`/birthday`,birthdayRouter);
 app.use(`/others`,staticListRouter);
 app.use(`/cron`,cronRouter);
 app.use(`/temp`,tempRouter);
 app.use(`/home`,homeRouter);
 app.use(`/package`,packageRouter);
+app.use(`/anniversary`,anniversaryRouter);
+app.use(`/holidays`,festivalRouter);
 app.use(`/`,userRouter);
+
+
+
 
 ///end define router//
 

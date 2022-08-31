@@ -1,11 +1,24 @@
 <% if (messages.success) { %>
-  <div class="alert alert-success" role="alert">
+  <div class="alert alert-success-custom" role="alert">
+    
     <%- messages.success %>
+    <span class="closealert"><i class="fa fa-times" aria-hidden="true"></i></span>
   </div>
   <% } %>
 
     <% if (messages.error) { %>
-      <div class="alert alert-danger" role="alert">
+      <div class="alert alert-danger-custom" role="alert" id="alertdiv">
+        
         <%- messages.error %>
+        <span class="closealert"><i class="fa fa-times" aria-hidden="true"></i></span>
       </div>
       <% } %>
+
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+      <script>
+        // $(document).ready(function(){
+        //   $(".closealert").click(function(){
+        //     $(".alert").toggleClass("hidealert");
+        //   });
+        // });
+        </script>

@@ -16,7 +16,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       forgetPassword: {
         type: Sequelize.TEXT,
@@ -28,7 +28,7 @@ module.exports = (sequelize, Sequelize) => {
       },
       mobile: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       companyName: {
         type: Sequelize.STRING,
@@ -46,7 +46,15 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.TEXT,
         allowNull: true,
       },
-      themes: {
+      birthdayThemes: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      anniversaryThemes: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      holidayThemes: {
         type: Sequelize.TEXT,
         allowNull: true,
       },
@@ -59,6 +67,14 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: true,
       },
       defaultText:{
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      authprovider:{
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      authid:{
         type: Sequelize.STRING,
         allowNull: true,
       },

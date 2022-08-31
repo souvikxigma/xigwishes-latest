@@ -68,12 +68,33 @@ ul {
   margin-right: 0;
 }
 
+.forgetpassword{
+    text-decoration: underline;
+    color: #000;
+    padding: 10px 0px;
+    font-size: 16px;
+    display: block;
+    font-weight: 600;
+}
+
 /*=================end header panel=================*/
 
 .banner-panel {
   height: 580px;
   position: relative;
   overflow: hidden;
+}
+
+.popup-box-modal{
+
+  display: flex;
+  width: 100%;
+  z-index: 40;
+  margin: 0;
+  padding: 30px 10px;
+  background: #fffffff2;
+  border-radius: 5px;
+  display: block;
 }
 
 .popup-box {
@@ -95,7 +116,7 @@ ul {
 
 .form-title {
   font-size: 28px;
-  font-family: "Noto Serif JP", serif;
+  font-family: "Lato", sans-serif;
   font-weight: 900;
   text-align: center;
   color: rgba(0, 0, 0, 0.8);
@@ -135,7 +156,7 @@ ul {
   text-align: center;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.54);
-  font-family: Roboto;
+  /* font-family: Roboto; */
   font-size: 14px;
   letter-spacing: 0.22px;
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.12), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
@@ -207,14 +228,34 @@ ul {
   width: 220px;
 }
 
+.sb-submit-btn-modal {
+  border-radius: 6px;
+  background-color: #005ffd;
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.1);
+  max-width: 220px;
+  height: 38px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 auto;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 101px;
+  position: relative;
+  width: 220px;
+}
+
 /*=================end baner panel=================*/
 
 .work-panel{
-  font-family: 'Noto Serif', serif; 
+  font-family: "Lato", sans-serif;
 }
 
 .work-panel {
-  font-family: 'Noto Serif', serif;
+  font-family: "Lato", sans-serif;
   padding: 30px 0;
 }
 .work-panel h2{
@@ -236,7 +277,7 @@ ul {
 }
 
 .step-box {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
 
@@ -459,6 +500,85 @@ display: none;
   color: #b71818;
 }
 
+.login-under ul{
+  list-style: none;
+}
+.login-under ul li a{
+  color: #000;
+  text-decoration: none;
+}
+.alert-success-custom {
+  color: #155724;
+  background-color: #6abf7e;
+  border-color: #c3e6cb;
+  color: white;
+  position: absolute;
+  z-index: 999;
+  font-size: 20px;
+  width: 100%;
+  height: 100px;
+  max-width: 300px;
+  /* margin: auto; */
+  top: 57px;
+  /* left: 0; */
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.alert-danger-custom {
+  color: #155724;
+  background-color: #d42e05;
+  border-color: #c3e6cb;
+  color: white;
+  position: absolute;
+  z-index: 999;
+  font-size: 20px;
+  width: 100%;
+  height: 100px;
+  max-width: 300px;
+  /* margin: auto; */
+  top: 57px;
+  /* left: 0; */
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.closealert {
+  position: absolute;
+  right: 13px;
+  top: 0;
+}
+.hidealert{
+  display: none;
+}
+div#example_wrapper {
+  width: 100%;
+}
+div#example_paginate {
+  max-width: 200px;
+  display: inline-block;
+  justify-content: space-between;
+  align-items: center;
+  float: right;
+  margin: 15px 0;
+}
+
+div#example_paginate a {
+  padding: 10px;
+  background: #eeeeee;
+  margin: 0px 10px;
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+}
+a.paginate_button.current {
+  background: #212529!important;
+  color: #fff!important;
+}
 /*=================end bottom slider panel=================*/
 
 .faq{
@@ -489,7 +609,7 @@ display: none;
 
 
 .bd_title {
-    font-family: Noto Serif JP, serif;
+   font-family: "Lato", sans-serif;
     font-weight: 700;
     font-style: normal;
     font-size: 36px;
@@ -497,7 +617,7 @@ display: none;
     color: #1a1a1a;
 }
 .bd_template_title {
-    font-family: Noto Serif JP, serif;
+   font-family: "Lato", sans-serif;
     font-weight: 600;
     font-style: normal;
     font-size: 34px;
@@ -506,7 +626,7 @@ display: none;
 
 }
 .bd_template_title p{
-    font-family: Noto Serif JP, serif;
+  font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 17px;
@@ -535,7 +655,7 @@ display: none;
   cursor: pointer;
   border: none;
   bottom: 20px;
-  font-family: sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 300;
   font-size: 14px;
   line-height: 20px;
@@ -544,7 +664,7 @@ display: none;
 }
 
 .step_panel h3{
-    font-family: Noto Serif JP, serif;
+  font-family: "Lato", sans-serif;
     font-weight: 600;
     font-style: normal;
     font-size: 34px;
@@ -553,7 +673,7 @@ display: none;
 
 }
 .step_main h2{
-    font-family: Noto Serif JP, serif;
+  font-family: "Lato", sans-serif;
     font-weight: 600;
     font-style: normal;
     font-size: 34px;
@@ -564,7 +684,7 @@ display: none;
     font-weight: 500;
 }
 .step_main p{
-    font-family: Montserrat, serif;
+  font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 15px;
@@ -596,7 +716,7 @@ display: none;
     justify-content: center;
 }
 .bd_banner h1{
-    font-family: Noto Serif JP, serif;
+  font-family: "Lato", sans-serif;
     font-weight: 900;
     font-style: normal;
     font-size: 44px;
@@ -604,20 +724,61 @@ display: none;
     color: #1a1a1a;
 }
 .bd_banner p{
-    font-family: Noto Serif JP, serif;
+  font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 20px;
     line-height: 30px;
     color: #1a1a1a;
 }
+
+
+.music .owl-nav {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  top: 30%;
+} 
+
+.birthday2 .owl-prev{
+  width: 37px;
+  height: 55px;
+  background-image: url(../images/prew-arrow.jpg) !important;
+  font-size: 0;
+}
+.birthday2 .owl-next{
+  width: 37px;
+  height: 55px;
+  background-image: url(../images/next-arrow.jpg) !important;
+  font-size: 0;
+}
+.birthday2 .owl-prev:focus{
+outline: none;
+}
+.birthday2 .owl-next:focus{
+  outline: none;
+  }
+
+.birthday2 .owl-nav span{
+display: none;
+}
+.birthday2 .owl-nav {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  top: 30%;
+}
+
+
 /*=================birthday Banner panel End Here=================*/
 
 
 /*=================birthday Features Banner panel start Here=================*/
 
 .bd_features h2{
-    font-family: Noto Serif JP, serif;
+  font-family: "Lato", sans-serif;
     font-weight: 700;
     font-style: normal;
     font-size: 34px;
@@ -626,7 +787,7 @@ display: none;
 }
 
 .bd_features h6{
-    font-family: Montserrat, serif;
+  font-family: "Lato", sans-serif;
     font-weight: bold;
     font-size: 15px;
     line-height: 30px;
@@ -635,7 +796,7 @@ display: none;
 }
 
 .bd_features p{
-    font-family: Montserrat, serif;
+  font-family: "Lato", sans-serif;
     font-weight: 400;
     font-size: 15px;
     line-height: 19px;
@@ -658,7 +819,9 @@ display: none;
 
 /*=================birthday Features Banner panel End Here=================*/
 
-
+.form-area{
+  padding: 50px 0;
+}
 
 
 .footer-menu ul{
@@ -673,4 +836,206 @@ display: none;
   color: #645d5d;
   font-size: 16px;
   font-weight: 600;
+}
+
+
+
+
+
+.dropdownmenu ul, .dropdownmenu li {
+  margin: 0;
+  padding: 0;
+}
+.dropdownmenu ul {
+  background: #fff;
+  list-style: none;
+  width: 100%;
+}
+.dropdownmenu li {
+  float: left;
+  position: relative;
+  width:auto;
+}
+.dropdownmenu a {
+  color: #FFFFFF;
+  display: block;
+  font: bold 12px/20px sans-serif;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition: all .25s ease;
+  -moz-transition: all .25s ease;
+  -ms-transition: all .25s ease;
+  -o-transition: all .25s ease;
+  transition: all .25s ease;
+}
+.dropdownmenu li:hover a {
+/*  background: #000000;*/
+}
+#submenu {
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 35px;
+  visibility: hidden;
+  z-index: 1;
+}
+li:hover ul#submenu {
+  opacity: 1;
+  top: 40px;  /* adjust this as per top nav padding top & bottom comes */
+  visibility: visible;
+  width: 200px;
+  box-shadow: 0 1px 10px 0 rgb(0 0 0 / 20%) !important;
+}
+#submenu li {
+  float: none;
+  width: 100%;
+}
+#submenu a:hover {
+ background: #1b57b3;
+ color: white;
+}
+#submenu a {
+  background-color:#ffffff;
+  width: 100%;
+}
+
+.birthday2 .btn-info {
+  margin: 10px;
+}
+
+.birthday2 .item {
+  padding: 5px 5px;
+  border: #dddddd 1px solid;
+  text-align: center;
+}
+.afterlogindiv {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: #464242;
+  color: #fff;
+  border: none;
+  text-align: center;
+  font-size: 20px;
+}
+
+
+.afterlogindiv.dropdown-toggle::after{
+  display: none;
+}
+
+.csutom-dropdown{
+  min-width: 350px;
+}
+.profile-div {
+    display: flex;
+    padding: 10px;
+    border-bottom: #EEEEEE 1px solid;
+}
+.profile-pic-div {
+    width: 50px;
+    height: 50px;
+    background: #898282;
+    border-radius: 50%;
+    text-align: center;
+    align-items: center;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    margin-right: 30px;
+}
+.con-rit-div h3 {
+    font-size: 19px;
+    margin: 0;
+}
+.con-rit-div p {
+    font-size:16px;
+    margin: 0;
+}
+
+.customcard{
+    display: flex;
+    width: 210px;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.festvalsortcls{
+  display: none !important;
+}
+.customforgettab {
+  position: absolute;
+  z-index: 999;
+  top: 58%;
+  left: 2%;
+}
+
+.customforgettab .nav-link.active{
+  opacity: 0;
+}
+
+.forget-password .panel-body {
+  padding: 40px;
+  /* margin-bottom: -50%; */
+  background: #fff;
+  border-radius: 5px;
+  width: 600px;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.modal-dialog.modal-xl {
+  max-width: 1100px;
+}
+
+.xigwishes-plan {
+  box-sizing: border-box;
+  border: 0.5px solid #d2d2d2;
+  min-width: 236px;
+  padding: 15px 0;
+  margin-bottom: 15px;
+}
+
+.xigwishes-plan h5 {
+  text-align: center;
+  width: 100%;
+}
+
+ul.plan-list {
+  list-style: none;
+  padding: 0px 10px;
+}
+.modal-dialog.modal-xl {
+  max-width: 1100px;
+}
+
+.plan-list li i {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.xigwishes-plan h3 {
+  font-size: 16px;
+  padding: 0px 10px;
+  font-weight: 600;
+  color: #12a1df;
+  text-align: center;
+  margin: 0;
+}
+.cancelsubscription{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.xigwishes-plan h4 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 36px;
+}
+
+.xigwishes-plan h4 small{
+font-size: 16px;
 }

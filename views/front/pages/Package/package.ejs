@@ -1,207 +1,110 @@
-<div class="breadcome-area mg-t-40 mg-b-30">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="breadcome-list shadow-reset">
-                    Choose Your Package
-                </div>
-            </div>
+
+<section class="banner-panel">
+    <div class="owl-carousel owl-theme">
+        <div class="item">
+            <img alt="" src="/front/assets/images/banner.jpg">
+        </div>
+        <div class="item">
+            <img alt="" src="/front/assets/images/banner.jpg">
+        </div>
+        <div class="item">
+            <img alt="" src="/front/assets/images/banner.jpg">
         </div>
     </div>
-</div>
+    
+</section>
 
 
-<div class="basic-form-area mg-b-40">
+<section class="featured-panel">
     <div class="container">
+        <div class="row text-center ">
+            <div class="col-md-12">
+                <h2>
+                    Xigwishes Pricing List
+                </h2>
+                <!-- <p>
+                    Quickly create beautiful invitations, slideshows, cards and collages, <br>
+                    then share them with the people you love.
+
+                </p> -->
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <div class="row">
 
 
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="sparkline12-list shadow-reset mg-t-30">
-                    <div class="sparkline12-hd">
-                        <div class="main-sparkline12-hd">
-                            <h1>Packages</h1>
-                            <div class="sparkline12-outline-icon">
-                                <span class="sparkline12-collapse-link"><i class="fa fa-chevron-up"></i></span>
-                                <span><i class="fa fa-wrench"></i></span>
-                                <span class="sparkline12-collapse-close"><i class="fa fa-times"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sparkline12-graph">
-                        <div class="basic-login-form-ad">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="all-form-element-inner">
-                                            <%- include('../../includes/alert.ejs') %>
-                                                <% if(UserInfo && UserInfo.accountActiveStatus=='1' ){ %>
-                                                    <% if(PaymentInfo && PaymentInfo.package){ %>
-                                                        <div class="col-lg-3">
-                                                            <div class="income-dashone-total shadow-reset nt-mg-b-30">
-                                                                <div class="income-title">
-                                                                    <div class="main-income-head">
-                                                                        <h1>
-                                                                            <%= PaymentInfo.package.name %>
-                                                                        </h1>
-                                                                        <h6>
-                                                                            <%= PaymentInfo.package.description %>
-                                                                        </h6>
-                                                                        <h6>
-                                                                            <%= (PaymentInfo.package.amount/100) %> Rs
-                                                                        </h6>
-                                                                        <h6>
-                                                                            Expire Date
-                                                                            <%= UserInfo && UserInfo.accountExpireDate
-                                                                                %>
-                                                                        </h6>
-                                                                        <div class="main-income-phara btn-success">
-                                                                            Active
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                        <% }else{ %>
-                                                            <% for(var i=0; i< packageData.length; i++) { %>
-                                                                <div class="col-lg-3">
-                                                                    <div
-                                                                        class="income-dashone-total shadow-reset nt-mg-b-30">
-                                                                        <div class="income-title">
-                                                                            <div class="main-income-head">
-                                                                                <h1>
-                                                                                    <%= packageData[i].name %>
-                                                                                </h1>
-                                                                                <h6>
-                                                                                    <%= packageData[i].description %>
-                                                                                </h6>
-                                                                                <h6>
-                                                                                    <%= (packageData[i].amount/100) %>
-                                                                                        Rs
-                                                                                </h6>
-
-                                                                                <div class="main-income-phara">
-
-                                                                                    <form action="/package/action"
-                                                                                        method="POST">
-                                                                                        <script
-                                                                                            src="//checkout.stripe.com/v2/checkout.js"
-                                                                                            class="stripe-button"
-                                                                                            data-key="<%= key %>"
-                                                                                            data-amount="<%= packageData[i].amount %>"
-                                                                                            data-currency="<%= packageData[i].currency %>"
-                                                                                            data-name="Xig Wishes"
-                                                                                            data-image="https://www.xigmapro.com/images/xigmalogo.png"
-                                                                                            data-description="<%= packageData[i].description %>"
-                                                                                            data-billingAddress
-                                                                                            data-locale="auto">
-                                                                                            </script>
-                                                                                        <input type="hidden"
-                                                                                            name="packageId"
-                                                                                            value="<%= packageData[i].id %>" />
-                                                                                        <input type="hidden"
-                                                                                            name="amount"
-                                                                                            value="<%= packageData[i].amount %>" />
-                                                                                        <input type="hidden"
-                                                                                            name="currency"
-                                                                                            value="<%= packageData[i].currency %>" />
-                                                                                        <input type="hidden"
-                                                                                            name="description"
-                                                                                            value="<%= packageData[i].description %>" />
-                                                                                        <input type="hidden"
-                                                                                            name="validityDays"
-                                                                                            value="<%= packageData[i].validityDays %>" />
-
-                                                                                    </form>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <% } %>
-                                                                    <% } %>
-                                                                        <% }else{ %>
-
-                                                                            <% for(var i=0; i< packageData.length; i++)
-                                                                                { %>
-                                                                                <div class="col-lg-3">
-                                                                                    <div
-                                                                                        class="income-dashone-total shadow-reset nt-mg-b-30">
-                                                                                        <div class="income-title">
-                                                                                            <div
-                                                                                                class="main-income-head">
-                                                                                                <h1>
-                                                                                                    <%= packageData[i].name
-                                                                                                        %>
-                                                                                                </h1>
-                                                                                                <h6>
-                                                                                                    <%= packageData[i].description
-                                                                                                        %>
-                                                                                                </h6>
-                                                                                                <h6>
-                                                                                                    <%= (packageData[i].amount/100)
-                                                                                                        %> Rs
-                                                                                                </h6>
-
-                                                                                                <div
-                                                                                                    class="main-income-phara">
-
-                                                                                                    <form
-                                                                                                        action="/package/action"
-                                                                                                        method="POST">
-                                                                                                        <script
-                                                                                                            src="//checkout.stripe.com/v2/checkout.js"
-                                                                                                            class="stripe-button"
-                                                                                                            data-key="<%= key %>"
-                                                                                                            data-amount="<%= packageData[i].amount %>"
-                                                                                                            data-currency="<%= packageData[i].currency %>"
-                                                                                                            data-name="Xig Wishes"
-                                                                                                            data-image="https://www.xigmapro.com/images/xigmalogo.png"
-                                                                                                            data-description="<%= packageData[i].description %>"
-                                                                                                            data-billingAddress
-                                                                                                            data-locale="auto">
-                                                                                                            </script>
-                                                                                                        <input
-                                                                                                            type="hidden"
-                                                                                                            name="packageId"
-                                                                                                            value="<%= packageData[i].id %>" />
-                                                                                                        <input
-                                                                                                            type="hidden"
-                                                                                                            name="amount"
-                                                                                                            value="<%= packageData[i].amount %>" />
-                                                                                                        <input
-                                                                                                            type="hidden"
-                                                                                                            name="currency"
-                                                                                                            value="<%= packageData[i].currency %>" />
-                                                                                                        <input
-                                                                                                            type="hidden"
-                                                                                                            name="description"
-                                                                                                            value="<%= packageData[i].description %>" />
-                                                                                                        <input
-                                                                                                            type="hidden"
-                                                                                                            name="validityDays"
-                                                                                                            value="<%= packageData[i].validityDays %>" />
-
-                                                                                                    </form>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <% } %>
-                                                                                    <% } %>
-                                        </div>
-                                    </div>
+                    <% for(var i=0; i< packageData.length; i++) { %>
+                        <div class="col-md-4 text-center">
+                            <div class="grid-box-panel mar-b0">
+                                <div class="image-small">
+                                    <!-- <img src="/front/assets/images/birthday.jpg"> -->
+                                    <h3><%= packageData[i].name %></h3>
                                 </div>
+                                <h5><%= packageData[i].description %></h5>
+                                <div>
+                                    <p><i class="fa fa-inr" aria-hidden="true"></i> <%= (packageData[i].amount/100) %> /-</p>
+                                </div>
+    
+                                <% if(UserInfo && UserInfo.accountActiveStatus=='1' && PaymentInfo && PaymentInfo.package && PaymentInfo.package.id == packageData[i].id){ %>
+                                    <div>
+                                        <p>Expire : <i class="fa fa-calender" aria-hidden="true"></i><%= UserInfo && UserInfo.accountExpireDate %> </p>
+                                    </div>
+                                    <div class="cancelsubscription">
+                                        <div class="btn btn-success">
+                                            Current Package
+                                        </div>
+                                        <a class="btn btn-danger" href="/package/cancel-subscription">Cancel Subscription</a>
+                                    </div>
+                                    
+                                <% }else{ %> 
+                                    <br/><br/>
+                                    <div class="main-income-phara">
+    
+                                        <form action="/package/action"
+                                            method="POST">
+                                            <script
+                                                src="//checkout.stripe.com/v2/checkout.js"
+                                                class="stripe-button"
+                                                data-key="<%= key %>"
+                                                data-amount="<%= packageData[i].amount %>"
+                                                data-currency="<%= packageData[i].currency %>"
+                                                data-name="Xig Wishes"
+                                                data-image="https://www.xigmapro.com/images/xigmalogo.png"
+                                                data-description="<%= packageData[i].description %>"
+                                                data-billingAddress
+                                                data-locale="auto">
+                                                </script>
+                                            <input type="hidden"
+                                            name="packageId"
+                                            value="<%= packageData[i].id %>" />
+                                            <input type="hidden"
+                                            name="productId"
+                                            value="<%= packageData[i].productId %>" />
+                                            <input type="hidden"
+                                            name="amount"
+                                            value="<%= packageData[i].amount %>" />
+                                            <input type="hidden"
+                                            name="currency"
+                                            value="<%= packageData[i].currency %>" />
+                                            <input type="hidden"
+                                            name="description"
+                                            value="<%= packageData[i].description %>" />
+                                            <input type="hidden"
+                                             name="validityDays"
+                                            value="<%= packageData[i].validityDays %>" />
+                                        </form>
+                                    </div>
+                                <% } %> 
+                                
                             </div>
                         </div>
-                    </div>
+                    <% } %>
+
                 </div>
             </div>
+           
         </div>
     </div>
-</div>
+</section>
+

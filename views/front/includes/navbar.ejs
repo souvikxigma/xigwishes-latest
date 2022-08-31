@@ -3,27 +3,105 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="#"><img alt="logo" src="/front/assets/images/logo.png"></a>
+                    <a href="/home"><img alt="logo" src="/front/assets/images/logo.png"></a>
                 </div>
                 <div class="main-panel">
                     <div class="main-menu">
-                        <ul>
+                        <!-- <ul>
                             <li><a href="/">Home</a></li>
                             <li><a href="/temp">Template</a></li>
                             <li><a href="/package">Choose Package</a></li>
                             <li><a href="/contact/anniversary-list">My Anniversary List</a></li>
                             <li><a href="/contact">My Birthday List</a></li>
                             <li><a href="/user/profile">My Profile</a></li>
-                        </ul>
+                        </ul> -->
+                        <!-- <ul>
+                                <li><a href="/birthday">Birthday </a></li>
+                                <li><a href="/anniversary">Anniversary</a></li>
+                                <li><a href="#">Holidays</a></li>
+                                <li><a href="#">Pricing</a></li>
+                                <li><a href="#">How it work</a></li>
+                                <li><a href="#">Blog</a></li>
+                        </ul> -->
+                        <nav class="dropdownmenu">
+                            <ul>
+                                <li><a href="/birthday">Birthday</a>
+                                    <ul id="submenu">
+                                        <li><a href="/birthday">Birthday Template</a></li>
+                                        <li><a href="/birthday/list">My Birthday List</a></li>
+                                        <li><a href="/birthday/add-birthday">Add Birthday</a></li>
+
+                                    </ul>
+                                </li>
+                                <li><a href="/anniversary">Anniversary</a>
+                                    <ul id="submenu">
+                                        <li><a href="/anniversary">Anniversary Template</a></li>
+                                        <li><a href="/anniversary/list">My Anniversary List</a></li>
+                                        <li><a href="/anniversary/add-anniversary">Add Anniversary</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/holidays">Holidays</a></li>
+                                <!-- <li><a href="#">Pricing</a></li> -->
+                                <% if (!loginAuthCheck) { %>
+                                <li><a data-toggle="modal" data-target=".bd-example-modal-lg" href="#">Pricing</a></li>
+                                <% }else{ %>
+                                    <li><a href="/package">Pricing</a></li>
+                                <% } %> 
+                                <li><a href="#">How it work</a></li>
+                                <li><a href="#">Blog</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
+                
+
+                <% if (loginAuthCheck) { %>
+                <div class="login-under">
+                    <div class="btn-group">
+                        
+                        
+                        <div class="dropdown">
+                            <button class="afterlogindiv dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </button>
+                            <div class="dropdown-menu csutom-dropdown" aria-labelledby="dropdownMenuButton">
+                              <div class="profile-div">
+                                  <div class="profile-pic-div">
+                                      <i class="fa fa-user" aria-hidden="true"></i>
+                                  </div>
+                                  <div class="con-rit-div">
+                                      <!-- <h3>Another action</h3> -->
+                                      <p><%= loginAuthEmail %></p>
+                                  </div>
+                              </div>
+                              <a class="dropdown-item" href="/profile">My Profile</a>
+                              <a class="dropdown-item" href="/change-password">Change Password</a>
+                              <a class="dropdown-item" href="/birthday/fav-theme">My fav Birthday Theme</a>
+                              <a class="dropdown-item" href="/anniversary/fav-theme">My fav Anniversary Theme</a>
+                              <a class="dropdown-item" href="/holidays/fav-theme">My fav Holiday Theme</a>
+                              <a class="dropdown-item" href="#">About Us</a>
+                              <a class="dropdown-item" href="/logout">Log out</a>
+                            </div>
+                          </div>
+                      </div>
+
+                    </div>
+                
+
+                <% }else{ %>
                 <div class="signup">
                     <ul>
-                        <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
-                        <li><a href="/logout">Log Out</a></li>
-                        <li><a href="#" data-toggle="modal" data-target="#signupModal">Sign Up</a></li>
+
+                        <li><a data-toggle="modal" data-target="#LogInModal" href="#">Login</a></li>
+                        <li><a data-toggle="modal" data-target="#signUpModal" href="#">Sign Up</a></li>
+                        <!-- <li><a data-toggle="modal" data-target=".bd-example-modal-lg" href="#">Package</a></li> -->
+
                     </ul>
                 </div>
+                <% } %>
+
+
+
             </div>
         </div>
     </div>

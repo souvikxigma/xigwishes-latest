@@ -6,12 +6,11 @@
             </div>
             <div class="footer-menu">
                 <ul>
-                    <li><a href="#">Birthday</a></li>
-                    <li><a href="#">Anniversary</a></li>
-                    <li><a href="#">Holidays</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">How it work</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Terms & Condition</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Cancelation Refund</a></li>
+                    <li><a href="#">Support</a></li>
                 </ul>
             </div>
 
@@ -23,3 +22,80 @@
         </div>
     </div>
 </footer>
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+<script src="/front/assets/js/jquery.min.js"></script>
+<script src="/front/assets/js/popper.min.js"></script>
+<script src="/front/assets/js/bootstrap.js"></script>
+<script src="/front/assets/js/owl.carousel.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var owl = $('.owl-carousel');
+        owl.owlCarousel({
+            margin: 10,
+            dots: false,
+            nav: true,
+            loop: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
+            }
+        })
+
+        /// custom alert close
+        $(".closealert").click(function () {
+            $(".alert").toggleClass("hidealert");
+        });
+
+        ////datatable
+        //$('#example').DataTable();
+    })
+    $('.music').owlCarousel({
+        loop: true,
+        margin: 10,
+        dots: false,
+        nav: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 3
+            },
+            1000: {
+                items: 5
+            }
+        }
+    })
+    ////
+    $('.birthday2').owlCarousel({
+            loop: true,
+            margin: 15,
+            dots: false,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+</script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>

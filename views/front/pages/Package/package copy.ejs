@@ -1,0 +1,124 @@
+<% if(UserInfo && UserInfo.accountActiveStatus=='1' ){ %>
+    <% if(PaymentInfo && PaymentInfo.package){ %>
+        <div class="col-md-4 text-center">
+            <div class="grid-box-panel">
+                <div class="image-small">
+                    <h3><%= PaymentInfo.package.name %></h3>
+                </div>
+                <h5><%= PaymentInfo.package.description %></h5>
+                <div>
+                    <p><i class="fa fa-inr" aria-hidden="true"></i><%= (PaymentInfo.package.amount/100) %> /-</p>
+                </div>
+                <div>
+                    <p>Expire : <i class="fa fa-calender" aria-hidden="true"></i><%= UserInfo && UserInfo.accountExpireDate %> </p>
+                </div>
+                <div class="btn btn-success">
+                    Active
+                </div>
+            </div>
+        </div>
+    <% }else{ %>
+        <% for(var i=0; i< packageData.length; i++) { %>
+            <div class="col-md-4 text-center">
+                <div class="grid-box-panel mar-b0">
+                    <div class="image-small">
+                        <!-- <img src="/front/assets/images/birthday.jpg"> -->
+                        <h3><%= packageData[i].name %></h3>
+                    </div>
+                    <h5><%= packageData[i].description %></h5>
+                    <div>
+                        <p><i class="fa fa-inr" aria-hidden="true"></i> <%= (packageData[i].amount/100) %> /-</p>
+                    </div>
+
+                    <div class="main-income-phara">
+
+                        <form action="/package/action"
+                            method="POST">
+                            <script
+                                src="//checkout.stripe.com/v2/checkout.js"
+                                class="stripe-button"
+                                data-key="<%= key %>"
+                                data-amount="<%= packageData[i].amount %>"
+                                data-currency="<%= packageData[i].currency %>"
+                                data-name="Xig Wishes"
+                                data-image="https://www.xigmapro.com/images/xigmalogo.png"
+                                data-description="<%= packageData[i].description %>"
+                                data-billingAddress
+                                data-locale="auto">
+                                </script>
+                            <input type="hidden"
+                            name="packageId"
+                            value="<%= packageData[i].id %>" />
+                            <input type="hidden"
+                            name="productId"
+                            value="<%= packageData[i].productId %>" />
+                            <input type="hidden"
+                            name="amount"
+                            value="<%= packageData[i].amount %>" />
+                            <input type="hidden"
+                            name="currency"
+                            value="<%= packageData[i].currency %>" />
+                            <input type="hidden"
+                            name="description"
+                            value="<%= packageData[i].description %>" />
+                            <input type="hidden"
+                             name="validityDays"
+                            value="<%= packageData[i].validityDays %>" />
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        <% } %>
+    <% } %>
+<% }else{ %>
+    <% for(var i=0; i< packageData.length; i++){ %>
+        <div class="col-md-4 text-center">
+            <div class="grid-box-panel mar-b0">
+                <div class="image-small">
+                    <!-- <img src="/front/assets/images/birthday.jpg"> -->
+                    <h3><%= packageData[i].name %></h3>
+                </div>
+                <h5><%= packageData[i].description %></h5>
+                <div>
+                    <p><i class="fa fa-inr" aria-hidden="true"></i> <%= (packageData[i].amount/100) %> /-</p>
+                </div>
+
+                <div class="main-income-phara">
+
+                    <form action="/package/action"
+                        method="POST">
+                        <script
+                            src="//checkout.stripe.com/v2/checkout.js"
+                            class="stripe-button"
+                            data-key="<%= key %>"
+                            data-amount="<%= packageData[i].amount %>"
+                            data-currency="<%= packageData[i].currency %>"
+                            data-name="Xig Wishes"
+                            data-image="https://www.xigmapro.com/images/xigmalogo.png"
+                            data-description="<%= packageData[i].description %>"
+                            data-billingAddress
+                            data-locale="auto">
+                            </script>
+                        <input type="hidden"
+                        name="packageId"
+                        value="<%= packageData[i].id %>" />
+                        <input type="hidden"
+                        name="amount"
+                        value="<%= packageData[i].amount %>" />
+                        <input type="hidden"
+                        name="currency"
+                        value="<%= packageData[i].currency %>" />
+                        <input type="hidden"
+                        name="description"
+                        value="<%= packageData[i].description %>" />
+                        <input type="hidden"
+                        name="validityDays"
+                        value="<%= packageData[i].validityDays %>" />
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    <% } %>
+<% } %>

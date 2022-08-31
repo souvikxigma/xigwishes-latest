@@ -22,6 +22,44 @@ async function index(req, res) {
   }
 }
 
+async function birthdayThemeList(req,res){
+  const allBirthdayData = await Models.Subcategory.findAll({
+    where: { categoryId: 1 },
+    include: [{
+      model: Models.Category,
+      attributes: ["name"],
+    }]
+  });
+
+  // if (!allBirthdayData) {
+  //   req.flash('success', 'Themes not available');
+  //   return res.redirect('/home');
+  // }
+  return res.render('front/pages/Contact/birthdaythemelist', {
+    page_name: 'template',
+    // userInfo: userInfo,
+    // theme: theme,
+    theme: allBirthdayData,
+  });
+}
+
+async function birthdayList(req,res){
+  var userId = req.id;
+  const BirthdayList = await Models.Birthday.findAll(
+    {where:{userId:userId},
+    order: [
+      ["id", "DESC"],
+    ]
+    }
+  );
+  if (BirthdayList) {
+    return res.render('front/pages/Contact/birthdaylist', {
+      page_name: 'contact',
+      data: BirthdayList,
+    });
+  }
+}
+
 async function add(req, res) {
   const categoryList = await Models.Category.findAll({});
   return res.render('front/pages/Contact/addcontact', {
@@ -268,8 +306,11 @@ module.exports = {
   add: add,
   addAction: addAction,
   ///birthday///
+  birthdayThemeList: birthdayThemeList,
+  birthdayList: birthdayList,
   addBirthday: addBirthday,
   addBirthdayAction: addBirthdayAction,
+
   ///anniversary///
   allAnniversaryList: allAnniversaryList,
   addAnniversary: addAnniversary,

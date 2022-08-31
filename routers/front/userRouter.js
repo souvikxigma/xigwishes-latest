@@ -8,17 +8,33 @@ const router = express.Router();
 
 router.get('/signup',authNotUserCheck.authNotUser, userController.signup);
 router.post('/signup/action', userController.signupAction);
-router.post('/signup/action/ajax', userController.signupActionAjax);
 
 router.get('/login',authNotUserCheck.authNotUser, userController.login);
 router.post('/login/action', userController.loginAction);
-router.post('/login/action/ajax', userController.loginActionAjax);
+
+//social google login//
+router.get('/auth/google/callback/success', userController.authGoogleCallbackSuccess);
+router.get('/auth/google/callback/failure', userController.authGoogleCallbackFailure);
+//social facebook login//
+router.get('/auth/facebook/callback/success', userController.authFacebookCallbackSuccess);
+router.get('/auth/facebook/callback/failure', userController.authFacebookCallbackFailure);
+
 
 
 router.get('/email/verification/:token/:emailid', userController.emailVerification);
 
-router.get('/user/profile',authUserCheck.authUser, userController.profile);
-router.post('/user/profile/action',authUserCheck.authUser, userController.profileUpdate);
+router.get('/profile',authUserCheck.authUser, userController.profile);
+router.post('/profile/action',authUserCheck.authUser, userController.profileUpdate);
+
+//forget password//
+router.post('/forget-password', userController.forgetPasswordView);
+router.get('/reset-password', userController.resetPasswordView);
+router.post('/update-password', userController.updateResetPassword);
+
+//change password//
+
+router.get('/change-password', authUserCheck.authUser, userController.changePasswordView);
+router.post('/change-password/action', authUserCheck.authUser, userController.changePasswordAction);
 
 router.get('/logout',authUserCheck.authUser, userController.logout);
 

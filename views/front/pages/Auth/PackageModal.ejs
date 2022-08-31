@@ -1,0 +1,156 @@
+<div class="modal fade bd-example-modal-lg" id="packagemodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header mb-3">
+          <h5 class="modal-title w-100 text-center" id="exampleModalLongTitle">Select the Best Plan for You</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="d-flex justify-content-between">
+
+            <div class="col-md-4">
+                <div class="xigwishes-plan">
+                    <h5>Xig Wishes Basic</h5>
+                     <h3>7 day trial</h3>
+                     <h4>
+                        <!-- <small>$</small>
+                          00
+                          <small>.00</small> -->
+                          <i class="fa fa-inr" aria-hidden="true"></i> 00.00 /-
+                      </h4>
+                    <hr>
+                    <!-- <ul class="plan-list">
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i> Share on Facebook Twitter
+                      </li>
+                      <li>
+                         <i class="fa fa-check-square" aria-hidden="true"></i>  Unlimited creations
+                      </li>
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i>  Share by email
+                      </li>
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i>  Add your own music
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Remove watermark
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Unlimited downloads
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Remove Smilebox logo from ending
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Add your logo and website
+                      </li>
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i> Embed code for your site or blog
+                      </li>
+                  </ul> -->
+                  <div class="w-100 text-center py-3">
+                    <a class="btn btn-success paybtns">Pay</a>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="xigwishes-plan">
+                    <h5>
+                      1 Month Plan
+                    </h5>
+
+                    <h3>Billed Monthly</h3>
+
+                    <h4>
+                      <!-- <small><i class="fa fa-inr" aria-hidden="true"></i></small> -->
+                      <i class="fa fa-inr" aria-hidden="true"></i> 500.00 /-
+                    </h4>
+
+                    <hr>
+                    <!-- <ul class="plan-list">
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i> Share on Facebook Twitter
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Add your logo and website
+                      </li>
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i> Embed code for your site or blog
+                      </li>
+                  </ul> -->
+                  <div class="w-100 text-center py-3">
+                    <a class="btn btn-success paybtns">Pay</a>
+                </div>
+                  
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="xigwishes-plan">
+                    <h5>
+                      1 Year Plan
+                    </h5>
+
+                    <h3>Billed annually</h3>
+
+                    <h4>
+                      <!-- <small><i class="fa fa-inr" aria-hidden="true"></i></small> -->
+                      <i class="fa fa-inr" aria-hidden="true"></i>5000.00 /-
+                    </h4>
+
+                    <hr>
+                    <!-- <ul class="plan-list">
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i> Share on Facebook Twitter
+                      </li>
+                      <li>
+                         <i class="fa fa-check-square" aria-hidden="true"></i>  Unlimited creations
+                      </li>
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i>  Share by email
+                      </li>
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i>  Add your own music
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Remove watermark
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Unlimited downloads
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Remove Smilebox logo from ending
+                      </li>
+                      <li>
+                           <i class="fa fa-check-square" aria-hidden="true"></i> Add your logo and website
+                      </li>
+                      <li>
+                          <i class="fa fa-check-square" aria-hidden="true"></i> Embed code for your site or blog
+                      </li>
+                  </ul> -->
+                  <div class="w-100 text-center py-3">
+                    <a class="btn btn-success paybtns">Pay</a>
+                  </div>
+                </div>
+            </div>
+
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+
+  <script>
+$(document).ready(function(){
+  $(".paybtns").click(function(){
+    $('#packagemodal').modal('hide');
+    $('#LogInModal').modal('show');
+  });
+});
+  </script>

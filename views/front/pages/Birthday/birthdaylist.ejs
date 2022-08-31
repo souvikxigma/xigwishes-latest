@@ -1,0 +1,47 @@
+<section class="bd_banner">
+    <div class="bd_banner_main text-center">
+        <h1>Online Birthday Invitations for a Party They’ll <br>Never Forget</h1>
+        <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae.</p>
+    </div>
+    <div>
+        <button class="btn bd_create_btn">Create Birthday Invitation</button>
+    </div>
+</section>
+
+
+<section class="birthdaylisttable mt-5">
+    <div class="container">
+        <div class="row">
+            <table class="table w-100" id="example">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" data-field="id">#</th>
+                        <th scope="col" data-field="name">Name</th>
+                        <th scope="col" data-field="birthday">Birthday</th>
+                        <th scope="col" data-field="email">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i=0; i< data.length; i++) { %>
+                        <tr>
+                            <td scope="row">
+                                <%= (i+1) %>
+                            </td>
+                            <td>
+                                <%= data[i].name %>
+                            </td>
+                            <td>
+                                <%= data[i].birthday %>
+                            </td>
+                            <td>
+                                <%= data[i].email %>
+                            </td>
+                        </tr>
+                    <% } %>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<hr />
