@@ -131,6 +131,13 @@ async function setAnniversaryThemeAction(req,res){
   var user = await Models.User.findOne({where:{ id: uid }});
   var selectAnniversaryImage = req.body.uniquecode;
 
+  // if(user.anniversaryThemes.split(',').length == 3){
+  //   return res.json({
+  //     msg: 'user maximum selected 3 themes',
+  //     scode: 1,
+  //   });
+  // }
+
   if(!user.anniversaryThemes){
     const updateUser = {
       anniversaryThemes: selectAnniversaryImage,
@@ -141,9 +148,15 @@ async function setAnniversaryThemeAction(req,res){
 
     return res.json({
       msg: 'updated',
+      scode: 2,
     });
-  }else{
-
+  }else if(user.anniversaryThemes && user.anniversaryThemes.split(',').length == 3){
+    return res.json({
+      msg: 'user maximum selected 3 themes',
+      scode: 1,
+    });
+  }
+  else{
     var updatedSelectAnniversaryImage = user.anniversaryThemes+","+selectAnniversaryImage;
     const updateUser = {
       anniversaryThemes: updatedSelectAnniversaryImage,
@@ -153,6 +166,7 @@ async function setAnniversaryThemeAction(req,res){
     });
     return res.json({
       msg: 'updated 2',
+      scode: 3,
     });
   }
 

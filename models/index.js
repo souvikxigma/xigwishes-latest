@@ -64,6 +64,8 @@ db.Package.hasMany(db.Payment,{foreignKey: {
   // as: "gh"
 }})
 
+
+
 //category and subcategory relationship ////
 
 

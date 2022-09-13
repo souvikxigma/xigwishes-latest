@@ -15,6 +15,13 @@ const Models = require("./models");
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 
+// const server = http.createServer(app);
+// var io = require('socket.io');
+
+// socket io chat start
+
+// socket io chat end
+
 //passport//
 var app = express();
 require('./passport');
@@ -26,6 +33,11 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.get('/chat/start', function(req, res) {
+ return res.render('front/pages/Chat/chat.ejs');
+});
+
 
 //google Auth
 app.get(
@@ -93,23 +105,68 @@ app.set('layout', 'front/layouts/layout'); //front  layoub
 // // index page
 
 
-app.get('/', function(req, res) {
-  return res.redirect('/home');
-});
+
+
+
 
 
 // global variables across routes
 app.use(async (req, res, next) => {
   try {
+    global.loginAuthCheck = req.cookies.userID;
+    global.loginAuthEmail = req.cookies.userEmail;
     // res.locals.login = req.isAuthenticated();
     // res.locals.session = req.session;
     // res.locals.currentUser = req.user;
-    // const categories = await Category.find({}).sort({ title: 1 }).exec();
+    var globalUserData = null;
+    var accountExpireDays = null;
+    if(loginAuthCheck){
+      globalUserData = await Models.User.findOne({where:{id:loginAuthCheck}});
+      const endDate    = globalUserData.accountExpireDate;
+      const startDate    = new Date().toISOString().slice(0, 10);
+      const diffInMs   = new Date(endDate) - new Date(startDate);
+      accountExpireDays = diffInMs / (1000 * 60 * 60 * 24);
+      // if(accountExpireDays >= 0){
+      //   var cronfunc = require("./controllers/front/cronController");
+      //   cronfunc.cronBirthday();
+      //   cronfunc.cronAnniversary();
+      // }
+
+    }
+    res.locals.globalUserData = globalUserData;
+    res.locals.accountExpireDays = accountExpireDays;
+    res.locals.adminbaseurl = "http://localhost:9128/admin";
     res.locals.boka = "categories";
+    // res.locals.srvr = server;
+
+        var cronfunc = require("./controllers/front/cronController");
+        cronfunc.cronBirthday();
+        cronfunc.cronAnniversary();
+
     next();
   } catch (error) {
     console.log(error);
   }
+});
+
+
+
+app.get('/', function(req, res) {
+  return res.redirect('/home');
+
+
+  // //var f = window.localStorage.getItem("firstTimeUser");
+  // res.locals.ftu = false;
+  // if(f){
+  //   console.log(f);
+  //   return res.redirect('/home/loader');
+  // }else{
+  //   return res.redirect('/home');
+  //   // setInterval(()=>{
+
+  //   // })
+  // }
+  
 });
 
 
@@ -133,18 +190,10 @@ const packageRouter = require('./routers/front/packageRouter');
 const anniversaryRouter = require('./routers/front/anniversaryRouter');
 const birthdayRouter = require('./routers/front/birthdayRouter');
 const festivalRouter = require('./routers/front/festivalRouter');
+const chatRouter = require('./routers/front/chatRouter');
 
 // ////define all router ////
-app.use(function (req, res, next) {
-  // res.clearCookie('token');
-  // res.clearCookie('userID');
-  // res.clearCookie('userEmail');
-  // global.loginAuthCheck = 0;
-  // next();
-  global.loginAuthCheck = req.cookies.userID;
-  global.loginAuthEmail = req.cookies.userEmail;
-  next();
-});
+
 
 // app.use(`/birthday`,contactRouter);
 // app.use(function (req, res, next) {
@@ -185,6 +234,7 @@ app.use(`/home`,homeRouter);
 app.use(`/package`,packageRouter);
 app.use(`/anniversary`,anniversaryRouter);
 app.use(`/holidays`,festivalRouter);
+app.use(`/chat`,chatRouter);
 app.use(`/`,userRouter);
 
 
@@ -222,8 +272,41 @@ app.get('*', function(req, res){
 
 const server = http.createServer(app);
 
+
+////////socket start ///////////////
+const io = require('socket.io')(server);
+//var chatController = require('./controllers/front/chatController');
+io.on('connection', function(socket) {
+  console.log('A user connected');
+  //create room//
+  // socket.on("join_room", (data) => {
+  //   socket.join(data.room);
+  //   console.log(`User with id : ${socket.id} joined room: ${data.room}`);
+  // });
+
+  socket.on('frontent_send_msg', function(msg){
+    console.log(`User with id : ${socket.id} joined room: ${msg.room}`);
+    console.log('message: ' + msg);
+  });
+
+  // socket.emit('backend_send_msg', function(msg){
+  //   console.log('message: ' + msg);
+  // });
+
+  //Whenever someone disconnects this piece of code executed
+  socket.on('disconnect', function () {
+     console.log('A user disconnected');
+  });
+});
+
+
+
+
+//chatController.index(io);
+/////////////////socket end ////////////////////////
 server.listen(process.env.PORT,()=>{
   console.log(`server is working on ${process.env.PORT}||`);
+
   //console.log('Server listening:', `${os.userInfo()}`);
 
 });

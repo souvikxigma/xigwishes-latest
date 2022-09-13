@@ -45,7 +45,7 @@
                                 <% if (!loginAuthCheck) { %>
                                 <li><a data-toggle="modal" data-target=".bd-example-modal-lg" href="#">Pricing</a></li>
                                 <% }else{ %>
-                                    <li><a href="/package">Pricing</a></li>
+                                    <!-- <li><a href="/package">Pricing</a></li> -->
                                 <% } %> 
                                 <li><a href="#">How it work</a></li>
                                 <li><a href="#">Blog</a></li>
@@ -71,14 +71,26 @@
                                   </div>
                                   <div class="con-rit-div">
                                       <!-- <h3>Another action</h3> -->
-                                      <p><%= loginAuthEmail %></p>
+                                      <p style="font-size:1.1rem; font-weight: 600;"><%= loginAuthEmail %></p>
+                                      <% if(accountExpireDays == 0){ %> 
+                                        <p style="font-size:0.8rem; color:red;">Account will be Expire today</p>
+                                        <% }else if(accountExpireDays > 0){ %>
+                                            <p style="font-size:0.8rem; color:green;">Account will be Expire with in <%= accountExpireDays  %> days</p>
+                                        <% }else{ %>
+                                            <p style="font-size:0.8rem; color:red;">Account expired</p>
+                                        <% } %>
+                                      
                                   </div>
                               </div>
                               <a class="dropdown-item" href="/profile">My Profile</a>
+                            <% if(!globalUserData.authprovider)  { %>
                               <a class="dropdown-item" href="/change-password">Change Password</a>
+                            <% } %>
+
                               <a class="dropdown-item" href="/birthday/fav-theme">My fav Birthday Theme</a>
                               <a class="dropdown-item" href="/anniversary/fav-theme">My fav Anniversary Theme</a>
                               <a class="dropdown-item" href="/holidays/fav-theme">My fav Holiday Theme</a>
+                              <a class="dropdown-item" href="/package">Package</a>
                               <a class="dropdown-item" href="#">About Us</a>
                               <a class="dropdown-item" href="/logout">Log out</a>
                             </div>

@@ -197,7 +197,13 @@
                 data: { uniquecode: uniquecode },
                 dataType: 'json',
                 success: function (result) {    
-                    alert(result.msg);
+                    if(result.scode == 1){
+                        alert(result.msg);
+                        location.reload();
+                    }else{
+                        alert(result.msg);
+                    }
+                    
                 }, 
                 error: function (err) {
                     console.log(err);

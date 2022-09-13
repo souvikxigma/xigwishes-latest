@@ -139,7 +139,16 @@ async function addBirthdayAction(req, res) {
     var user = await Models.User.findOne({where:{ id: loginAuthCheck }});
     var selectBirthdayImage = req.body.uniquecode;
 
-    if(!user.birthdayThemes){
+    // console.log(user.birthdayThemes.split(',').length == 5);
+    // return false;
+    // if(user.birthdayThemes.split(',').length == 3){
+    //   return res.json({
+    //     msg: 'user maximum selected 3 themes',
+    //     scode: 1,
+    //   });
+    // }
+
+    if(!user.birthdayThemes){  
       const updateUser = {
         birthdayThemes: selectBirthdayImage,
       }
@@ -149,9 +158,14 @@ async function addBirthdayAction(req, res) {
   
       return res.json({
         msg: 'updated',
+        scode: 2,
+      });
+    }else if(user.birthdayThemes && user.birthdayThemes.split(',').length == 3){
+      return res.json({
+        msg: 'user maximum selected 3 themes',
+        scode: 1,
       });
     }else{
-
       var updatedSelectBirthdayImage = user.birthdayThemes+","+selectBirthdayImage;
       const updateUser = {
         birthdayThemes: updatedSelectBirthdayImage,
@@ -161,6 +175,7 @@ async function addBirthdayAction(req, res) {
       });
       return res.json({
         msg: 'updated 2',
+        scode: 3,
       });
     }
 

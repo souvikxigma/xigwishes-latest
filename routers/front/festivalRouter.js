@@ -8,6 +8,8 @@ router.get('/', festivalController.festivalThemeList);
 router.get('/fav-theme',authUserCheck.authUser, festivalController.userFavHolidayTheme);
 router.post('/sort/ajax',authUserCheck.authUser, festivalController.getFestivalAjaxSort);
 
+router.post('/sort/ajax/new', festivalController.getNewFestivalAjaxSort);
+
 
 ///ajax///
 router.post('/set-holidays-theme', authUserCheck.authUser, festivalController.setFestivalThemeAction);

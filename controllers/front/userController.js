@@ -151,16 +151,25 @@ async function loginAction(req, res) {
   }
   //validation end
   const user = await Models.User.findOne({ where: { email: req.body.email } });
+  console.log(user);
 
   if (user) {
+    var today = customDateFormat(new Date());
+
+    // if (today > user.accountExpireDate) {
+    //   await user.update({ accountActiveStatus: '0' });
+    //   req.flash('error', 'Your account is expired');
+    //   return res.redirect('back');
+    // }
+
     if (user.emailVerification == '0') {
       req.flash('error', 'Please verify your email');
       return res.redirect('back');
     }
-    if (user.accountActiveStatus == '0') {
-      req.flash('error', 'Your account is expired');
-      return res.redirect('back');
-    }
+    // if (user.accountActiveStatus == '0') {
+    //   req.flash('error', 'Your account is expired');
+    //   return res.redirect('back');
+    // }
     const password_valid = await bcrypt.compare(
       req.body.password,
       user.password
@@ -184,11 +193,7 @@ async function loginAction(req, res) {
       global.loginAuthCheck = user.id;
       // loginAuthCheck = 1;
 
-      var today = customDateFormat(new Date());
-
-      if (today > user.accountExpireDate) {
-        await user.update({ accountActiveStatus: '0' });
-      }
+     
 
       //return res.redirect('/contact');
       return res.redirect('/home');

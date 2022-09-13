@@ -106,10 +106,10 @@
             <div class="row form-box">
 
               <div class="col-md-12">
-                <input type="text" name="email" placeholder="Please enter email">
+                <input type="text" class="emailOnly" id="email" name="email" placeholder="Please enter email">
               </div>
               <div class="col-md-12">
-                <input type="password" name="password" placeholder="Please enter password">
+                <input type="password" name="password" id="password" placeholder="Please enter password">
               </div>
               <div class="form-check-inline form-in">
                 <label class="form-check-label">
@@ -137,7 +137,7 @@
               and <a href="#">Privacy Policy</a>
             </div>
             <div class="w-100 text-center Pricing-text">
-              <input class="sb-submit-btn-modal " value="Login" type="submit">
+              <input class="sb-submit-btn-modal " id="loginbtn" value="Login" type="submit">
             </div>
           </form>
         </div>
@@ -155,7 +155,7 @@
             </div>
 
             <div class="w-100 text-center Pricing-text">
-              <input class="sb-submit-btn-modal " value="Forget" type="submit">
+              <input class="sb-submit-btn-modal"  value="Forget" type="submit">
             </div>
           </form>
 
@@ -187,3 +187,47 @@
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.emailOnly').on('input',function(event){
+					this.value=this.value.replace(/\s+/g,'').toLowerCase();
+          var b = this.value;
+          console.log(b);	
+		});
+    $("#email").keyup(function(){
+			$('.text-danger').remove(); 
+      $('#loginbtn').attr("disabled", false);
+      $('#loginbtn').removeClass("disbtn");
+			var email = $(this).val();
+      var emailReg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var emailSt = emailReg.test( email );
+      if(!emailSt && email.length > 0){
+        $('#email').after('<span class="text-danger ">Invalid email format</br></span>'); 
+        $('#loginbtn').attr('disabled', true);
+        $('#loginbtn').addClass("disbtn");
+      }
+    });
+
+    $("#password").keyup(function(){
+			$('.text-danger').remove(); 
+      $('#loginbtn').attr("disabled", false);
+      $('#loginbtn').removeClass("disbtn");
+			var passwordLength = $(this).val().length;
+      if(passwordLength > 0){
+        if(passwordLength < 5){   
+          console.log(passwordLength);
+          $('#password').after('<span class="text-danger">Minimum 5 character required </br></span>'); 
+          $('#loginbtn').attr('disabled', true);
+          $('#loginbtn').addClass("disbtn");
+        }else if(passwordLength > 9){
+          $('#password').after('<span class="text-danger">Password Not more than 8 character</br></span>'); 
+          $('#loginbtn').attr('disabled', true);
+          $('#loginbtn').addClass("disbtn");
+        }
+      }
+    });
+  });
+  
+</script>	

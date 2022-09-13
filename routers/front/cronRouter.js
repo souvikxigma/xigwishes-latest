@@ -4,6 +4,7 @@ const authUserCheck = require('../../middleware/front/AuthCheck');
 
 const router = express.Router();
 
-router.get('/',authUserCheck.authUser, cronController.cronBirthday);
+router.get('/',cronController.cronBirthday);
+//router.get('/',authUserCheck.authUser, cronController.cronAnniversary);
 
 module.exports = router;

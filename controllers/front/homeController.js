@@ -14,6 +14,14 @@ function home(req, res) {
   
 }
 
+function loaderFunc(req,res){
+  return res.render('front/pages/Home/loader', {
+    page_name: 'loader',
+    layout:false,
+  });
+}
+
 module.exports = {
   home: home,
+  loaderFunc: loaderFunc,
 };

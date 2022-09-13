@@ -21,7 +21,7 @@ async function index(req, res) {
   });
   var UserInfo = await Models.User.findOne({ where: { id: req.id } });
   var PaymentInfo = await Models.Payment.findOne({
-    where: { userId: req.id, paymentStatus: 'active' },
+    where: { userId: req.id, paymentStatus: 'active',delflag: 'N' },
     order: [['createdAt', 'DESC']],
     include: [{
         model: Models.Package,
@@ -47,15 +47,27 @@ async function packagePayment(req, res) {
   // var pl = await stripe.plans.list({})
   //console.log(req.body);
   //return false;
-  var intervalCount ;
-  const {packageId,productId,amount,currency,description,validityDays,stripeTokenType,stripeEmail} = req.body;
-  if(validityDays == '30'){
-    intervalCount = 'month';
-  }else if(validityDays == '365'){
-    intervalCount = 'year';
+  let userId = req.id;
+  var userPaymentInfo = await Models.Payment.findOne({where:{ [Op.and]: [{userId: userId}, {delflag: 'N'}]}});
+  if(userPaymentInfo){
+    req.flash('error', 'Allready Subscribed');
+      return res.redirect('/package');
   }
 
-  let userId = req.id;
+  var interval ;
+  var intervalCount = 0;
+  const {packageId,productId,amount,currency,description,validityDays,stripeTokenType,stripeEmail} = req.body;
+  if(validityDays == '30'){
+    //interval = 'day';
+    interval = 'day';
+    intervalCount = 30;
+  }else if(validityDays == '365'){
+    //interval = 'year';
+    interval = 'day';
+    intervalCount = 365;
+  }
+
+  
   const userInfo = await Models.User.findOne({ where: { id: userId } });
   var customerId;
   if (!userInfo.stripeCustomerid) {
@@ -79,7 +91,7 @@ async function packagePayment(req, res) {
         price_data: {
           currency: currency,
           product: productId,
-          recurring: {interval: intervalCount, interval_count: 1},
+          recurring: {interval: interval, interval_count: intervalCount},
           unit_amount: Number(amount),
         },
         quantity: 1,
@@ -88,7 +100,7 @@ async function packagePayment(req, res) {
   });
   ///subscription//
 
- //return res.send(subscription);
+// return res.send(subscription);
 
 
   if (subscription.id) {
@@ -135,15 +147,44 @@ async function packagePayment(req, res) {
 
 
 async function cancelSubscription(req,res){
+  // var userId = req.id;
+  // var paymentInfo = await Models.Payment.findOne({where:{userId: userId }});
+  // if(paymentInfo && paymentInfo.subscriptionId){
+  //   const updatedsub = await stripe.subscriptions.update(paymentInfo.subscriptionId, {cancel_at_period_end: true});
+
+  //   return res.send(updatedsub);
+  //   console.log(updatedsub);
+  // }
   var userId = req.id;
-  var paymentInfo = await Models.Payment.findOne({where:{userId: userId }});
-  if(paymentInfo && paymentInfo.subscriptionId){
-    const updatedsub = await stripe.subscriptions.update(paymentInfo.subscriptionId, {cancel_at_period_end: true});
-
-    return res.send(updatedsub);
-    console.log(updatedsub);
-
+  var userPaymentInfo = await Models.Payment.findOne({where:{ [Op.and]: [{userId: userId}, {delflag: 'N'}]}});
+ 
+  if(!userPaymentInfo){
+      req.flash('error', 'User does not have any package');
+      return res.redirect('/package');
   }
+
+  try {
+    const deletedSubscription = await stripe.subscriptions.del(
+      userPaymentInfo.subscriptionId
+    );
+    if(deletedSubscription.status == 'canceled'){
+
+      await userPaymentInfo.update({ delflag: 'Y' });
+
+      req.flash('success', 'Subscription canceled successfully');
+      return res.redirect('/package');
+    }else{
+      req.flash('error', 'Subscription is not canceled');
+      return res.redirect('/package');
+    }
+
+    //res.send({ subscription: deletedSubscription });
+  } catch (error) {
+   // return res.status(400).send({ error: { message: error.message } });
+    req.flash('error', error);
+    return res.redirect('/package');
+  }
+
 }
 
 module.exports = {

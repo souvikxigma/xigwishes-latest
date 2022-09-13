@@ -50,6 +50,11 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.TEXT,
         allowNull: true,
       }, 
+      delflag:{
+        type: Sequelize.ENUM,
+        values: ['Y', 'N'],
+        defaultValue: 'N',
+      },
       
     });
     return Payment;

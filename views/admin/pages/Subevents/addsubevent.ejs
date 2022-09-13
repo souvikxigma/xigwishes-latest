@@ -79,7 +79,7 @@
             </li>
             <li>
               <a href="http://presentation.creative-tim.com">
-                About Us
+                About Us 
               </a>
             </li>
             <li>
@@ -105,6 +105,8 @@
 
 <script>
   $(document).ready(function () {
+    var adminbaseurl = `<%= adminbaseurl %>`;
+    var ajaxsubfestival = adminbaseurl + '/sub-event/ajaxsubfestival';
     // Javascript method's body can be found in assets/js/demos.js
     $("#festdivid").hide();
     $('#event').on('change', function () {
@@ -113,7 +115,7 @@
         $("#festdivid").show();
         $("#sub_cate").html('');
         $.ajax({
-          url: "http://localhost:9128/admin/sub-event/ajaxsubfestival",
+          url: ajaxsubfestival,
           type: "POST",
           data: { cat_id: category_id },
           dataType: 'json',
