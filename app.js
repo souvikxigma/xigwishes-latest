@@ -259,6 +259,7 @@ const adminQnaRouter = require('./routers/admin/adminQnaRouter');
 const adminFeatureRouter = require('./routers/admin/adminFeatureRouter');
 const adminSliderRouter = require('./routers/admin/adminSliderRouter');
 const adminDesignRouter = require('./routers/admin/adminDesignRouter');
+const adminHowworkRouter = require('./routers/admin/adminHowworkRouter');
 
 //admin //
 app.use(`/admin`,adminAuthRouter);
@@ -273,6 +274,7 @@ app.use(`/admin/qna`,adminQnaRouter);
 app.use(`/admin/feature`,adminFeatureRouter);
 app.use(`/admin/slider`,adminSliderRouter);
 app.use(`/admin/design`,adminDesignRouter);
+app.use(`/admin/howwork`,adminHowworkRouter);
 
 
 // admin 404

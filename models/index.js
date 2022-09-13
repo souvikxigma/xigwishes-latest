@@ -32,6 +32,7 @@ db.Qna = require("./qna")(sequelize, Sequelize);
 db.Feature = require("./feature")(sequelize, Sequelize);
 db.Slider = require("./slider")(sequelize, Sequelize);
 db.Design = require("./design")(sequelize, Sequelize);
+db.Howwork = require("./howwork")(sequelize, Sequelize);
 
 //category and subcategory relationship ////
 
