@@ -40,7 +40,7 @@ async function adminAddCmsAction(req, res) {
 
 async function adminEditCms(req, res) {
   var id = req.params.id;
-  const cms = await Models.Cms.findOne({ id: id });
+  const cms = await Models.Cms.findOne({ where:{id: id} });
   if (cms) {
     return res.render('admin/pages/Cms/editcms', {
       page_name: 'admin-cms',

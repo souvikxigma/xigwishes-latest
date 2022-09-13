@@ -1,0 +1,92 @@
+<div class="main-panel" id="main-panel">
+  <!-- Navbar -->
+  <%- include('../../includes/navbar.ejs') %>
+    <!-- End Navbar -->
+    <div class="panel-header panel-header-sm">
+
+    </div>
+    <div class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="title">Feature Add</h5>
+              <a class="btn btn-dark" href="/admin/feature">Back</a>
+            </div>
+            <div class="card-body">
+              <%- include('../../includes/alert.ejs') %>
+                <form action="/admin/feature/add/action" method="POST" enctype='multipart/form-data'>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" name="title" class="form-control"/>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" class="form-control ckeditor"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" name="image" class="form-control" style="opacity: 1; position: relative;">
+                      </div>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-success" type="submit">Submit</button>
+                </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <footer class="footer">
+      <div class=" container-fluid ">
+        <nav>
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Creative Tim
+              </a>
+            </li>
+            <li>
+              <a href="http://presentation.creative-tim.com">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright" id="copyright">
+          &copy;
+          <script>
+            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+          </script>, Designed by <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by <a
+            href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+        </div>
+      </div>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.1.slim.js"
+  integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+<script>
+  $(document).ready(function () {
+    ClassicEditor
+      .create(document.querySelector('.ckeditor'))
+      .catch(error => {
+        console.error(error);
+      });
+
+  });
+</script>

@@ -27,6 +27,11 @@ db.Category = require("./category.js")(sequelize, Sequelize);
 db.Subcategory = require("./subcategory.js")(sequelize, Sequelize);
 db.Festivalsubcategory = require("./festivalsubcategory")(sequelize, Sequelize);
 db.Cms = require("./cms")(sequelize, Sequelize);
+db.Testimonial = require("./testimonial")(sequelize, Sequelize);
+db.Qna = require("./qna")(sequelize, Sequelize);
+db.Feature = require("./feature")(sequelize, Sequelize);
+db.Slider = require("./slider")(sequelize, Sequelize);
+db.Design = require("./design")(sequelize, Sequelize);
 
 //category and subcategory relationship ////
 

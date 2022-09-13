@@ -1,0 +1,101 @@
+<div class="main-panel" id="main-panel">
+    <!-- Navbar -->
+    <%- include('../../includes/navbar.ejs') %>
+        <!-- End Navbar -->
+        <div class="panel-header panel-header-sm">
+        </div>
+        <div class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"> All design</h4>
+                            <a href="/admin/design/add" class="btn btn-info">Add Design</a>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class="">
+                                <table class="display" id="table_id">
+                                    <thead class="table-dark">
+                                        <th>
+                                            #
+                                        </th>
+                                    
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Description
+                                        </th>
+                                        <th>
+                                            Image
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+
+                                        <th>
+                                            Action
+                                        </th>
+                                      
+                                        
+                                    </thead>
+                                    <tbody>
+                                        <% for(var i=0; i< data.length; i++) { %>
+                                        <tr>
+                                            <td>
+                                                <%= (i+1) %>
+                                            </td>
+                                       
+                                            <td>
+                                                <%- data[i].title %>
+                                            </td>
+                                            <td>
+                                                <%- data[i].description.substring(0, 50) %>
+                                            </td>
+                                            <td>
+                                                <img src="/uploads/design/<%- data[i].image %>" style="width:100px;height:100px;" />
+                                                
+                                            </td>
+                                            <td>
+                                                <%= data[i].status %>
+                                            </td>
+                                            <td>
+                                                <%= moment(data[i].createdAt).format('Do MMMM, YYYY') %>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-info btn-sm" href="/admin/design/edit/<%=data[i].id%>">Edit</a>
+                                                <a class="btn btn-danger btn-sm" href="/admin/design/delete/<%=data[i].id%>">Delete</a>
+                                            </td>
+                                        </tr>
+                                        <% } %>
+                                        
+                                        
+                                        
+                                       
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <div class=" container-fluid ">
+
+                <div class="copyright" id="copyright">
+                    &copy;
+                    <script>
+                        document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                    </script>, Designed by <a href="javascript:void(0)">Xigmapro</a>. Coded by <a
+                        href="javascript:void(0)">Admin</a>.
+                </div>
+            </div>
+        </footer>
+</div>

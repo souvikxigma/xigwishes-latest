@@ -254,6 +254,11 @@ const adminEventRouter = require('./routers/admin/adminEventRouter');
 const adminSubEventRouter = require('./routers/admin/adminSubEventRouter');
 const adminUserRouter = require('./routers/admin/adminUserRouter');
 const adminCmsRouter = require('./routers/admin/adminCmsRouter');
+const adminTestimonialRouter = require('./routers/admin/adminTestimonialRouter');
+const adminQnaRouter = require('./routers/admin/adminQnaRouter');
+const adminFeatureRouter = require('./routers/admin/adminFeatureRouter');
+const adminSliderRouter = require('./routers/admin/adminSliderRouter');
+const adminDesignRouter = require('./routers/admin/adminDesignRouter');
 
 //admin //
 app.use(`/admin`,adminAuthRouter);
@@ -263,6 +268,11 @@ app.use(`/admin/event`,adminEventRouter);
 app.use(`/admin/sub-event`,adminSubEventRouter);
 app.use(`/admin/user`,adminUserRouter);
 app.use(`/admin/cms`,adminCmsRouter);
+app.use(`/admin/testimonial`,adminTestimonialRouter);
+app.use(`/admin/qna`,adminQnaRouter);
+app.use(`/admin/feature`,adminFeatureRouter);
+app.use(`/admin/slider`,adminSliderRouter);
+app.use(`/admin/design`,adminDesignRouter);
 
 
 // admin 404
