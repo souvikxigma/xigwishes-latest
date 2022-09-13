@@ -26,6 +26,7 @@ db.Admin = require("./admin.js")(sequelize, Sequelize);
 db.Category = require("./category.js")(sequelize, Sequelize);
 db.Subcategory = require("./subcategory.js")(sequelize, Sequelize);
 db.Festivalsubcategory = require("./festivalsubcategory")(sequelize, Sequelize);
+db.Cms = require("./cms")(sequelize, Sequelize);
 
 //category and subcategory relationship ////
 

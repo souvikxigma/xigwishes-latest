@@ -14,6 +14,7 @@ var jwt = require('jsonwebtoken');
 const Models = require("./models");
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const moment = require("moment");
 
 // const server = http.createServer(app);
 // var io = require('socket.io');
@@ -112,6 +113,7 @@ app.set('layout', 'front/layouts/layout'); //front  layoub
 
 // global variables across routes
 app.use(async (req, res, next) => {
+  res.locals.moment = moment;
   try {
     global.loginAuthCheck = req.cookies.userID;
     global.loginAuthEmail = req.cookies.userEmail;
@@ -251,6 +253,7 @@ const adminThemeRouter = require('./routers/admin/adminThemeRouter');
 const adminEventRouter = require('./routers/admin/adminEventRouter');
 const adminSubEventRouter = require('./routers/admin/adminSubEventRouter');
 const adminUserRouter = require('./routers/admin/adminUserRouter');
+const adminCmsRouter = require('./routers/admin/adminCmsRouter');
 
 //admin //
 app.use(`/admin`,adminAuthRouter);
@@ -259,6 +262,7 @@ app.use(`/admin/theme`,adminThemeRouter);
 app.use(`/admin/event`,adminEventRouter);
 app.use(`/admin/sub-event`,adminSubEventRouter);
 app.use(`/admin/user`,adminUserRouter);
+app.use(`/admin/cms`,adminCmsRouter);
 
 
 // admin 404
