@@ -3,43 +3,62 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcome-list shadow-reset">
-                    Cancelation Refund
+                    <!-- Support -->
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
 <div class="mg-b-40 custommaincss">
     <div class="container">
-
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="sparkline12-list shadow-reset mg-t-30">
-                    <div class="sparkline12-hd">
-                        <div class="main-sparkline12-hd">
-                            <h1>Cancelation Refund</h1>
-                            <!-- <div class="sparkline12-outline-icon">
-                                <span class="sparkline12-collapse-link"><i class="fa fa-chevron-up"></i></span>
-                                <span><i class="fa fa-wrench"></i></span>
-                                <span class="sparkline12-collapse-close"><i class="fa fa-times"></i></span>
-                            </div> -->
+        <section class="featured-panel">
+            <div class="container">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <% if(data){%>
+                                    <h1>
+                                        <%= title %>
+                                    </h1>
+                                    <div class="grid-box-panel">
+                                        <%- data.description %>
+                                    </div>
+                                    <%}%>
+                            </div>
                         </div>
                     </div>
-                    <div class="sparkline12-graph">
-                        <div class="basic-login-form-ad">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="all-form-element-inner">
-                                            <%- include('../../includes/alert.ejs') %>
-                                               <div class="col-md-12">
-                                                    <p>
-                                                        The xigwishes Help Centre page lists out various types of issues that you may have encountered so that there can be quick resolution and you can go back to shopping online. For example, you can get more information regarding order tracking, delivery date changes, help with returns (and refunds), and much more. The xigwishes Help Centre also lists out more information that you may need regarding xigwishes Plus, payment, shopping, and more. The page has various filters listed out on the left-hand side so that you can get your queries solved quickly, efficiently, and without a hassle. You can get the xigwishes Help Centre number or even access xigwishes Help Centre support if you need professional help regarding various topics. The support executive will ensure speedy assistance so that your shopping experience is positive and enjoyable. You can even inform your loved ones of the support page so that they can properly get their grievances addressed as well. Once you have all your queries addressed, you can pull out your shopping list and shop for all your essentials in one place. You can shop during festive sales to get your hands on some unbelievable deals online. This information is updated on 11-Aug-22
-                                                    </p>
-                                               </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="container">
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h1>Our Milestones</h1>
+                                <div class="row bg-primary">
+                                    <div class="col-4 d-flex justify-content-around my-5">
+                                        <div class="milestone_item">
+                                            <p class="milestone_p1">100k</p>
+                                            <p class="milestone_p2">Photo Upload Monthly</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4 d-flex justify-content-around my-5">
+                                        <div class="milestone_item">
+                                            <p class="milestone_p1">1M</p>
+                                            <p class="milestone_p2">Active Users</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4 d-flex justify-content-around my-5">
+                                        <div class="milestone_item">
+                                            <p class="milestone_p1">10M</p>
+                                            <p class="milestone_p2">Views</p>
                                         </div>
                                     </div>
                                 </div>
@@ -48,6 +67,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </div>
 </div>

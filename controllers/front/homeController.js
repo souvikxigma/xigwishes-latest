@@ -9,6 +9,9 @@ async function home(req, res) {
     where: { status: 'Y' },
     order: [['id', 'DESC']],
   });
+  var howwork = await Models.Howwork.findOne({
+    where: { status: 'Y' }
+  });
   var features = await Models.Feature.findAll({
     where: { status: 'Y' },
     order: [['id', 'DESC']],
@@ -29,6 +32,7 @@ async function home(req, res) {
     page_name: 'home',
     qnas: qnas,
     features: features,
+    howwork:howwork,
     designs: designs,
     testimonials: testimonials,
     sliders: sliders

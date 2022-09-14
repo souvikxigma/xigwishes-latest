@@ -74,6 +74,13 @@
 
 <section class="work-panel">
     <div class="container">
+        <!-- <% if(howwork){ %>
+            <div class="row d-flex justify-content-around">
+                <div class="col-md-12">
+                    <%- howwork.description %>
+                </div>
+            </div>
+        <% } %>         -->
         <div class="row text-center ">
             <div class="col-md-12">
                 <h2>
@@ -267,7 +274,7 @@
 
                                 <div id="collapse<%=i%>" class="collapse <% if(i == 0) { %> show <% } %>"
                                     aria-labelledby="heading<%=i%>" data-parent="#faqExample">
-                                    <div class="card-body f-small">
+                                    <div class="card-body qna-desc">
                                         <%- qnas[i].answer %>
                                     </div>
                                 </div>

@@ -1113,3 +1113,24 @@ font-size: 16px;
   width: 105px!important;
   height: 105px!important;
 }
+
+
+/* about us Milestone items css here  */
+.milestone_item{
+  width: 15vw;
+ height: 15vw;
+ background-color: #fff;
+ border-radius: 50%;
+ max-width: 300px;
+ max-height: 300px;
+}
+.milestone_p1{
+ padding:15% 0% 0% 0%;
+ font-size: 3rem;
+ text-align: center;
+}
+.milestone_p2{
+ padding:0% 0% 0% 0%;
+ font-size: 1rem;
+ text-align: center;
+}
