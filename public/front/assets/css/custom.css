@@ -500,6 +500,16 @@ display: none;
   color: #b71818;
 }
 
+.testimonials .item::after {
+  position: absolute;
+  content: "\f10e";
+  font: normal normal normal 14px/1 FontAwesome;
+  bottom: 0px;
+  right: 0;
+  font-size: 18px;
+  color: #b71818;
+}
+
 .login-under ul{
   list-style: none;
 }
@@ -1090,4 +1100,16 @@ font-size: 16px;
 
 .custommaincss {
   margin: 100px 0;
+}
+
+.qna-desc > * {
+  font-size: 1rem!important;
+}
+.feature-img img{
+  width: 50px!important;
+  height: 50px!important;
+}
+.design-img img{
+  width: 105px!important;
+  height: 105px!important;
 }
