@@ -12,6 +12,8 @@ var csrf = require('csurf');
 var os = require('os');
 var jwt = require('jsonwebtoken');
 const Models = require("./models");
+const adminAuthCheck = require('./middleware/admin/AdminAuthCheck');
+
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const moment = require("moment");
@@ -294,16 +296,17 @@ app.use(`/admin/company`,adminCompanyRouter);
 
 
 // admin 404
-app.get('/admin/*', function(req, res){
-  var title = 'User';
-  return res.render('front/pages/Others/erroradmin', {
+app.get('/admin/*', adminAuthCheck.adminAuthUser  , function(req, res){
+  var title = 'Admin';
+  return res.render('admin/pages/Others/erroradmin', {
     page_name: 'erroradmin',
-    title:title
+    title:title,
+    layout: 'admin/layouts/adminlayout',
   });
 });
 // user 404
 app.get('*', function(req, res){
-  var title = 'Admin';
+  var title = 'User';
   return res.render('front/pages/Others/error', {
     page_name: 'error',
     title:title

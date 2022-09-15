@@ -69,7 +69,7 @@ async function adminLoginAction(req, res) {
 }
 
 async function logout(req, res) {
-  res.clearCookie();
+  res.clearCookie('admintoken');
   req.flash('success', 'Logout Successfully');
   return res.redirect('/admin/login');
 }
