@@ -1134,3 +1134,10 @@ font-size: 16px;
  font-size: 1rem;
  text-align: center;
 }
+.fab_icon{
+  font-size: 2.4rem;
+  text-align: center;
+}
+.contact_main_div{
+  background: #6c757d30;
+}

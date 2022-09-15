@@ -57,9 +57,62 @@ async function aboutUs(req,res){
 
 async function contactUs(req,res){
     var title = 'Contact Us'; 
-    var data = await Models.Cms.findOne({where:{type:'contact',status:'Y'}});
+    var company = await Models.Company.findOne({});
     return res.render('front/pages/Others/contactus', {
         page_name: 'contact',
+        company:company,
+        title:title
+    });
+}
+
+async function contactUsAction(req,res){
+
+    var email = req.body.email;
+    var subject = req.body.subject;
+    var message = req.body.message;
+    //validation start
+    const validator = new Validator();
+    const validationResponse = validator.validate(
+      {
+        subject: subject,
+        email: email,
+        message: message,
+      },
+      {
+        subject: { type: 'string', empty: false, max: '100' },
+        email: { type: 'string', empty: false, max: '100' },
+        message: { type: 'string', empty: false, max: '100' },
+      }
+    );
+    if (validationResponse !== true) {
+      req.flash('error', validationResponse[0].message);
+      return res.redirect('/others/contact-us');
+    }
+    //validation end
+
+    let contactUsData = {
+        subject: subject,
+        email: email,
+        message: message,
+      };
+    
+      var created_contactus = await Models.Contactus.create(contactUsData);
+      if (created_contactus) {
+        req.flash('success', 'Form submited');
+        return res.redirect('/others/contact-us');
+      } else {
+        req.flash('error', 'Form submition faied');
+        return res.redirect('/others/contact-us');
+      }
+}
+
+
+async function howItWork(req,res){
+    var title = 'How It Work'; 
+    var data = await Models.Howwork.findAll({where:{status:'Y'}});
+    console.log('data',data);
+    return res.render('front/pages/Others/howwork', {
+        page_name: 'howwork',
         data:data,
         title:title
     });
@@ -74,4 +127,6 @@ module.exports = {
     cancelationRefund: cancelationRefund,
     aboutUs: aboutUs,
     contactUs: contactUs,
+    howItWork:howItWork,
+    contactUsAction:contactUsAction,
 }

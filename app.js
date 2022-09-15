@@ -114,6 +114,20 @@ app.set('layout', 'front/layouts/layout'); //front  layoub
 // global variables across routes
 app.use(async (req, res, next) => {
   res.locals.moment = moment;
+  var usersActiveCount = await Models.User.count({where:{accountActiveStatus:'1'}});
+  res.locals.usersActiveCount = usersActiveCount;
+  var themeCount = await Models.Theme.count({where:{status:'1'}});
+  res.locals.themeCount = themeCount;
+
+  var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+  let ipData = {
+    ip: ip,
+  };
+  await Models.Ip.create(ipData);
+  var ipCount = await Models.Ip.count({});
+  res.locals.ipCount = ipCount;
+
+
   try {
     global.loginAuthCheck = req.cookies.userID;
     global.loginAuthEmail = req.cookies.userEmail;
@@ -141,9 +155,9 @@ app.use(async (req, res, next) => {
     res.locals.boka = "categories";
     // res.locals.srvr = server;
 
-        var cronfunc = require("./controllers/front/cronController");
-        cronfunc.cronBirthday();
-        cronfunc.cronAnniversary();
+    var cronfunc = require("./controllers/front/cronController");
+    cronfunc.cronBirthday();
+    cronfunc.cronAnniversary();
 
     next();
   } catch (error) {
@@ -260,6 +274,7 @@ const adminFeatureRouter = require('./routers/admin/adminFeatureRouter');
 const adminSliderRouter = require('./routers/admin/adminSliderRouter');
 const adminDesignRouter = require('./routers/admin/adminDesignRouter');
 const adminHowworkRouter = require('./routers/admin/adminHowworkRouter');
+const adminCompanyRouter = require('./routers/admin/adminCompanyRouter');
 
 //admin //
 app.use(`/admin`,adminAuthRouter);
@@ -275,15 +290,24 @@ app.use(`/admin/feature`,adminFeatureRouter);
 app.use(`/admin/slider`,adminSliderRouter);
 app.use(`/admin/design`,adminDesignRouter);
 app.use(`/admin/howwork`,adminHowworkRouter);
+app.use(`/admin/company`,adminCompanyRouter);
 
 
 // admin 404
 app.get('/admin/*', function(req, res){
-  res.status(404).send('what admin???');
+  var title = 'User';
+  return res.render('front/pages/Others/erroradmin', {
+    page_name: 'erroradmin',
+    title:title
+  });
 });
 // user 404
 app.get('*', function(req, res){
-  res.status(404).send('what user???');
+  var title = 'Admin';
+  return res.render('front/pages/Others/error', {
+    page_name: 'error',
+    title:title
+  });
 });
 
 const server = http.createServer(app);

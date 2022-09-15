@@ -18,14 +18,15 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <% if(data){%>
+                                <% if(data){ %>
                                     <h1>
                                         <%= title %>
                                     </h1>
+                                    <% for(var i=0; i< data.length; i++) { %>
                                     <div class="grid-box-panel">
-                                        <%- data.description %>
+                                        <%- data[i].description %>
                                     </div>
-                                    <%}%>
+                                <% }} %>
                             </div>
                         </div>
                     </div>

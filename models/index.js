@@ -33,6 +33,9 @@ db.Feature = require("./feature")(sequelize, Sequelize);
 db.Slider = require("./slider")(sequelize, Sequelize);
 db.Design = require("./design")(sequelize, Sequelize);
 db.Howwork = require("./howwork")(sequelize, Sequelize);
+db.Ip = require("./ip")(sequelize, Sequelize);
+db.Company = require("./company")(sequelize, Sequelize);
+db.Contactus = require("./contactus")(sequelize, Sequelize);
 
 //category and subcategory relationship ////
 
