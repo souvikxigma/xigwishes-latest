@@ -173,6 +173,8 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
   <script>
     function setBirthdayModal(imagename,uniquecode){  
         document.getElementById("uniquecode").value = uniquecode;
@@ -198,10 +200,42 @@
                 dataType: 'json',
                 success: function (result) {    
                     if(result.scode == 1){
-                        alert(result.msg);
-                        location.reload();
+                       //alert(result.msg);
+
+                        Toastify({
+                        text: result.msg,
+                        duration: 2000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                        callback: function(){
+                            location.reload();
+                        },
+                        onClick: function(){
+                            location.reload();
+                        } // Callback after click
+                        }).showToast();
+                        //location.reload();
                     }else{
-                        alert(result.msg);
+                       // alert(result.msg);
+                        Toastify({
+                        text: result.msg,
+                        duration: 3000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(to right, #00b09b, #96c93d)",
+                        },
+                        onClick: function(){} // Callback after click
+                        }).showToast();
                     }
                     
                 }, 
@@ -218,7 +252,20 @@
                 data: { uniquecode: uniquecode },
                 dataType: 'json',
                 success: function (result) {    
-                    alert(result.msg);
+                    //alert(result.msg);
+                    Toastify({
+                        text: result.msg,
+                        duration: 3000,
+                        newWindow: true,
+                        close: true,
+                        gravity: "top", // `top` or `bottom`
+                        position: "right", // `left`, `center` or `right`
+                        stopOnFocus: true, // Prevents dismissing of toast on hover
+                        style: {
+                            background: "linear-gradient(to right, #ed213a, #93291e)",
+                        },
+                        onClick: function(){} // Callback after click
+                        }).showToast();
                 }, 
                 error: function (err) {
                     console.log(err);

@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
+const {ADMINPATH} = require('./config/path.config.js');
 
   
 passport.serializeUser((user , done) => {
@@ -13,7 +14,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new GoogleStrategy({
     clientID:"1036617403093-i6bofotdk0s8fhhg4mmo3l0n51kt7t7t.apps.googleusercontent.com", 
     clientSecret:"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", 
-    callbackURL:`${process.env.BASE_URL}/auth/google/callback`,
+    callbackURL:`${ADMINPATH}/auth/google/callback`,
     passReqToCallback:true
   },
   function(request, accessToken, refreshToken, profile, done) {
@@ -24,7 +25,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
   clientID: '829192618465577',
   clientSecret: '9cbf894a424af221a5eae7aaf920ab7e',
-  callbackURL: `${process.env.BASE_URL}/auth/facebook/callback`
+  callbackURL: `${ADMINPATH}/auth/facebook/callback`
 }, function (accessToken, refreshToken, profile, done) {
   return done(null, profile);
 }

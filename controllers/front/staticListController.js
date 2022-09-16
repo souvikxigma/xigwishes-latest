@@ -110,7 +110,7 @@ async function contactUsAction(req,res){
 async function howItWork(req,res){
     var title = 'How It Work'; 
     var data = await Models.Howwork.findAll({where:{status:'Y'}});
-    console.log('data',data);
+   // console.log('data',data);
     return res.render('front/pages/Others/howwork', {
         page_name: 'howwork',
         data:data,

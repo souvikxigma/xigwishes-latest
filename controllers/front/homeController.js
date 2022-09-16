@@ -5,6 +5,21 @@ const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 
 async function home(req, res) {
+  var expirePopup = '0';
+  if(loginAuthCheck){
+    //expirePopup = '1';
+    var user = await Models.User.findOne({
+      where: { id: parseInt(loginAuthCheck) }
+    });
+  //  console.log('user.expirePopup',loginAuthCheck);
+    if(user.expirePopup == '1'){
+      expirePopup = '1';
+      await user.update({ expirePopup	: '0' });
+  
+    }
+    
+  }
+ 
   var sliders = await Models.Slider.findAll({
     where: { status: 'Y' },
     order: [['id', 'DESC']],
@@ -35,7 +50,8 @@ async function home(req, res) {
     howwork:howwork,
     designs: designs,
     testimonials: testimonials,
-    sliders: sliders
+    sliders: sliders,
+    expirePopup: expirePopup,
   });
 }
 

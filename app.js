@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const fileUpload = require('express-fileupload');
 const cors = require('cors');
 var cookieParser = require('cookie-parser');
-var csrf = require('csurf');
+
 var os = require('os');
 var jwt = require('jsonwebtoken');
 const Models = require("./models");
@@ -17,6 +17,7 @@ const adminAuthCheck = require('./middleware/admin/AdminAuthCheck');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const moment = require("moment");
+const {ADMINPATH} = require('./config/path.config.js');
 
 // const server = http.createServer(app);
 // var io = require('socket.io');
@@ -109,10 +110,6 @@ app.set('layout', 'front/layouts/layout'); //front  layoub
 
 
 
-
-
-
-
 // global variables across routes
 app.use(async (req, res, next) => {
   res.locals.moment = moment;
@@ -153,7 +150,8 @@ app.use(async (req, res, next) => {
     }
     res.locals.globalUserData = globalUserData;
     res.locals.accountExpireDays = accountExpireDays;
-    res.locals.adminbaseurl = "http://localhost:9128/admin";
+    //res.locals.adminbaseurl = "http://localhost:9128/admin";
+    res.locals.adminbaseurl = `${ADMINPATH}/admin`;
     res.locals.boka = "categories";
     // res.locals.srvr = server;
 

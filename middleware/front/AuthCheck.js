@@ -29,7 +29,9 @@ async function authUser(req, res, next) {
           next();
         } else {
           req.flash('error', 'User not found');
-          res.clearCookie();
+          // res.clearCookie('token');
+          // res.clearCookie('userID');
+          // res.clearCookie('userEmail');
           //eturn res.redirect('/login');
           return res.redirect('/home');
         }

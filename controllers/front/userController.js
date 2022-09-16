@@ -133,6 +133,7 @@ function login(req, res) {
 async function loginAction(req, res) {
   var email = req.body.email;
   var password = req.body.password;
+  //var expirePopup = false;
   //validation start
   const validator = new Validator();
   const validationResponse = validator.validate(
@@ -151,7 +152,7 @@ async function loginAction(req, res) {
   }
   //validation end
   const user = await Models.User.findOne({ where: { email: req.body.email } });
-  console.log(user);
+  //console.log(user);
 
   if (user) {
     var today = customDateFormat(new Date());
@@ -161,6 +162,8 @@ async function loginAction(req, res) {
     //   req.flash('error', 'Your account is expired');
     //   return res.redirect('back');
     // }
+
+    
 
     if (user.emailVerification == '0') {
       req.flash('error', 'Please verify your email');
@@ -193,6 +196,9 @@ async function loginAction(req, res) {
       global.loginAuthCheck = user.id;
       // loginAuthCheck = 1;
 
+      if (today > user.accountExpireDate) {
+        await user.update({ expirePopup	: '1' });
+      }
      
 
       //return res.redirect('/contact');

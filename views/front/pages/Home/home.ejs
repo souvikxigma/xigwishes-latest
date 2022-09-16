@@ -135,6 +135,7 @@
             <div class="col-md-12 text-center">
                 <h2>Endless ways to make</h2>
                 <p>your design your own.</p>
+                
             </div>
         </div>
 
@@ -271,7 +272,7 @@
                                     </h5>
                                 </div>
 
-                                <div id="collapse<%=i%>" class="collapse <% if(i == 0) { %> show <% } %>"
+                                <div id="collapse<%=i%>" class="collapse "
                                     aria-labelledby="heading<%=i%>" data-parent="#faqExample">
                                     <div class="card-body qna-desc">
                                         <%- qnas[i].answer %>
@@ -297,6 +298,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
+
+        var expirePackage = `<%= expirePopup %>`;
+        console.log('expirePackage',expirePackage);
+        if(expirePackage && expirePackage =='1'){
+            $('#expiremodal').modal('show');
+        }
+
+        
+        
         $(document).ajaxSend(function () {
             $(".overlayhome").fadeIn(1000);
         });
@@ -310,5 +320,12 @@
                 $(".overlayhome").fadeOut(1000);
             }, 500);
         });
+
+
+
+        
+
+        
+
     });
 </script>

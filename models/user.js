@@ -99,6 +99,11 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.DATEONLY,
         defaultValue: Sequelize.NOW
       },
+      expirePopup: {
+        type: Sequelize.ENUM,
+        values: ['0', '1'],
+        defaultValue: '0',
+      },
       accountActiveStatus: {
         type: Sequelize.ENUM,
         values: ['0', '1'],

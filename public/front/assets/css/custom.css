@@ -1141,3 +1141,10 @@ font-size: 16px;
 .contact_main_div{
   background: #6c757d30;
 }
+
+.expire_title{
+  padding-left: 20%;
+}
+.expire_body{
+    color: red;
+}
