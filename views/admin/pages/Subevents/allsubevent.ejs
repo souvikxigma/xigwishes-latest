@@ -24,11 +24,14 @@
                                             Event Name
                                         </th>
                                         <th>
+                                            Event Name
+                                        </th>
+                                        <th>
                                             Sub Event Image
                                         </th>
-                                        <!-- <th>
-                                            pic
-                                        </th> -->
+                                        <th>
+                                            Action
+                                        </th>
                                         
                                     </thead>
                                     <tbody>
@@ -43,13 +46,18 @@
                                             </td>
                                             <td>
                                                
+                                                <%= data[i].subcategoryTitle %>
+                                            </td>
+                                            <td>
+                                               
                                                 <img class="img-fluid" style="width: 90px;"
                                                                     src="/uploads/sample/<%= data[i].subcategoryImage %>">
                                             </td>
-                                            <!-- <td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm"  href="/admin/sub-event/edit/<%=data[i].id%>" >Edit</a>
+                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this sub event?')" href="/admin/sub-event/delete/<%=data[i].id%>" >Delete</a>
                                                 
-                                                <img class="img-fluid" style="width: 90px;" src="/uploads/themes/<%= data[i].name %>">
-                                            </td> -->
+                                            </td>
                                             
                                         </tr>
                                         <% } %>

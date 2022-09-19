@@ -47,8 +47,49 @@ async function viewAllAnniversaryByUser(req,res){
     }
 }
 
+async function userDeleteAction(req, res) {
+    var id = req.params.uid;  
+    var delete_user = await Models.User.destroy({ where: { id: id } });
+    if (delete_user) {
+      req.flash('success', 'User deleted successfully');
+      return res.redirect(`/admin/user`);
+    } else {
+      req.flash('error', 'User is not deleted ');
+      return res.redirect(`/admin/user`);
+    }
+  }
+
+  async function userBirthdayDeleteAction(req, res) {
+    var uid = req.params.uid;  
+    var id = req.params.id;   
+    var delete_birthday = await Models.Birthday.destroy({ where: { userId: uid,id:id } });
+    if (delete_birthday) {
+      req.flash('success', 'User Birthday deleted successfully');
+      return res.redirect(`/admin/user/birthday/${uid}`);
+    } else {
+      req.flash('error', 'User Birthday is not deleted ');
+      return res.redirect(`/admin/user/birthday/${uid}`);
+    }
+  }
+
+  async function userAnniversaryDeleteAction(req, res) {
+    var uid = req.params.uid;  
+    var id = req.params.id;  
+    var delete_anniversary = await Models.Anniversary.destroy({ where: { userId: uid,id:id } });
+    if (delete_anniversary) {
+      req.flash('success', 'User anniversary deleted successfully');
+      return res.redirect(`/admin/user/anniversary/${uid}`);
+    } else {
+      req.flash('error', 'User anniversary is not deleted ');
+      return res.redirect(`/admin/user/anniversary/${uid}`);
+    }
+  }
+
 module.exports = {
     index: index,
     viewAllBirthdayByUser: viewAllBirthdayByUser,
     viewAllAnniversaryByUser: viewAllAnniversaryByUser,
+    userDeleteAction:userDeleteAction,
+    userBirthdayDeleteAction:userBirthdayDeleteAction,
+    userAnniversaryDeleteAction:userAnniversaryDeleteAction
 };

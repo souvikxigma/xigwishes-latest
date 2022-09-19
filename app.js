@@ -17,7 +17,7 @@ const adminAuthCheck = require('./middleware/admin/AdminAuthCheck');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const moment = require("moment");
-const {ADMINPATH} = require('./config/path.config.js');
+const {ADMINPATH,BASEPATH} = require('./config/path.config.js');
 
 // const server = http.createServer(app);
 // var io = require('socket.io');
@@ -152,6 +152,7 @@ app.use(async (req, res, next) => {
     res.locals.accountExpireDays = accountExpireDays;
     //res.locals.adminbaseurl = "http://localhost:9128/admin";
     res.locals.adminbaseurl = `${ADMINPATH}/admin`;
+    res.locals.baseurl = `${BASEPATH}`;
     res.locals.boka = "categories";
     // res.locals.srvr = server;
 

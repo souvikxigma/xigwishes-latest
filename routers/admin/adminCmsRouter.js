@@ -9,7 +9,7 @@ router.get('/',adminAuthCheck.adminAuthUser , adminCmsController.adminCmsList);
 router.get('/add',adminAuthCheck.adminAuthUser ,adminCmsController.adminAddCms);
 router.post('/add/action',adminAuthCheck.adminAuthUser ,adminCmsController.adminAddCmsAction);
 router.get('/edit/:id',adminAuthCheck.adminAuthUser ,adminCmsController.adminEditCms);
-router.post('/edit/action/:id',adminAuthCheck.adminAuthUser ,adminCmsController.adminEditCmsAction);
-router.get('/delete/:id',adminAuthCheck.adminAuthUser ,adminCmsController.adminDeleteCmsAction);
+router.post('/edit/action/:cid/:id',adminAuthCheck.adminAuthUser ,adminCmsController.adminEditCmsAction);
+router.get('/delete/:cid/:id',adminAuthCheck.adminAuthUser ,adminCmsController.adminDeleteCmsAction);
 
 module.exports = router;
