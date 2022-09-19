@@ -11,8 +11,8 @@
         <div class="col-lg-4">
           <div class="card card-chart">
             <div class="card-header">
-              <h5 class="card-category">Total Order</h5>
-              <h4 class="card-title">Total Order:  2</h4>
+              <h5 class="card-category">Testimonial</h5>
+              <h4 class="card-title">Total Testimonial:  <%=testimonialCount%></h4>
              
               
             </div>
@@ -28,7 +28,47 @@
             </div>
           </div>
         </div>
-        
+        <div class="col-lg-4">
+          <div class="card card-chart">
+            <div class="card-header">
+              <h5 class="card-category">Active Users</h5>
+              <h4 class="card-title">Total Active Users:  <%=usersActiveCount%></h4>
+             
+              
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas id="lineChartExample"></canvas>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="card card-chart">
+            <div class="card-header">
+              <h5 class="card-category">Themes</h5>
+              <h4 class="card-title">Total Theme:  <%=themeCount%></h4>
+             
+              
+            </div>
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas id="lineChartExample"></canvas>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+              </div>
+            </div>
+          </div>
+        </div>
+      
       </div>
       <!-- <div class="row">
         <div class="col-md-6">

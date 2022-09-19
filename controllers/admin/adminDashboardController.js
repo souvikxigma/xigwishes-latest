@@ -5,10 +5,18 @@ const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 
 
-function adminDashboard(req, res) {
+async function adminDashboard(req, res) {
+
+  const testimonialCount = await Models.Testimonial.count({});
+  var usersActiveCount = await Models.User.count({where:{accountActiveStatus:'1'}});
+  var themeCount = await Models.Theme.count({where:{status:'1'}});
+
   return res.render('admin/pages/Dashboard/dashboard', {
     page_name: 'admin-dashboard',
-    layout: 'admin/layouts/adminlayout'
+    layout: 'admin/layouts/adminlayout',
+    testimonialCount: testimonialCount,
+    usersActiveCount:usersActiveCount,
+    themeCount:themeCount
   });
 }
 
