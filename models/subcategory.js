@@ -26,6 +26,14 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         allowNull: true
     },
+    subcategoryImageScreenShot: {
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    subcategoryCss: {
+        type: Sequelize.TEXT,
+        allowNull: true
+    },
 
     });
     return Subcategory;

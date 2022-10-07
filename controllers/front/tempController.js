@@ -101,6 +101,7 @@ async function templateReviewBirthdayDownload(req, res) {
     userInfo: userInfo,
     theme: theme,
     contact: contact,
+    layout: false,
   });
 }
 

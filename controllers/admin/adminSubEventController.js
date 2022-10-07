@@ -32,15 +32,28 @@ async function adminSubAddEvent(req, res) {
 
 async function adminSubAddEventAction(req, res) {
     
-    if (req.files && req.files.subcategory_icon) {
+    if (req.files && req.files.subcategory_icon && req.files.subcategory_screenshot) {
         //if (req.files) {
         //console.log('img', req.files.subcategory_icon)
         var documentFile = req.files.subcategory_icon;
+        var documentScreenShot = req.files.subcategory_screenshot;
+
         var imgString = documentFile.name;
         var imgArr = imgString.split(".");
         var imgname ="subcategory-sample-" + Date.now() + "." + imgArr[1];
+
+        var imgString2 = documentScreenShot.name;
+        var imgArr2 = imgString2.split(".");
+        var imgname2 ="subcategory-sample-screenshot-" + Date.now() + "." + imgArr2[1];
+
         // theme = imgname;
         documentFile.mv("public/uploads/sample/" + imgname, function (err) {
+            if (err) {
+                req.flash('error', 'Image not uploaded');
+                res.redirect('/admin/sub-event/add');
+            }
+        });
+        documentScreenShot.mv("public/uploads/sample/screenshot/" + imgname2, function (err) {
             if (err) {
                 req.flash('error', 'Image not uploaded');
                 res.redirect('/admin/sub-event/add');
@@ -55,6 +68,8 @@ async function adminSubAddEventAction(req, res) {
             subcategoryTitle: req.body.subcategoryTitle,
             festivalSubCategoryId: req.body.festival_sub_category ? req.body.festival_sub_category:null,
             subcategoryImage: imgname,
+            subcategoryImageScreenShot: imgname2,
+            subcategoryCss: req.body.subcategoryCss,
         };
 
         var created_subcategory = await Models.Subcategory.create(subCategoryData);
@@ -94,45 +109,65 @@ async function adminSubEventEdit(req, res) {
     var id = req.params.id;
     var categoryId = req.params.cid;
     var imgname =null;
-    if (req.files && req.files.subcategory_icon) {
-        //if (req.files) {
-        //console.log('img', req.files.subcategory_icon)
-        var documentFile = req.files.subcategory_icon;
-        var imgString = documentFile.name;
-        var imgArr = imgString.split(".");
-        imgname ="subcategory-sample-" + Date.now() + "." + imgArr[1];
-        // theme = imgname;
-        documentFile.mv("public/uploads/sample/" + imgname, function (err) {
-            if (err) {
-                req.flash('error', 'Image not uploaded');
-                res.redirect(`/admin/sub-event/edit/${categoryId}`);
-            }
-        });
-        console.log(imgname)
-    }
-    let subCategoryData = {
-        categoryId: req.body.event,
-        subcategoryTitle: req.body.subcategoryTitle,
-        festivalSubCategoryId: req.body.festival_sub_category ? req.body.festival_sub_category:null,
-    };
-
-    if(imgname){
+    var imgname2 =null;
+    var subCategoryData;
+    var subcategory = await Models.Subcategory.findOne({ where: { id: id } });
+    if(subcategory){
+        if (req.files && req.files.subcategory_icon) {
+            //if (req.files) {
+            //console.log('img', req.files.subcategory_icon)
+            var documentFile = req.files.subcategory_icon;
+            var imgString = documentFile.name;
+            var imgArr = imgString.split(".");
+            imgname ="subcategory-sample-" + Date.now() + "." + imgArr[1];
+            // theme = imgname;
+            documentFile.mv("public/uploads/sample/" + imgname, function (err) {
+                if (err) {
+                    req.flash('error', 'Image not uploaded');
+                    res.redirect(`/admin/sub-event/edit/${categoryId}`);
+                }
+            });
+            console.log(imgname)
+        }
+        if (req.files && req.files.subcategory_screenshot) {
+            //if (req.files) {
+            //console.log('img', req.files.subcategory_icon)
+            var documentFileScreenshot = req.files.subcategory_screenshot;
+            var imgString2 = documentFileScreenshot.name;
+            var imgArr2 = imgString2.split(".");
+            imgname2 ="subcategory-sample-screenshot-" + Date.now() + "." + imgArr2[1];
+            // theme = imgname;
+            documentFileScreenshot.mv("public/uploads/sample/screenshot/" + imgname2, function (err) {
+                if (err) {
+                    req.flash('error', 'Image not uploaded');
+                    res.redirect(`/admin/sub-event/edit/${categoryId}`);
+                }
+            });
+            console.log(imgname2)
+        }
         subCategoryData = {
             categoryId: req.body.event,
             subcategoryTitle: req.body.subcategoryTitle,
             festivalSubCategoryId: req.body.festival_sub_category ? req.body.festival_sub_category:null,
-            subcategoryImage: imgname,
+            subcategoryImage: imgname ? imgname : subcategory.subcategoryImage,
+            subcategoryImageScreenShot: imgname2 ? imgname2 : subcategory.subcategoryImageScreenShot,
+            subcategoryCss: req.body.subcategoryCss,
         };
-    }
-
-    var update_Subcategory = await Models.Subcategory.update(subCategoryData,{ where: { categoryId:categoryId,id: id } });
-    if (update_Subcategory) {
-        req.flash('success', 'Sub Category updated successfully');
-        return res.redirect(`/admin/sub-event/edit/${categoryId}`);
+    
+    
+        var update_Subcategory = await Models.Subcategory.update(subCategoryData,{ where: { categoryId:categoryId,id: id } });
+        if (update_Subcategory) {
+            req.flash('success', 'Sub Category updated successfully');
+            return res.redirect(`/admin/sub-event/edit/${categoryId}`);
+        } else {
+            req.flash('error', 'Sub Category is not updated');
+            return res.redirect(`/admin/sub-event/edit/${categoryId}`);
+        }
     } else {
-        req.flash('error', 'Sub Category is not updated');
+        req.flash('error', 'Sub Category not found');
         return res.redirect(`/admin/sub-event/edit/${categoryId}`);
     }
+    
 
 }
 

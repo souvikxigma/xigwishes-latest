@@ -24,10 +24,11 @@
                         <% for(var i=0; i< theme.length; i++) { %>
                             
                         <div class="item">
-                            <img alt="" src="/uploads/sample/<%= theme[i].subcategoryImage %>">
+                            <!-- <img alt="" src="/uploads/sample/<%= theme[i].subcategoryImage %>"> -->
+                            <img alt="<%= theme[i].subcategoryTitle %>" src="/uploads/sample/screenshot/<%= theme[i].subcategoryImageScreenShot %>">
                             <input type="hidden" value="<%= process.env.BASE_URL %>" id="baseurls" />
                             <% if (loginAuthCheck) { %>
-                                <a class="btn btn-info" onclick="setBirthdayModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
+                                <a class="btn btn-info" onclick="setBirthdayModal('<%= theme[i].subcategoryImageScreenShot %>','<%= theme[i].subcategoryUniqueCode %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
                                 
                                   <!-- <div class="checkbox-container">
                                     <input type="checkbox" id="apple"/>
@@ -145,7 +146,7 @@
 </section>
 <hr/>
 
-<!-- modal -->
+<!--preview modal -->
 <div class="modal fade" id="birthdayThemeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -171,6 +172,8 @@
       </div>
     </div>
   </div>
+
+
   <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
@@ -178,7 +181,8 @@
   <script>
     function setBirthdayModal(imagename,uniquecode){  
         document.getElementById("uniquecode").value = uniquecode;
-        document.getElementById("modalimgid").src= "/uploads/sample/"+imagename;
+        //document.getElementById("modalimgid").src= "/uploads/sample/"+imagename;
+        document.getElementById("modalimgid").src= "/uploads/sample/screenshot/"+imagename;
     }
     
   </script>
