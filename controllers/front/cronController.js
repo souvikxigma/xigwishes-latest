@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 var format = require('date-format');
 const nodemailer = require("nodemailer");
 const moment = require('moment');
+const {ADMINPATH,BASEPATH} = require('../../config/path.config.js');
 
 async function cronBirthdayf(req, res) {
 /////////////////////////////////////////////////////////////////
@@ -99,6 +100,7 @@ async function cronBirthdayf(req, res) {
 
 
 async function cronBirthday(req,res){
+ //console.log();
   var userInfo = await Models.User.findAll({});
   // tomorrow all birthaday data
   var month = moment().month() + 1;
@@ -109,7 +111,8 @@ async function cronBirthday(req,res){
   const TODAY_END = moment().format('YYYY-MM-DD 23:59');
   var contacts = [];
 
-  cron.schedule('00 21 * * *', () => {
+  // cron.schedule('00 21 * * *', () => {
+  cron.schedule('* * * * *', () => {
 
     userInfo.forEach(async (user,index) => {
       contacts = await Models.Birthday.findAll({
@@ -148,7 +151,8 @@ async function cronBirthday(req,res){
          
           contacts.forEach((contact, i) => {
             //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}`;
-            var url = `http://localhost:9128/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}`;
+            //var url = `http://localhost:9128/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}`;
+            var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}`;
             console.log(url);
             //htmltocanvas code//
             console.log('cron working');

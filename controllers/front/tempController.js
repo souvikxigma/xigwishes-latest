@@ -94,7 +94,7 @@ async function templateReviewBirthdayDownload(req, res) {
   let uniqueCode = req.params.uniqueCode;
   let contactId = req.params.contactId;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Contact.findOne({ where: { id: contactId } });
+  const contact = await Models.Birthday.findOne({ where: { id: contactId } });
   const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Birthday/templateReviewDownload', {
     page_name: 'template',
@@ -109,7 +109,7 @@ async function templateReviewForAnniversary(req, res) {
   let userId = req.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Contact.findOne({ where: { userId: userId } });
+  const contact = await Models.Anniversary.findOne({ where: { userId: userId } });
   const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Anniversary/templateReview', {
     page_name: 'template',

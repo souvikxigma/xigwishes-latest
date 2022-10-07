@@ -141,11 +141,12 @@ app.use(async (req, res, next) => {
       const startDate    = new Date().toISOString().slice(0, 10);
       const diffInMs   = new Date(endDate) - new Date(startDate);
       accountExpireDays = diffInMs / (1000 * 60 * 60 * 24);
-      // if(accountExpireDays >= 0){
-      //   var cronfunc = require("./controllers/front/cronController");
-      //   cronfunc.cronBirthday();
-      //   cronfunc.cronAnniversary();
-      // }
+      //console.log(accountExpireDays);
+      if(accountExpireDays >= 0){
+        // var cronfunc = require("./controllers/front/cronController");
+        // cronfunc.cronBirthday();
+        // cronfunc.cronAnniversary();
+      }
 
     }
     res.locals.globalUserData = globalUserData;
@@ -156,9 +157,9 @@ app.use(async (req, res, next) => {
     res.locals.boka = "categories";
     // res.locals.srvr = server;
 
-    var cronfunc = require("./controllers/front/cronController");
-    cronfunc.cronBirthday();
-    cronfunc.cronAnniversary();
+    // var cronfunc = require("./controllers/front/cronController");
+    // cronfunc.cronBirthday();
+    // cronfunc.cronAnniversary();
 
     next();
   } catch (error) {
