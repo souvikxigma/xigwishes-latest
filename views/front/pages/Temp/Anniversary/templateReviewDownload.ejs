@@ -27,7 +27,7 @@
         <div id="photodownload" class="bg"
             style="background: url('/uploads/sample/<%= theme ? theme.subcategoryImage : null %>') no-repeat;">
             <div class="logo">
-                <img src="/uploads/companyLogo/<%= userInfo.companyLogo %>">
+                <img src="/uploads/companyLogo/<%= userInfo? userInfo.companyLogo : '' %>">
             </div>
 
             <div class="birth-text">
@@ -52,13 +52,13 @@
             <div class="footer-box">
                 <ul>
                     <li><i class="fa fa-whatsapp" aria-hidden="true"></i> <a href="#">
-                            <%= userInfo.mobile %>
+                            <%= userInfo ? userInfo.mobile : "+91 8902496474" %>
                         </a></li>
                     <li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">
-                            <%= userInfo.email %>
+                            <%= userInfo ? userInfo.email : "sales@xigmapro.com" %>
                         </a></li>
                     <li><i class="fa fa-map-marker" aria-hidden="true"></i><a href="#">
-                            <%- userInfo.officeAddress %>
+                            <%- userInfo ? userInfo.officeAddress : "2nd Floor, Shaila Tower, J1/16, Sector V, Bidhannagar, Kolkata, West Bengal 700091" %>
                         </a></li>
                 </ul>
             </div>

@@ -31,7 +31,6 @@ async function adminSubAddEvent(req, res) {
 }
 
 async function adminSubAddEventAction(req, res) {
-    
     if (req.files && req.files.subcategory_icon && req.files.subcategory_screenshot) {
         //if (req.files) {
         //console.log('img', req.files.subcategory_icon)
