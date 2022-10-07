@@ -111,8 +111,8 @@ async function cronBirthday(req,res){
   const TODAY_END = moment().format('YYYY-MM-DD 23:59');
   var contacts = [];
 
-  // cron.schedule('00 21 * * *', () => {
-  cron.schedule('* * * * *', () => {
+  cron.schedule('00 21 * * *', () => {
+  //cron.schedule('* * * * *', () => {
 
     userInfo.forEach(async (user,index) => {
       contacts = await Models.Birthday.findAll({
@@ -238,7 +238,7 @@ async function cronAnniversary(req,res){
             console.log('running a task every minute');
             anniversarys.forEach((anniversary, i) => {
               //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}`;
-              var url = `http://localhost:9128/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${anniversary.id}`;
+              var url = `${BASEPATH}/temp/anniversary-review/download/${user.id}/${randomDefaultBirthdayTheme}/${anniversary.id}`;
               console.log(url);
               //htmltocanvas code//
               console.log('cron working');

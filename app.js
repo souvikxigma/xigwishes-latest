@@ -157,9 +157,9 @@ app.use(async (req, res, next) => {
     res.locals.boka = "categories";
     // res.locals.srvr = server;
 
-    // var cronfunc = require("./controllers/front/cronController");
-    // cronfunc.cronBirthday();
-    // cronfunc.cronAnniversary();
+    var cronfunc = require("./controllers/front/cronController");
+    cronfunc.cronBirthday();
+    cronfunc.cronAnniversary();
 
     next();
   } catch (error) {

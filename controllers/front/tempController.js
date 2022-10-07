@@ -124,13 +124,14 @@ async function templateReviewForAnniversaryDownload(req, res) {
   let uniqueCode = req.params.uniqueCode;
   let contactId = req.params.contactId;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Contact.findOne({ where: { id: contactId } });
+  const contact = await Models.Anniversary.findOne({ where: { id: contactId } });
   const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
   return res.render('front/pages/Temp/Anniversary/templateReviewDownload', {
     page_name: 'template',
     userInfo: userInfo,
     theme: theme,
     contact: contact,
+    layout: false,
   });
 }
 
