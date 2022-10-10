@@ -114,8 +114,10 @@
 
         $('#setbtn').on('click', function () {
             var uniqueThemeCode = $('#themecode').val();
+            var baseurl = `<%= baseurl %>`;
+            var ajaxThemeSet = baseurl + '/temp/review/birthday/ajax-theme-set';
             $.ajax({
-                url: "http://localhost:9128/temp/review/birthday/ajax-theme-set",
+                url: ajaxThemeSet,
                 type: "POST",
                 data: { defaultBirthDayTheme: uniqueThemeCode },
                 dataType: 'json',

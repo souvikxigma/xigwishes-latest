@@ -1,4 +1,6 @@
 const nodemailer = require('nodemailer');
+const {BASEPATH} = require('../config/path.config.js');
+
 //send email
 function sendEmail(email, token) {
  
@@ -19,7 +21,7 @@ function sendEmail(email, token) {
         from: 'souvik.hajra@xigmapro.com',
         to: email,
         subject: 'Reset Password Link - Xigwishes',
-        html: '<p>You requested for reset password, kindly use this <a href="http://localhost:9128/reset-password?token=' + token + '">link</a> to reset your password</p>'
+        html: `<p>You requested for reset password, kindly use this <a href="${BASEPATH}/reset-password?token=' + token + '">link</a> to reset your password</p>`
  
     };
  

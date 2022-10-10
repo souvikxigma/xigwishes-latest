@@ -61,7 +61,7 @@ async function cronBirthdayf(req, res) {
          
           contacts.forEach((contact, i) => {
             //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}`;
-            var url = `http://localhost:9128/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}`;
+            var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}`;
             console.log(url);
             //htmltocanvas code//
             console.log('cron working');
@@ -329,7 +329,7 @@ async function cronAnniversaryB(req, res) {
             console.log('running a task every minute');
             anniversarys.forEach((anniversary, i) => {
               //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}`;
-              var url = `http://localhost:9128/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${anniversary.id}`;
+              var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${anniversary.id}`;
               console.log(url);
               //htmltocanvas code//
               console.log('cron working');

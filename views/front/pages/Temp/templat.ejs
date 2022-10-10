@@ -221,8 +221,10 @@
         $('#festivalname').on('change', function () {
             var festival_id = this.value;
             $("#festival-card").html('');
+            var baseurl = `<%= baseurl %>`;
+            var festivalAjax = baseurl + '/temp/festivalAjax';
             $.ajax({
-                url: "http://localhost:9128/temp/festivalAjax",
+                url: festivalAjax,
                 type: "POST",
                 data: { festival_id: festival_id },
                 dataType: 'json',

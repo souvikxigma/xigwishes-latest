@@ -112,8 +112,10 @@
 
         $('#setbtn').on('click', function () {
             var uniqueThemeCode = $('#themecode').val();
+            var baseurl = `<%= baseurl %>`;
+            var ajaxThemeSet = baseurl + '/temp/review/anniversary/ajax-theme-set';
             $.ajax({
-                url: "http://localhost:9128/temp/review/anniversary/ajax-theme-set",
+                url: ajaxThemeSet,
                 type: "POST",
                 data: { defaultAnniversaryTheme: uniqueThemeCode },
                 dataType: 'json',
