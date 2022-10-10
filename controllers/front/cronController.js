@@ -60,8 +60,8 @@ async function cronBirthdayf(req, res) {
           // console.log('running a task every minute');
          
           contacts.forEach((contact, i) => {
-            //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}`;
-            var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}`;
+            //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}/true`;
+            var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}/true`;
             console.log(url);
             //htmltocanvas code//
             console.log('cron working');
@@ -150,9 +150,9 @@ async function cronBirthday(req,res){
           // console.log('running a task every minute');
          
           contacts.forEach((contact, i) => {
-            //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}`;
-            //var url = `http://localhost:9128/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}`;
-            var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}`;
+            //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}/true`;
+            //var url = `http://localhost:9128/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}/true`;
+            var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${contact.id}/true`;
             console.log(url);
             //htmltocanvas code//
             console.log('cron working');
@@ -237,8 +237,8 @@ async function cronAnniversary(req,res){
             // 0 21 * * *
             console.log('running a task every minute');
             anniversarys.forEach((anniversary, i) => {
-              //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}`;
-              var url = `${BASEPATH}/temp/anniversary-review/download/${user.id}/${randomDefaultBirthdayTheme}/${anniversary.id}`;
+              //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}/true`;
+              var url = `${BASEPATH}/temp/anniversary-review/download/${user.id}/${randomDefaultBirthdayTheme}/${anniversary.id}/true`;
               console.log(url);
               //htmltocanvas code//
               console.log('cron working');
@@ -328,8 +328,8 @@ async function cronAnniversaryB(req, res) {
             // 0 21 * * *
             console.log('running a task every minute');
             anniversarys.forEach((anniversary, i) => {
-              //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}`;
-              var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${anniversary.id}`;
+              //var url = `http://localhost:9128/temp/review/download/${userId}/${userInfo.defaultBirthdayTheme}/${contact.id}/true`;
+              var url = `${BASEPATH}/temp/review/download/${user.id}/${randomDefaultBirthdayTheme}/${anniversary.id}/true`;
               console.log(url);
               //htmltocanvas code//
               console.log('cron working');

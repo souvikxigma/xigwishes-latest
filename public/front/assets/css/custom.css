@@ -17,6 +17,10 @@ ul {
   margin: 0;
 }
 
+.c-red{
+  color: red;
+}
+
 /*=================header panel=================*/
 .padding-both {
   padding: 15px 0;

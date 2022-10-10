@@ -90,19 +90,31 @@ async function templateReview1(req, res) {
 async function templateReviewBirthdayDownload(req, res) {
   //return res.status(200).send({"id":ab});
   // let userId = req.params.id;
+  let downloadTheme = false;
+  if(req.params.downloadTheme === 'true'){
+    downloadTheme = true;
+  }
   let userId = req.params.userId;
   let uniqueCode = req.params.uniqueCode;
   let contactId = req.params.contactId;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Birthday.findOne({ where: { id: contactId } });
-  const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/Birthday/templateReviewDownload', {
-    page_name: 'template',
-    userInfo: userInfo,
-    theme: theme,
-    contact: contact,
-    layout: false,
-  });
+  if(userInfo && userInfo.email  && userInfo.mobile && userInfo.officeAddress && userInfo.service1 && userInfo.service2 && userInfo.service3 && userInfo.companyLogo){
+    let contact = await Models.Birthday.findOne({ where: { id: contactId } });
+    const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
+    return res.render('front/pages/Temp/Birthday/templateReviewDownload', {
+      page_name: 'template',
+      userInfo: userInfo,
+      theme: theme,
+      contact: contact,
+      downloadTheme:downloadTheme,
+      layout: false,
+    });
+  }else{
+      req.flash('error', 'Please update profile details.');
+      return res.redirect('/profile');
+  }
+
+
 }
 
 async function templateReviewForAnniversary(req, res) {

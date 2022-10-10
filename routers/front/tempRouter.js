@@ -12,7 +12,7 @@ router.get('/review/:uniqueCode',authUserCheck.authUser,tempController.templateR
 router.get('/anniversary-review/:uniqueCode',authUserCheck.authUser,tempController.templateReviewForAnniversary);
 
 // template download
-router.get('/review/download/:userId/:uniqueCode/:contactId',tempController.templateReviewBirthdayDownload);
+router.get('/review/download/:userId/:uniqueCode/:contactId/:downloadTheme?',tempController.templateReviewBirthdayDownload);
 router.get('/anniversary-review/download/:userId/:uniqueCode/:contactId',tempController.templateReviewForAnniversaryDownload);
 
 //ajax//

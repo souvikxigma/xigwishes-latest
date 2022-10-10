@@ -18,15 +18,17 @@ async function birthdayThemeList(req,res){
     console.log('hi');
 
     var allBirthdayThemeToArray=[];
+    var authId = null;
     if(loginAuthCheck){
       var userinfo = await Models.User.findOne({where:{ id: loginAuthCheck }});
       if(userinfo.birthdayThemes){
         console.log('bye');
         allBirthdayThemeToArray = userinfo.birthdayThemes.split(','); 
       }
+      authId = loginAuthCheck;
     }
    
-    console.log('hello');
+    // console.log('authId',authId);
   
     // if (!allBirthdayData) {
     //   req.flash('success', 'Themes not available');
@@ -36,6 +38,7 @@ async function birthdayThemeList(req,res){
       page_name: 'birthday',
       theme: allBirthdayData,
       allBirthdayThemeToArray: allBirthdayThemeToArray,
+      authId:authId,
     });
 }
   
