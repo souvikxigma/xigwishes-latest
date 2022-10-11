@@ -184,7 +184,7 @@ async function adminSubEventDelete(req, res) {
 
 
 ////ajax/////
-async function adminGetSubFestivalCategoryAjax(req,res){
+async function adminGetSubFestivalCategoryAjax(req,res){    
     const allfestivalsubcatdata = await Models.Festivalsubcategory.findAll({});
     return res.json({
         msg: 'success',

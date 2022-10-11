@@ -217,6 +217,58 @@ async function templateReviewForAnniversaryDownload(req, res) {
   }
 }
 
+
+async function templateReviewForFestivalDownload(req, res) {
+  var downloadTheme = false;
+  if (req.params.downloadTheme === 'true') {
+    downloadTheme = true;
+  }
+  var userId = req.params.userId;
+  var uniqueCode = req.params.uniqueCode;
+  var contactId = req.params.contactId;
+  var userInfo = null;
+  const contact = await Models.Anniversary.findOne({
+    where: { id: contactId },
+  });
+  const theme = await Models.Subcategory.findOne({
+    where: { subcategoryUniqueCode: uniqueCode },
+  });
+  if (req.params.isAdmin === 'true') {
+    return res.render('front/pages/Temp/Festival/templateReviewDownload', {
+      page_name: 'template',
+      userInfo: userInfo,
+      theme: theme,
+      contact: contact,
+      downloadTheme: downloadTheme,
+      layout: false,
+    });
+  } else {
+    userInfo = await Models.User.findOne({ where: { id: userId } });
+    if (
+      userInfo &&
+      userInfo.email &&
+      userInfo.mobile &&
+      userInfo.officeAddress &&
+      userInfo.service1 &&
+      userInfo.service2 &&
+      userInfo.service3 &&
+      userInfo.companyLogo
+    ) {
+      return res.render('front/pages/Temp/Festival/templateReviewDownload', {
+        page_name: 'template',
+        userInfo: userInfo,
+        theme: theme,
+        contact: contact,
+        downloadTheme: downloadTheme,
+        layout: false,
+      });
+    } else {
+      req.flash('error', 'Please update profile details.');
+      return res.redirect('/profile');
+    }
+  }
+}
+
 ///ajax birthday theme set /////
 async function setDefaultBirthdayImage(req, res) {
   let defaultBirthDayTheme = req.body.defaultBirthDayTheme;
@@ -303,4 +355,5 @@ module.exports = {
   getFestivalAjaxSort: getFestivalAjaxSort,
   templateReviewBirthdayDownload: templateReviewBirthdayDownload,
   templateReviewForAnniversaryDownload: templateReviewForAnniversaryDownload,
+  templateReviewForFestivalDownload:templateReviewForFestivalDownload,
 };

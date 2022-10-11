@@ -55,13 +55,13 @@
 
                                         <div class="card-body">
 
-                                            <!-- <a class="btn btn-info" onclick="setBirthdayModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a> -->
+                                            <!-- <a class="btn btn-info" onclick="setFestivalModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a> -->
                                             <input type="hidden" id="hidauthval" value="<%= loginAuthCheck %> " />
                                             <input type="hidden" id="hidfestarrval"
                                                 value="<%= allFestivalThemeToArray %> " />
                                             <% if (loginAuthCheck) { %>
                                                 <a class="btn btn-info"
-                                                    onclick="setBirthdayModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>')"
+                                                    onclick="setFestivalModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')"
                                                     data-toggle="modal" data-target="#birthdayThemeModal"
                                                     href="#">Preview</a>&nbsp;
                                                 <!-- <input class="wishlistdiv" type="checkbox" <% if( allFestivalThemeToArray  && (allFestivalThemeToArray.includes(theme[i].subcategoryUniqueCode))){ %>  checked  <% } %>   id="birthdaycheckbox_<%= theme[i].subcategoryUniqueCode %>"  value="<%= theme[i].subcategoryUniqueCode %>" /> -->
@@ -104,8 +104,8 @@
 
                         <form>
                             <input type="hidden" name="uniquecode" id="uniquecode">
-
                         </form>
+                        <a class="btn btn-primary btn-sm" target="_blank" id="full_view"  >Full view</a>
 
                     </div>
                 </div>
@@ -116,15 +116,18 @@
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
     integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
-
-<!-- Select2 -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/front/assets/select2/js/select2.full.min.js"></script>
 <script>
-    function setBirthdayModal(imagename, uniquecode) {
+    function setFestivalModal(imagename, uniquecode,authId) {
         console.log(imagename, uniquecode);
         document.getElementById("uniquecode").value = uniquecode;
-        document.getElementById("modalimgid").src = "/uploads/sample/" + imagename;
+        document.getElementById("modalimgid").src = "/uploads/sample/screenshot/" + imagename;
+        if(authId){
+            document.getElementById("full_view").href="/temp/holiday-review/download/"+authId+"/"+uniquecode+"/null"; 
+        }else{
+            document.getElementById("full_view").style.display = 'none'; 
+        }
     }
 </script>
 
@@ -154,29 +157,22 @@
                 $('#festival-all').addClass('festvalsortcls');
                 $('#festival-filter').show();
                 $.each(result.subcategorys, function (key, value) {
-                    var img = "'" + value.subcategoryImage.toString() + "'";
+                    var img = "'" + value.subcategoryImageScreenShot.toString() + "'";
                     var code = "'" + value.subcategoryUniqueCode.toString() + "'";
+                    var authId = "'" + result.authId.toString() + "'";
                     var arrid = "birthdaycheckbox_" + value.subcategoryUniqueCode;
                     var htmldata = '';
                     htmldata += '<div class="card customcard">';
-                    htmldata += '<img src="/uploads/sample/' + value.subcategoryImage + '" class="card-img-top" />';
+                    htmldata += '<img src="/uploads/sample/screenshot/' + value.subcategoryImageScreenShot + '" class="card-img-top" />';
                     htmldata += '<div class="card-body" id="ll">';
 
                     if (authValue) {
-                        htmldata += '<a class="btn btn-info" onclick="setBirthdayModal(' + img + ',' + code + ')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>';
-                        // if(festArrValue  && festArrValue.includes(value.subcategoryUniqueCode.toString())) {
-                        //     htmldata += '<input class="wishlistdiv" type="checkbox" onclick="sortajax('+code+')"  checked   id="'+value.subcategoryUniqueCode+'"  value="'+value.subcategoryUniqueCode+'" />';
-                        // }else{
-                        //     htmldata += '<input class="wishlistdiv" type="checkbox"  onclick="sortajax('+code+')"  id="'+value.subcategoryUniqueCode+'"  value="'+value.subcategoryUniqueCode+'" />';
-                        // }    
+                        htmldata += '<a class="btn btn-info" onclick="setFestivalModal(' + img + ',' + code + ',' + authId + ')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>';   
                     } else {
                         htmldata += '<a class="btn btn-info" data-toggle="modal" data-target="#LogInModal" href="#">Preview</a>';
                     }
 
                     //condition
-
-
-                    // htmldata += '<a class="btn btn-info" onclick="setBirthdayModal('+img+','+code+')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>';
                     htmldata += '</div>';
                     htmldata += '</div>';
                     $("#festival-card").append(htmldata);
@@ -242,64 +238,6 @@
         //$('#festival-filter').hide();
         $('#festival-all').removeClass('festvalsortcls');
         //ajax call for sorting result //
-
-        // $('#festivalname').on('change', function () {
-        //     var festival_id = this.value;
-        //     $("#festival-card").html('');
-        //     $.ajax({
-        //         //url: "http://localhost:9128/holidays/sort/ajax",
-        //         url: sortajaxholiday,
-        //         type: "POST",
-        //         data: { festival_id: festival_id },
-        //         dataType: 'json',
-        //         success: function (result) {
-
-        //             // $('#festival-all').hide();
-        //             $('#festival-all').addClass('festvalsortcls');
-        //             $('#festival-filter').show();
-        //             $.each(result.subcategorys, function (key, value) {
-        //                var img = "'"+value.subcategoryImage.toString()+"'";
-        //                var code = "'"+value.subcategoryUniqueCode.toString()+"'";
-        //                var arrid = "birthdaycheckbox_"+value.subcategoryUniqueCode;
-        //                var htmldata = '';
-        //                 htmldata += '<div class="card customcard">';
-        //                 htmldata += '<img src="/uploads/sample/'+ value.subcategoryImage +'" class="card-img-top" />';
-        //                 htmldata += '<div class="card-body" id="ll">';
-
-        //                 if (authValue) {
-        //                 htmldata += '<a class="btn btn-info" onclick="setBirthdayModal('+img+','+code+')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>';
-        //                     if(festArrValue  && festArrValue.includes(value.subcategoryUniqueCode.toString())) {
-        //                         htmldata += '<input class="wishlistdiv" type="checkbox" onclick="sortajax('+code+')"  checked   id="'+value.subcategoryUniqueCode+'"  value="'+value.subcategoryUniqueCode+'" />';
-        //                     }else{
-        //                         htmldata += '<input class="wishlistdiv" type="checkbox"  onclick="sortajax('+code+')"  id="'+value.subcategoryUniqueCode+'"  value="'+value.subcategoryUniqueCode+'" />';
-        //                     }    
-        //                 }else{
-        //                     htmldata += '<a class="btn btn-info" data-toggle="modal" data-target="#LogInModal" href="#">Preview</a>';
-        //                 }
-
-        //                 //condition
-
-
-        //                 // htmldata += '<a class="btn btn-info" onclick="setBirthdayModal('+img+','+code+')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>';
-        //                 htmldata += '</div>';
-        //                 htmldata += '</div>';
-        //                 $("#festival-card").append(htmldata);
-
-        //             });
-
-        //         }, error: function (err) {
-        //             console.log(err);
-        //         }
-        //     })
-        // });
-
-
-
-        ///////////////////newajax////////////////////////
-
-        ///////////////////newajax////////////////////////
-
-
         ///////////set remove theme ajax////////
         $('#ll').on('click', function () {
             alert("jikolk");
@@ -344,16 +282,6 @@
         ///
 
         ////multiple selectbox onchange/////
-
-
-        // $(function () {
-        //Initialize Select2 Elements
-
-        //  $(function () {
-        // //Initialize Select2 Elements
-        // $('.select2').select2()
-
-
     });
 
 </script>

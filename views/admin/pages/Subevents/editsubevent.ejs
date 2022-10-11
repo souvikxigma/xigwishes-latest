@@ -21,10 +21,10 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Events</label>
-                        <select class="form-control" name="event" id="event">
+                        <select class="form-control" name="event" id="event" <% if(subcategory.categoryId == 3){  %> disabled <% }  %> >
                           <option selected="true" disabled="disabled">Choose Events</option>
                           <% if(data.length){ for(var i=0; i< data.length; i++) {%>
-                            <option value="<%= data[i].id%>" <% if(subcategory.categoryId == data[i].id){  %> selected <% }  %> >
+                            <option value="<%= data[i].id%>" <% if(subcategory.categoryId == data[i].id){  %> selected <% }  %>  >
                               <%= data[i].name%> 
                             </option>
                             <% } } %>
@@ -124,6 +124,8 @@
 <script>
   $(document).ready(function () {
     var baseurl = `<%= baseurl %>`;
+    var oldcategoryId = `<%= subcategory.categoryId %>`;
+    var festivalSubCategoryId = `<%= subcategory.festivalSubCategoryId %>`;
     var ajaxsubfestival = baseurl + '/admin/sub-event/ajaxsubfestival';
     // Javascript method's body can be found in assets/js/demos.js
     $("#festdivid").hide();
@@ -132,7 +134,18 @@
       if (category_id == 3) {
         $("#festdivid").show();
         $("#sub_cate").html('');
-        $.ajax({
+        ajaxFechCat(ajaxsubfestival,category_id,festivalSubCategoryId);
+      }
+
+    });
+    if(oldcategoryId === '3'){
+      $("#festdivid").show();
+      $("#sub_cate").html('');
+      ajaxFechCat(ajaxsubfestival,oldcategoryId,festivalSubCategoryId);
+    }
+
+    function ajaxFechCat(ajaxsubfestival,category_id,festivalSubCategoryId){
+      $.ajax({
           url: ajaxsubfestival,
           type: "POST",
           data: { cat_id: category_id },
@@ -142,8 +155,11 @@
             $('#sub_cate').html('<option value="">Select Sub Event</option>');
             if (result.subcat.length > 0) {
               $.each(result.subcat, function (key, value) {
-                
-                $("#sub_cate").append('<option value="' + value.id + '" >' + value.festivalName + '</option>');
+                if(value.id == festivalSubCategoryId){
+                  $("#sub_cate").append('<option selected value="' + value.id + '" >' + value.festivalName + '</option>');
+                }else{
+                  $("#sub_cate").append('<option value="' + value.id + '" >' + value.festivalName + '</option>');
+                }
 
               });
 
@@ -154,9 +170,7 @@
             console.log(err);
           }
         })
-      }
-
-    });
+    }
 
 
     //////////////

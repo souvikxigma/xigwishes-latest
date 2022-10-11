@@ -65,7 +65,10 @@
                                                         <%}else if(data[i].categoryId===2){%>
                                                             <a class="btn btn-primary btn-sm" target="_blank"
                                                                 href="/temp/anniversary-review/download/null/<%=data[i].subcategoryUniqueCode%>/null/true">Preview</a>
-                                                            <%}%>
+                                                            <%}else if(data[i].categoryId===3){%>
+                                                                <a class="btn btn-primary btn-sm" target="_blank"
+                                                                    href="/temp/holiday-review/download/null/<%=data[i].subcategoryUniqueCode%>/null/true">Preview</a>
+                                                                <%}%>
                                                 </td>
 
                                             </tr>
