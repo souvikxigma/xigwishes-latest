@@ -11,7 +11,7 @@
                         <div class="card-header">
                             <h4 class="card-title">All Sub Events</h4>
                             <a href="/admin/sub-event/add" class="btn btn-info">Add Sub Events</a>
-                            
+
                         </div>
                         <div class="card-body">
                             <div class="">
@@ -32,40 +32,48 @@
                                         <th>
                                             Action
                                         </th>
-                                        
+
                                     </thead>
                                     <tbody>
                                         <% for(var i=0; i< data.length; i++) { %>
-                                        <tr>
-                                            <td>
-                                                <%= (i+1) %>
-                                            </td>
-                                            <td>
-                                               
-                                                <%= data[i].category.name %>
-                                            </td>
-                                            <td>
-                                               
-                                                <%= data[i].subcategoryTitle %>
-                                            </td>
-                                            <td>
-                                               
-                                                <img class="img-fluid" style="width: 90px;"
-                                                                    src="/uploads/sample/<%= data[i].subcategoryImage %>">
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-sm"  href="/admin/sub-event/edit/<%=data[i].id%>" >Edit</a>
-                                                <a class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this sub event?')" href="/admin/sub-event/delete/<%=data[i].id%>" >Delete</a>
-                                                <a class="btn btn-primary btn-sm" target="_blank"  href="/temp/review/download/1/<%=data[i].subcategoryUniqueCode%>/2" >Preview</a>
-                                                
-                                            </td>
-                                            
-                                        </tr>
-                                        <% } %>
-                                        
-                                        
-                                        
-                                       
+                                            <tr>
+                                                <td>
+                                                    <%= (i+1) %>
+                                                </td>
+                                                <td>
+
+                                                    <%= data[i].category.name %>
+                                                </td>
+                                                <td>
+
+                                                    <%= data[i].subcategoryTitle %>
+                                                </td>
+                                                <td>
+
+                                                    <img class="img-fluid" style="width: 90px;"
+                                                        src="/uploads/sample/<%= data[i].subcategoryImage %>">
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="/admin/sub-event/edit/<%=data[i].id%>">Edit</a>
+                                                    <a class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Are you sure you want to delete this sub event?')"
+                                                        href="/admin/sub-event/delete/<%=data[i].id%>">Delete</a>
+                                                    <% if(data[i].categoryId===1){ %>
+                                                        <a class="btn btn-primary btn-sm" target="_blank"
+                                                            href="/temp/review/download/null/<%=data[i].subcategoryUniqueCode%>/null/true">Preview</a>
+                                                        <%}else if(data[i].categoryId===2){%>
+                                                            <a class="btn btn-primary btn-sm" target="_blank"
+                                                                href="/temp/anniversary-review/download/null/<%=data[i].subcategoryUniqueCode%>/null/true">Preview</a>
+                                                            <%}%>
+                                                </td>
+
+                                            </tr>
+                                            <% } %>
+
+
+
+
                                     </tbody>
                                 </table>
                             </div>
@@ -75,7 +83,7 @@
 
             </div>
         </div>
-        
+
         <footer class="footer">
             <div class=" container-fluid ">
 

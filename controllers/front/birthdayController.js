@@ -254,6 +254,7 @@ async function addBirthdayAction(req, res) {
       page_name: 'birthday',
       theme: allFavBirthdayData,
       //allBirthdayThemeToArray: allBirthdayThemeToArray,
+      authId: userid,
     });
 
 

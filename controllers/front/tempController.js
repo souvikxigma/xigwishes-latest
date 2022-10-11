@@ -16,29 +16,37 @@ async function templateSubmit(req, res) {
 
   const allBirthdayData = await Models.Subcategory.findAll({
     where: { categoryId: 1 },
-    include: [{
-      model: Models.Category,
-      attributes: ["name"],
-    }]
+    include: [
+      {
+        model: Models.Category,
+        attributes: ['name'],
+      },
+    ],
   });
 
   const allAnniversaryData = await Models.Subcategory.findAll({
     where: { categoryId: 2 },
-    include: [{
-      model: Models.Category,
-      attributes: ["name"],
-    }]
+    include: [
+      {
+        model: Models.Category,
+        attributes: ['name'],
+      },
+    ],
   });
 
   const allFestivalData = await Models.Subcategory.findAll({
     where: { categoryId: 3 },
-    include: [{
-      model: Models.Category,
-      attributes: ["name", "id"],
-      include: [{
-        model: Models.Festivalsubcategory,
-      }]
-    }]
+    include: [
+      {
+        model: Models.Category,
+        attributes: ['name', 'id'],
+        include: [
+          {
+            model: Models.Festivalsubcategory,
+          },
+        ],
+      },
+    ],
   });
 
   const FestivalInfo = await Models.Festivalsubcategory.findAll({});
@@ -77,7 +85,9 @@ async function templateReview1(req, res) {
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
   const contact = await Models.Contact.findOne({ where: { userId: userId } });
-  const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
+  const theme = await Models.Subcategory.findOne({
+    where: { subcategoryUniqueCode: uniqueCode },
+  });
   return res.render('front/pages/Temp/Birthday/templateReview1', {
     page_name: 'template',
     userInfo: userInfo,
@@ -86,43 +96,68 @@ async function templateReview1(req, res) {
   });
 }
 
-
 async function templateReviewBirthdayDownload(req, res) {
   //return res.status(200).send({"id":ab});
   // let userId = req.params.id;
   let downloadTheme = false;
-  if(req.params.downloadTheme === 'true'){
+  if (req.params.downloadTheme === 'true') {
     downloadTheme = true;
   }
   let userId = req.params.userId;
   let uniqueCode = req.params.uniqueCode;
   let contactId = req.params.contactId;
-  const userInfo = await Models.User.findOne({ where: { id: userId } });
-  if(userInfo && userInfo.email  && userInfo.mobile && userInfo.officeAddress && userInfo.service1 && userInfo.service2 && userInfo.service3 && userInfo.companyLogo){
-    let contact = await Models.Birthday.findOne({ where: { id: contactId } });
-    const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
+  var userInfo = null;
+  let contact = await Models.Birthday.findOne({ where: { id: contactId } });
+  const theme = await Models.Subcategory.findOne({
+    where: { subcategoryUniqueCode: uniqueCode },
+  });
+  if (req.params.isAdmin === 'true') {
     return res.render('front/pages/Temp/Birthday/templateReviewDownload', {
       page_name: 'template',
       userInfo: userInfo,
       theme: theme,
       contact: contact,
-      downloadTheme:downloadTheme,
+      downloadTheme: downloadTheme,
       layout: false,
     });
   }else{
-      req.flash('error', 'Please update profile details.');
-      return res.redirect('/profile');
+  userInfo = await Models.User.findOne({ where: { id: userId } });
+  if (
+    userInfo &&
+    userInfo.email &&
+    userInfo.mobile &&
+    userInfo.officeAddress &&
+    userInfo.service1 &&
+    userInfo.service2 &&
+    userInfo.service3 &&
+    userInfo.companyLogo
+  ) {
+
+    return res.render('front/pages/Temp/Birthday/templateReviewDownload', {
+      page_name: 'template',
+      userInfo: userInfo,
+      theme: theme,
+      contact: contact,
+      downloadTheme: downloadTheme,
+      layout: false,
+    });
+  } else {
+    req.flash('error', 'Please update profile details.');
+    return res.redirect('/profile');
   }
-
-
+}
 }
 
 async function templateReviewForAnniversary(req, res) {
   let userId = req.id;
   let uniqueCode = req.params.uniqueCode;
   const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Anniversary.findOne({ where: { userId: userId } });
-  const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
+  const contact = await Models.Anniversary.findOne({
+    where: { userId: userId },
+  });
+  const theme = await Models.Subcategory.findOne({
+    where: { subcategoryUniqueCode: uniqueCode },
+  });
   return res.render('front/pages/Temp/Anniversary/templateReview', {
     page_name: 'template',
     userInfo: userInfo,
@@ -132,21 +167,55 @@ async function templateReviewForAnniversary(req, res) {
 }
 
 async function templateReviewForAnniversaryDownload(req, res) {
-  let userId = req.params.userId;
-  let uniqueCode = req.params.uniqueCode;
-  let contactId = req.params.contactId;
-  const userInfo = await Models.User.findOne({ where: { id: userId } });
-  const contact = await Models.Anniversary.findOne({ where: { id: contactId } });
-  const theme = await Models.Subcategory.findOne({ where: { subcategoryUniqueCode: uniqueCode } });
-  return res.render('front/pages/Temp/Anniversary/templateReviewDownload', {
-    page_name: 'template',
-    userInfo: userInfo,
-    theme: theme,
-    contact: contact,
-    layout: false,
+  var downloadTheme = false;
+  if (req.params.downloadTheme === 'true') {
+    downloadTheme = true;
+  }
+  var userId = req.params.userId;
+  var uniqueCode = req.params.uniqueCode;
+  var contactId = req.params.contactId;
+  var userInfo = null;
+  const contact = await Models.Anniversary.findOne({
+    where: { id: contactId },
   });
+  const theme = await Models.Subcategory.findOne({
+    where: { subcategoryUniqueCode: uniqueCode },
+  });
+  if (req.params.isAdmin === 'true') {
+    return res.render('front/pages/Temp/Anniversary/templateReviewDownload', {
+      page_name: 'template',
+      userInfo: userInfo,
+      theme: theme,
+      contact: contact,
+      downloadTheme: downloadTheme,
+      layout: false,
+    });
+  } else {
+    userInfo = await Models.User.findOne({ where: { id: userId } });
+    if (
+      userInfo &&
+      userInfo.email &&
+      userInfo.mobile &&
+      userInfo.officeAddress &&
+      userInfo.service1 &&
+      userInfo.service2 &&
+      userInfo.service3 &&
+      userInfo.companyLogo
+    ) {
+      return res.render('front/pages/Temp/Anniversary/templateReviewDownload', {
+        page_name: 'template',
+        userInfo: userInfo,
+        theme: theme,
+        contact: contact,
+        downloadTheme: downloadTheme,
+        layout: false,
+      });
+    } else {
+      req.flash('error', 'Please update profile details.');
+      return res.redirect('/profile');
+    }
+  }
 }
-
 
 ///ajax birthday theme set /////
 async function setDefaultBirthdayImage(req, res) {
@@ -169,7 +238,6 @@ async function setDefaultBirthdayImage(req, res) {
       msg: 'error',
     });
   }
-
 }
 
 ///ajax anniversary theme set /////
@@ -180,9 +248,12 @@ async function setDefaultAnniversaryImage(req, res) {
   const updateDefaultAnniversaryImage = {
     defaultAnniversaryTheme: defaultAnniversaryTheme,
   };
-  let updateAnniversaryImg = await Models.User.update(updateDefaultAnniversaryImage, {
-    where: { id: userId },
-  });
+  let updateAnniversaryImg = await Models.User.update(
+    updateDefaultAnniversaryImage,
+    {
+      where: { id: userId },
+    }
+  );
 
   if (updateAnniversaryImg) {
     return res.json({
@@ -193,26 +264,29 @@ async function setDefaultAnniversaryImage(req, res) {
       msg: 'error',
     });
   }
-
 }
 
 //ajax festival
 async function getFestivalAjaxSort(req, res) {
   let festival_id = req.body.festival_id;
-  var allfestivalResultSort ;
-  if (festival_id != "all") {
+  var allfestivalResultSort;
+  if (festival_id != 'all') {
     allfestivalResultSort = await Models.Subcategory.findAll({
       where: { festivalSubCategoryId: festival_id },
-      include: [{
-        model: Models.Festivalsubcategory,
-      }]
+      include: [
+        {
+          model: Models.Festivalsubcategory,
+        },
+      ],
     });
-  }else{
+  } else {
     allfestivalResultSort = await Models.Subcategory.findAll({
       where: { categoryId: 3 },
-      include: [{
-        model: Models.Festivalsubcategory,
-      }]
+      include: [
+        {
+          model: Models.Festivalsubcategory,
+        },
+      ],
     });
   }
   console.log('hhhhh', allfestivalResultSort);
@@ -227,6 +301,6 @@ module.exports = {
   setDefaultBirthdayImage: setDefaultBirthdayImage,
   setDefaultAnniversaryImage: setDefaultAnniversaryImage,
   getFestivalAjaxSort: getFestivalAjaxSort,
-  templateReviewBirthdayDownload:templateReviewBirthdayDownload,
-  templateReviewForAnniversaryDownload:templateReviewForAnniversaryDownload
+  templateReviewBirthdayDownload: templateReviewBirthdayDownload,
+  templateReviewForAnniversaryDownload: templateReviewForAnniversaryDownload,
 };

@@ -16,94 +16,110 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.esm.js"></script>
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.js"></script>
-    
+
     <%- theme ? '<style>' + theme.subcategoryCss + '</style>' : '' %>
-    
+
+
 </head>
 
 <body>
     <% if(theme){ %>
-    <div class="container">
-        <div id="photodownload" class="bg"
-            style="background: url('/uploads/sample/<%= theme ? theme.subcategoryImage : null %>') no-repeat;">
-            <div class="logo">
-                <img src="/uploads/companyLogo/<%= userInfo? userInfo.companyLogo : '' %>">
-            </div>
-
-            <div class="birth-text">
-                <h2><%= contact ? contact.name : '' %>’s</h2>
-                <h3>Anniversary</h3>
-            </div>
-
-            <div class="top-row">
-                <ul>
-                    <li><a href="#">Residential</a></li>
-                    <li><a href="#">Commercial</a></li>
-                    <li><a href="#">Invesment</a></li>
-                </ul>
-            </div>
-
-            <div class="birtha-row">
-                <div class="birtha-pic">
-                    <img src="/uploads/birthdayContact/<%= contact ?  contact.contactPic : null %>">
+        <div class="container">
+            <div id="photodownload" class="bg"
+                style="background: url('/uploads/sample/<%= theme ? theme.subcategoryImage : null %>') no-repeat;">
+                <div class="logo">
+                    <img
+                        src="/uploads/companyLogo/<%= userInfo && userInfo.companyLogo ? userInfo.companyLogo : 'logo.jpg' %>">
                 </div>
-            </div>
 
-            <div class="footer-box">
-                <ul>
-                    <li><i class="fa fa-whatsapp" aria-hidden="true"></i> <a href="#">
-                            <%= userInfo ? userInfo.mobile : "+91 8902496474" %>
-                        </a></li>
-                    <li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">
-                            <%= userInfo ? userInfo.email : "sales@xigmapro.com" %>
-                        </a></li>
-                    <li><i class="fa fa-map-marker" aria-hidden="true"></i><a href="#">
-                            <%- userInfo ? userInfo.officeAddress : "2nd Floor, Shaila Tower, J1/16, Sector V, Bidhannagar, Kolkata, West Bengal 700091" %>
-                        </a></li>
-                </ul>
-            </div>
+                <div class="birth-text">
+                    <h2>
+                        <%= contact ? contact.name : 'User' %>’s
+                    </h2>
+                    <h3>Anniversary</h3>
+                </div>
 
+                <div class="top-row">
+                    <ul>
+                        <li><a href="#">
+                                <%= userInfo && userInfo.service1 ? userInfo.service1 : 'Residential' %>
+                            </a></li>
+                        <li><a href="#">
+                                <%= userInfo && userInfo.service2 ? userInfo.service2 : 'Commercial' %>
+                            </a></li>
+                        <li><a href="#">
+                                <%= userInfo && userInfo.service3 ? userInfo.service3 : 'Invesment' %>
+                            </a></li>
+                    </ul>
+                </div>
+
+                <div class="birtha-row">
+                    <div class="birtha-pic">
+                        <img
+                            src="/uploads/birthdayContact/<%= contact && contact.contactPic ?  contact.contactPic : 'profile.png' %>">
+                    </div>
+                </div>
+
+                <div class="footer-box">
+                    <ul>
+                        <li><i class="fa fa-whatsapp" aria-hidden="true"></i> <a href="#">
+                                <%= userInfo ? userInfo.mobile : "+91 8902496474" %>
+                            </a></li>
+                        <li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">
+                                <%= userInfo ? userInfo.email : "sales@xigmapro.com" %>
+                            </a></li>
+                        <li><i class="fa fa-map-marker" aria-hidden="true"></i><a href="#">
+                                <%- userInfo ? userInfo.officeAddress
+                                    : "2nd Floor, Shaila Tower, J1/16, Sector V, Bidhannagar, Kolkata, West Bengal 700091"
+                                    %>
+                            </a></li>
+                    </ul>
+                </div>
+
+            </div>
         </div>
-    </div>
-    <% } %>
+        <% } %>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        // html2canvas
-        jQuery(document).ready(function () {
-            // screenshot();
-        });
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                var downloadTheme = '<%= downloadTheme %>';
+                // html2canvas
+                if (downloadTheme === 'true') {
+                    jQuery(document).ready(function () {
+                        screenshot();
+                    });
+                }
 
-        function screenshot() {
-            html2canvas(document.getElementById("photodownload"), { allowTaint: true, useCORS: true }).then(function (canvas) {
-                downloadImage(canvas.toDataURL(), "template.png");
-            });
-        }
+                function screenshot() {
+                    html2canvas(document.getElementById("photodownload"), { allowTaint: true, useCORS: true }).then(function (canvas) {
+                        downloadImage(canvas.toDataURL(), "template.png");
+                    });
+                }
 
-        function downloadImage(uri, filename){
-        //console.log(uri)
-        var link = document.createElement('a');
-        if(typeof link.download !== 'string'){
-            window.open(uri);
-        }
-        else{
-            link.href = uri;
-            link.download = filename;
-            accountForFirefox(clickLink, link);
-        }
-    }
+                function downloadImage(uri, filename) {
+                    //console.log(uri)
+                    var link = document.createElement('a');
+                    if (typeof link.download !== 'string') {
+                        window.open(uri);
+                    }
+                    else {
+                        link.href = uri;
+                        link.download = filename;
+                        accountForFirefox(clickLink, link);
+                    }
+                }
 
-    function clickLink(link){
-        link.click();
-    }
+                function clickLink(link) {
+                    link.click();
+                }
 
-    function accountForFirefox(click){
-        var link = arguments[1];
-        document.body.appendChild(link);
-        click(link);
-        document.body.removeChild(link);
-    }
-    </script>
+                function accountForFirefox(click) {
+                    var link = arguments[1];
+                    document.body.appendChild(link);
+                    click(link);
+                    document.body.removeChild(link);
+                }
+            </script>
 </body>
 
 </html>

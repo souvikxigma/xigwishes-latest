@@ -12,8 +12,8 @@ router.get('/review/:uniqueCode',authUserCheck.authUser,tempController.templateR
 router.get('/anniversary-review/:uniqueCode',authUserCheck.authUser,tempController.templateReviewForAnniversary);
 
 // template download
-router.get('/review/download/:userId/:uniqueCode/:contactId/:downloadTheme?',tempController.templateReviewBirthdayDownload);
-router.get('/anniversary-review/download/:userId/:uniqueCode/:contactId',tempController.templateReviewForAnniversaryDownload);
+router.get('/review/download/:userId/:uniqueCode/:contactId/:isAdmin?/:downloadTheme?',tempController.templateReviewBirthdayDownload);
+router.get('/anniversary-review/download/:userId/:uniqueCode/:contactId/:isAdmin?/:downloadTheme?',tempController.templateReviewForAnniversaryDownload);
 
 //ajax//
 router.post('/review/birthday/ajax-theme-set',authUserCheck.authUser,tempController.setDefaultBirthdayImage);

@@ -26,28 +26,11 @@
                 <img src="/uploads/sample/<%= theme[i].subcategoryImage %>" class="card-img-top" alt="...">
                 <div class="card-body">
                   <!-- <h5 class="card-title">Card title</h5> -->
-                  <a class="btn btn-info" onclick="setBirthdayModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
+                  <a class="btn btn-info" onclick="setBirthdayModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
                 </div>
             </div>
             <% } %>
-            
-
-            <!-- <div class="template_slider mt-5 w-100">
-
-                <div class="slider-box w-100">
-                    <div class="owl-carousel birthday2 owl-theme">
-                        <% for(var i=0; i< theme.length; i++) { %>
-                            
-                        <div class="item">
-                            <img alt="" src="/uploads/sample/<%= theme[i].subcategoryImage %>">
-                            
-                                <a class="btn btn-info" onclick="setBirthdayModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
-
-                        </div>
-                        <% } %>
-                    </div>
-                </div>
-            </div> -->
+          
             
             
         </div>
@@ -77,7 +60,7 @@
                         <input type="hidden" name="uniquecode" id="uniquecode">
                         
                     </form>
-                
+                    <a class="btn btn-primary btn-sm" target="_blank" id="full_view"  >Full view</a>
                 </div>     
           </div>
         </div>
@@ -87,9 +70,14 @@
   <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
-    function setBirthdayModal(imagename,uniquecode){  
+    function setBirthdayModal(imagename,uniquecode,authId){  
         document.getElementById("uniquecode").value = uniquecode;
         document.getElementById("modalimgid").src= "/uploads/sample/"+imagename;
+        if(authId){
+            document.getElementById("full_view").href="/temp/anniversary-review/download/"+authId+"/"+uniquecode+"/null"; 
+        }else{
+            document.getElementById("full_view").style.display = 'none'; 
+        }
     }
    
   </script>

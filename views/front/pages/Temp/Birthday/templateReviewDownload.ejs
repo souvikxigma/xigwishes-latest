@@ -27,7 +27,8 @@
             <div id="photodownload" class="bg"
                 style="background: url('/uploads/sample/<%= theme ? theme.subcategoryImage : null %>') no-repeat;">
                 <div class="logo">
-                    <img src="/uploads/companyLogo/<%= userInfo && userInfo.companyLogo ? userInfo.companyLogo : 'logo.jpg' %>">
+                    <img
+                        src="/uploads/companyLogo/<%= userInfo && userInfo.companyLogo ? userInfo.companyLogo : 'logo.jpg' %>">
                 </div>
 
                 <div class="birth-text">
@@ -39,15 +40,22 @@
 
                 <div class="top-row">
                     <ul>
-                        <li><a href="#"><%= userInfo && userInfo.service1 ? userInfo.service1 : 'Residential' %></a></li>
-                        <li><a href="#"><%= userInfo && userInfo.service2 ? userInfo.service2 : 'Commercial' %></a></li>
-                        <li><a href="#"><%= userInfo && userInfo.service3 ? userInfo.service3 : 'Invesment' %></a></li>
+                        <li><a href="#">
+                                <%= userInfo && userInfo.service1 ? userInfo.service1 : 'Residential' %>
+                            </a></li>
+                        <li><a href="#">
+                                <%= userInfo && userInfo.service2 ? userInfo.service2 : 'Commercial' %>
+                            </a></li>
+                        <li><a href="#">
+                                <%= userInfo && userInfo.service3 ? userInfo.service3 : 'Invesment' %>
+                            </a></li>
                     </ul>
                 </div>
 
                 <div class="birtha-row">
                     <div class="birtha-pic">
-                        <img src="/uploads/birthdayContact/<%= contact && contact.contactPic ?  contact.contactPic : 'profile.png' %>">
+                        <img
+                            src="/uploads/birthdayContact/<%= contact && contact.contactPic ?  contact.contactPic : 'profile.png' %>">
                     </div>
                 </div>
 
@@ -56,14 +64,20 @@
                         <li><i class="fa fa-whatsapp" aria-hidden="true"></i> <a href="#">
                                 <%= userInfo ? userInfo.mobile : "+91 8902496474" %>
                             </a></li>
-                        <li><i class="fa fa-envelope" aria-hidden="true"></i> <a href="#">
+                        <li>
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                            <a href="#">
                                 <%= userInfo ? userInfo.email : "sales@xigmapro.com" %>
-                            </a></li>
-                        <li><i class="fa fa-map-marker" aria-hidden="true"></i><a href="#">
+                            </a>
+                        </li>
+                        <li>
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            <a href="#">
                                 <%- userInfo ? userInfo.officeAddress
                                     : "2nd Floor, Shaila Tower, J1/16, Sector V, Bidhannagar, Kolkata, West Bengal 700091"
                                     %>
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -71,46 +85,47 @@
         </div>
         <% } %>
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script type="text/javascript">
-                var downloadTheme = '<%= downloadTheme %>';
-                // html2canvas
-                if (downloadTheme === 'true') {
-                    jQuery(document).ready(function () {
-                        screenshot();
-                    });
-                }
-
-                function screenshot() {
-                    html2canvas(document.getElementById("photodownload"), { allowTaint: true, useCORS: true }).then(function (canvas) {
-                        downloadImage(canvas.toDataURL(), "template.png");
-                    });
-                }
-
-                function downloadImage(uri, filename) {
-                    //console.log(uri)
-                    var link = document.createElement('a');
-                    if (typeof link.download !== 'string') {
-                        window.open(uri);
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script type="text/javascript">
+                    var downloadTheme = '<%= downloadTheme %>';
+                    // html2canvas
+                    // alert(downloadTheme);
+                    if (downloadTheme === 'true') {
+                        jQuery(document).ready(function () {
+                            screenshot();
+                        });
                     }
-                    else {
-                        link.href = uri;
-                        link.download = filename;
-                        accountForFirefox(clickLink, link);
+
+                    function screenshot() {
+                        html2canvas(document.getElementById("photodownload"), { allowTaint: true, useCORS: true }).then(function (canvas) {
+                            downloadImage(canvas.toDataURL(), "template.png");
+                        });
                     }
-                }
 
-                function clickLink(link) {
-                    link.click();
-                }
+                    function downloadImage(uri, filename) {
+                        //console.log(uri)
+                        var link = document.createElement('a');
+                        if (typeof link.download !== 'string') {
+                            window.open(uri);
+                        }
+                        else {
+                            link.href = uri;
+                            link.download = filename;
+                            accountForFirefox(clickLink, link);
+                        }
+                    }
 
-                function accountForFirefox(click) {
-                    var link = arguments[1];
-                    document.body.appendChild(link);
-                    click(link);
-                    document.body.removeChild(link);
-                }
-            </script>
+                    function clickLink(link) {
+                        link.click();
+                    }
+
+                    function accountForFirefox(click) {
+                        var link = arguments[1];
+                        document.body.appendChild(link);
+                        click(link);
+                        document.body.removeChild(link);
+                    }
+                </script>
 </body>
 
 </html>

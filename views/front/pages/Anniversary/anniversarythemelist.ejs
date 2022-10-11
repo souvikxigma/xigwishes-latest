@@ -26,7 +26,7 @@
                             <img alt="" src="/uploads/sample/<%= theme[i].subcategoryImage %>">
                             <input type="hidden" value="<%= process.env.BASE_URL %>" id="baseurls" />
                             <% if (loginAuthCheck) { %>
-                                <a class="btn btn-info" onclick="chooseAnni('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>')" data-toggle="modal" data-target="#anniversaryThemeModal" href="#">Preview</a>
+                                <a class="btn btn-info" onclick="chooseAnni('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')" data-toggle="modal" data-target="#anniversaryThemeModal" href="#">Preview</a>
                               
                                 <input class="wishlistdiv" type="checkbox" <% if( allBirthdayThemeToArray  && (allBirthdayThemeToArray.includes(theme[i].subcategoryUniqueCode))){ %>  checked  <% } %>   id="birthdaycheckbox_<%= theme[i].subcategoryUniqueCode %>"  value="<%= theme[i].subcategoryUniqueCode %>" />
 
@@ -155,9 +155,9 @@
                     
                     <form>
                         <input type="hidden" name="uniquecode" id="uniquecode">
-                        <button type="submit" class="btn btn-info mt-3">Set This Image</button>
+                        <!-- <button type="submit" class="btn btn-info mt-3">Set This Image</button> -->
                     </form>
-                
+                    <a class="btn btn-primary btn-sm" target="_blank" id="full_view"  >Full view</a>
                 </div>     
           </div>
         </div>
@@ -169,10 +169,15 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   <script>
-     function chooseAnni(imagename,uniquecode){
+     function chooseAnni(imagename,uniquecode,authId){
         //alert(a);  
         document.getElementById("uniquecode").value = uniquecode;
         document.getElementById("modalimgid").src= "/uploads/sample/"+imagename;
+        if(authId){
+            document.getElementById("full_view").href="/temp/anniversary-review/download/"+authId+"/"+uniquecode+"/null"; 
+        }else{
+            document.getElementById("full_view").style.display = 'none'; 
+        }
     }
     function chooseAnnis(){
         alert("please Login first");
