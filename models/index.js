@@ -36,6 +36,7 @@ db.Howwork = require("./howwork")(sequelize, Sequelize);
 db.Ip = require("./ip")(sequelize, Sequelize);
 db.Company = require("./company")(sequelize, Sequelize);
 db.Contactus = require("./contactus")(sequelize, Sequelize);
+db.Customizedbanner = require("./customizedbanner")(sequelize, Sequelize);
 
 //category and subcategory relationship ////
 

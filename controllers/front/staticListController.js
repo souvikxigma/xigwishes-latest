@@ -118,6 +118,63 @@ async function howItWork(req,res){
     });
 }
 
+async function viewCustomizedBanner(req,res){
+    var title = 'Request Customized Banner'; 
+    var userId = req.id;
+    var userdata = await Models.User.findOne({where:{id: userId}});
+    return res.render('front/pages/Others/customizedBanner', {
+        page_name: 'request customized banner',
+        data:userdata,
+        title:title
+    });
+}
+
+async function viewCustomizedBannerAction(req,res){
+    var userId = req.id;
+
+    var name = req.body.namecustom;
+    var email = req.body.emailcustom;
+    var mobile = req.body.mobilecustom;
+    var requirement = req.body.requirementcustom;
+
+    //validation start
+    // const validator = new Validator();
+    // const validationResponse = validator.validate(
+    //   {
+    //     name: name,
+    //     email: email,
+    //     mobile: mobile,
+    //     requirement: requirement,
+    //   },
+    //   {
+    //     name: { type: 'string', empty: false, max: '100' },
+    //     email: { type: 'string', empty: false, max: '100' },
+    //     message: { type: 'string', empty: false, max: '100' },
+    //   }
+    // );
+    // if (validationResponse !== true) {
+    //   req.flash('error', validationResponse[0].message);
+    //   return res.redirect('/others/contact-us');
+    // }
+    //validation end
+
+    let requirementData = {
+        userId: userId,
+        name: name,
+        email: email,
+        mobile: mobile,
+        requirement: requirement,
+      };
+    
+      var created_customrequirement = await Models.Customizedbanner.create(requirementData);
+      if (created_customrequirement) {
+        req.flash('success', 'Request submited successfully');
+        return res.redirect('/others/request-customized-banner');
+      } else {
+        req.flash('error', 'Request submition faied');
+        return res.redirect('/others/request-customized-banner');
+      }
+}
 
 
 module.exports = {
@@ -129,4 +186,6 @@ module.exports = {
     contactUs: contactUs,
     howItWork:howItWork,
     contactUsAction:contactUsAction,
+    viewCustomizedBanner: viewCustomizedBanner,
+    viewCustomizedBannerAction: viewCustomizedBannerAction,
 }
