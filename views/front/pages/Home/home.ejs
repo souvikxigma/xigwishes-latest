@@ -178,12 +178,13 @@
             </div>
         </div>
         <div class="row mt-3">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="row">
                     <% if(features){ %>
                         <% for(var i=0; i< features.length; i++) { %> 
-                            <div class="col-md-6 text-center">
-                                <div class="grid-box-panel">
+                            <div class="col-md-4 text-center">
+                                <a href="/<%= features[i].urlTitle %>" style="text-decoration: none;color: black;">
+                                    <div class="grid-box-panel">
                                     <div class="image-small feature-img">
                                         <img alt="" src="/uploads/feature/<%= features[i].image %>">
                                     </div>
@@ -191,12 +192,13 @@
                                     <p>
                                         <%- features[i].description %>
                                     </p>
-                                </div>
-                            </div>                     
+                                   </div>
+                                </a>
+                            </div>                  
                     <% }} %>                    
                 </div>
             </div>
-            <div class="col-md-4 bg-deepblus">
+            <!-- <div class="col-md-4 bg-deepblus">
                 <div class="right-panel">
                     <h3>
                         The Best Event Planner
@@ -217,7 +219,7 @@
                         View More
                     </button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

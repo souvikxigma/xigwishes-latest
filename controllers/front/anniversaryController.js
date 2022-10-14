@@ -44,8 +44,8 @@ async function anniversaryThemeList(req, res) {
 
 async function anniversaryList(req, res) {
   var userId = req.id;
-  const AnniversaryList = await Models.Birthday.findAll({
-    where: { userId: userId },
+  const AnniversaryList = await Models.Anniversary.findAll({
+    where: { userId: userId, delflag: 'N' },
     order: [['id', 'DESC']],
   });
   if (AnniversaryList) {
@@ -67,8 +67,7 @@ async function addAnniversaryAction(req, res) {
   // var groomName = req.body.groomName;
   // var anniversaryday = req.body.anniversaryday;
 
-  const { brideName, groomName, anniversaryday, email, mobile, companyName } =
-    req.body;
+  const { brideName, groomName, anniversaryday, email, mobile } = req.body;
 
   //validation start
   const validator = new Validator();
@@ -114,7 +113,7 @@ async function addAnniversaryAction(req, res) {
     brideName: brideName,
     groomName: groomName,
     anniversaryday: format(anniversaryday),
-    companyName: companyName,
+    // companyName: companyName,
     email: email,
     mobile: mobile,
     anniversaryPic: imgname,
@@ -246,12 +245,92 @@ async function userFavAnniversaryTheme(req, res) {
   });
 }
 
+
+async function userAnniversaryEdit(req, res) {
+  var anniversayid = req.params.id;  
+  var anniversaryInfo = await Models.Anniversary.findOne({ where: { id: anniversayid } });
+  if (anniversaryInfo) {
+      return res.render('front/pages/Anniversary/editanniversarylist', {
+          page_name: 'anniversary-list-edit',
+          data:anniversaryInfo
+      });
+  } else {
+    req.flash('error', 'No Record found ');
+    return res.redirect(`/anniversary/list`);
+  }
+
+}
+
+async function usrAnniversaryEditAction(req, res) { 
+  var anniversayid = req.body.anniversaryid;
+  var imgname =null;
+  var anniversaryData;
+  var anniversaryDataInfo = await Models.Anniversary.findOne({ where: { id: anniversayid } });
+  if(anniversaryDataInfo){
+      if (req.files && req.files.anniversaryPic) {
+          var documentFile = req.files.anniversaryPic;
+          var imgString = documentFile.name;
+          var imgArr = imgString.split(".");
+          imgname = 'contact-pic-' + Date.now() + '.' + imgArr[1];
+          documentFile.mv("public/uploads/AnniversaryContact/" + imgname, function (err) {
+              if (err) {
+                  req.flash('error', 'Image not uploaded');
+                  res.redirect(`/anniversary/edit/${anniversayid}`);
+              }
+          });
+          console.log(imgname)
+      }
+      
+      anniversaryData = {
+        brideName: req.body.brideName,
+        groomName: req.body.groomName,
+        anniversaryday: req.body.anniversaryday,
+        email: req.body.email,
+        mobile: req.body.mobile,
+        anniversaryPic: imgname ? imgname : anniversaryDataInfo.anniversaryPic,
+      };
+  
+      var update_Anniversary = await Models.Anniversary.update(anniversaryData,{ where: { id: anniversayid } });
+      if (update_Anniversary) {
+          req.flash('success', 'Anniversary Record updated successfully');
+          return res.redirect(`/anniversary/edit/${anniversayid}`);
+      } else {
+          req.flash('error', 'Anniversary Record is not updated');
+          return res.redirect(`/anniversary/edit/${anniversayid}`);
+      }
+  } else {
+      req.flash('error', 'Anniversary Record not found');
+      return res.redirect(`/anniversary/edit/${anniversayid}`);
+  }
+}
+
+
+async function userDeleteAnniversary(req,res){
+  var id = req.params.id; 
+  const updateUserAnniversary = {
+    delflag: 'Y',
+  };
+  let updateInfo = await Models.Anniversary.update(updateUserAnniversary, {
+    where: { id: id },
+  }); 
+    if (updateInfo) {
+      req.flash('success', 'Record Deleted successfully');
+      return res.redirect(`/anniversary/list`);
+    } else {
+      req.flash('error', 'Record is not deleted ');
+      return res.redirect(`/anniversary/list`);
+    }
+}
+
 module.exports = {
   anniversaryThemeList: anniversaryThemeList,
   anniversaryList: anniversaryList,
   addAnniversary: addAnniversary,
   addAnniversaryAction: addAnniversaryAction,
   userFavAnniversaryTheme: userFavAnniversaryTheme,
+  userAnniversaryEdit: userAnniversaryEdit,
+  usrAnniversaryEditAction: usrAnniversaryEditAction,
+  userDeleteAnniversary: userDeleteAnniversary,
 
   //ajax//
   setAnniversaryThemeAction: setAnniversaryThemeAction,

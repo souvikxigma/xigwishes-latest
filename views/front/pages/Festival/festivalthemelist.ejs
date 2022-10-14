@@ -144,6 +144,7 @@
         //ajax//
         $("#festival-card").html('');
         $("#allvalfest").html('');
+        
         $.ajax({
             //url: "http://localhost:9128/holidays/sort/ajax/new",
             url: sortnewajaxholiday,
@@ -159,7 +160,7 @@
                 $.each(result.subcategorys, function (key, value) {
                     var img = "'" + value.subcategoryImageScreenShot.toString() + "'";
                     var code = "'" + value.subcategoryUniqueCode.toString() + "'";
-                    var authId = "'" + result.authId.toString() + "'";
+                    //var authId = "'" + result.authId.toString() + "'";
                     var arrid = "birthdaycheckbox_" + value.subcategoryUniqueCode;
                     var htmldata = '';
                     htmldata += '<div class="card customcard">';
@@ -167,6 +168,7 @@
                     htmldata += '<div class="card-body" id="ll">';
 
                     if (authValue) {
+                        var authId = "'" + result.authId.toString() + "'";
                         htmldata += '<a class="btn btn-info" onclick="setFestivalModal(' + img + ',' + code + ',' + authId + ')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>';   
                     } else {
                         htmldata += '<a class="btn btn-info" data-toggle="modal" data-target="#LogInModal" href="#">Preview</a>';

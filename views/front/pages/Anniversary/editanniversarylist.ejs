@@ -11,16 +11,17 @@
 <a href="/anniversary" class="btn btn-primary">Anniversary theme list</a> -->
 <section class="form-area">
     <div class="container">
-        <form action="/anniversary/add-anniversary/action" method="POST" enctype="multipart/form-data">
+        <form action="/anniversary/edit/action" method="POST" enctype="multipart/form-data">
         <div class="row d-flex justify-content-center align-items-center">
             <div class="col-md-10">
+                <input type="hidden" value="<%= data.id %>" name="anniversaryid" />
                 <div class="row mb-3">
                     <div class="col-md-2">
                          <label>Bride Name<span class="c-red">*</span></label> 
                     </div>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="brideName"
-                        placeholder="Enter your brideName..." name="brideName">
+                        placeholder="Enter your brideName..." value="<%= data.brideName %>" name="brideName">
                     </div>
                 </div>
 
@@ -30,7 +31,7 @@
                     </div>
                     <div class="col-md-10">
                         <input type="text" class="form-control" id="groomName"
-                        placeholder="Enter your groomName..." name="groomName">
+                        placeholder="Enter your groomName..." value="<%= data.groomName %>" name="groomName">
                     </div>
                 </div>
 
@@ -39,23 +40,15 @@
                          <label>Anniversary Day<span class="c-red">*</span></label> 
                     </div>
                     <div class="col-md-10">
-                         <input class="form-control date" name="anniversaryday" id="anniversaryday" type="date">
+                         <input class="form-control date" name="anniversaryday" value="<%= data.anniversaryday %>" id="anniversaryday" type="date">
                     </div>
                 </div>
-                <!-- <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Company Name</label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" name="companyName" id="companyName">
-                    </div>
-                </div> -->
                 <div class="row mb-3">
                     <div class="col-md-2">
                          <label>Email<span class="c-red">*</span></label> 
                     </div>
                     <div class="col-md-10">
-                        <input id="email" type="email" name="email" class="form-control">
+                        <input id="email" type="email" value="<%= data.email %>" name="email" class="form-control">
                     </div>
                 </div>
 
@@ -64,7 +57,7 @@
                          <label>Phone<span class="c-red">*</span></label> 
                     </div>
                     <div class="col-md-10">
-                        <input id="phone" name="mobile" type="tel" placeholder="(123) 456-7890" class="form-control">
+                        <input id="phone" value="<%= data.mobile %>" name="mobile" type="tel" placeholder="(123) 456-7890" class="form-control">
                     </div>
                 </div>
 
@@ -74,17 +67,23 @@
                     </div>
                     <div class="col-md-10">
                         <div class="custom-file">
-                            <input type="file" class="form-control" type="file" name="contactPic">
+                            <input type="file" class="form-control" type="file" name="anniversaryPic">
                           </div>
                     </div>
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                            <img src="/uploads/AnniversaryContact/<%=data.anniversaryPic%>" class="img-fluid" style="width:200px;height:200px;"  />
+
+                    </div>
+
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-2">
                          
                     </div>
                     <div class="col-md-10">
-                        <button type="button" class="btn btn-primary">Reset</button>
-                        <button type="submit" class="btn btn-secondary">Submit</button>
+                        
+                        <button type="submit" class="btn btn-secondary">Update</button>
                     </div>
                 </div>
             </div>

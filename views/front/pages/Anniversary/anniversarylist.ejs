@@ -1,10 +1,11 @@
 <section class="bd_banner">
     <div class="bd_banner_main text-center">
-        <h1>Online Birthday Invitations for a Party They’ll <br>Never Forget</h1>
-        <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae.</p>
+        <!-- <h1>Online Anniversary Invitations for a Party They’ll <br>Never Forget</h1>
+        <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae.</p> -->
+        <h1>Anniversary Lists</h1>
     </div>
     <div>
-        <button class="btn bd_create_btn">Create Anniversary Invitation</button>
+        <a class="btn bd_create_btn" href="/anniversary/add-anniversary" style="color: white;">Add Anniversary</a>
     </div>
 </section>
 
@@ -20,6 +21,7 @@
                         <th scope="col" data-field="birthday">groomName</th>
                         <th scope="col" data-field="email">anniversaryday</th>
                         <th scope="col" data-field="email">Email</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +41,15 @@
                             </td>
                             <td>
                                 <%= data[i].email %>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary btn-sm"
+                                href="/anniversary/edit/<%=data[i].id%>">
+                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure you want to delete this anniversary?')"
+                                href="/anniversary/delete/<%=data[i].id%>">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i></a>
                             </td>
                         </tr>
                     <% } %>

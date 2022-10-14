@@ -194,13 +194,14 @@ async function getNewFestivalAjaxSort(req, res) {
     let updateInfo = await Models.User.update(updateUser, {
       where: { id: loginAuthCheck },
     });
-
+    
     return res.json({
       msg: 'updated',
       subcategorys: allfestivalResultSort,
       authId: authId,
     });
   } else {
+    
     return res.json({
       msg: 'updated',
       subcategorys: allfestivalResultSort,

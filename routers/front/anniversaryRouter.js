@@ -9,6 +9,11 @@ router.get('/', anniversaryController.anniversaryThemeList);
 router.get('/list',authUserCheck.authUser, anniversaryController.anniversaryList);
 router.get('/add-anniversary',authUserCheck.authUser,Subscriptioncheck.Subscriptioncheck, anniversaryController.addAnniversary);
 router.post('/add-anniversary/action',authUserCheck.authUser, anniversaryController.addAnniversaryAction);
+
+router.get('/edit/:id',authUserCheck.authUser ,anniversaryController.userAnniversaryEdit);
+router.post('/edit/action',authUserCheck.authUser, anniversaryController.usrAnniversaryEditAction);
+
+router.get('/delete/:id',authUserCheck.authUser, anniversaryController.userDeleteAnniversary);
 router.get('/fav-theme',authUserCheck.authUser,Subscriptioncheck.Subscriptioncheck, anniversaryController.userFavAnniversaryTheme);
 
 ///ajax///
