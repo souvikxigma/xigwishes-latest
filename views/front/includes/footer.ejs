@@ -9,7 +9,7 @@
                     <li><a href="/others/terms-condition">Terms & Condition</a></li>
                     <li><a href="/others/privacy-policy">Privacy Policy</a></li>
                     <li><a href="/others/about-us">About Us</a></li>
-                    <li><a href="/others/cancelation-refund">Cancelation Refund</a></li>
+                    <li><a href="/others/cancellation-refund">Cancellation & Refund</a></li>
                     <li><a href="/others/support">Support</a></li>
                     <li><a href="/others/contact-us">Contact Us</a></li>
                 </ul>
@@ -36,27 +36,14 @@
 <script>
     $(document).ready(function () {
 
-        
-                        // Toastify({
-                        // text: "kkkkkklllll",
-                        // duration: 3000,
-                        // newWindow: true,
-                        // close: true,
-                        // gravity: "top", // `top` or `bottom`
-                        // position: "left", // `left`, `center` or `right`
-                        // stopOnFocus: true, // Prevents dismissing of toast on hover
-                        // style: {
-                        //     background: "linear-gradient(to right, #ed213a, #93291e)",
-                        // },
-                        // onClick: function(){} // Callback after click
-                        // }).showToast();
-
         var owl = $('.owl-carousel');
         owl.owlCarousel({
             margin: 10,
-            dots: false,
+            dots: true,
             nav: true,
             loop: true,
+            autoplay: true, 
+            autoplaySpeed: 1000,
             responsive: {
                 0: {
                     items: 1
@@ -106,10 +93,10 @@
                     items: 1
                 },
                 600: {
-                    items: 3
+                    items: 4
                 },
                 1000: {
-                    items: 3
+                    items: 4
                 }
             }
         })

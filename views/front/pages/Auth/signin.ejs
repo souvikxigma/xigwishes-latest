@@ -82,7 +82,7 @@
             <div class="popup-box-modal pt-0">
           <div class="w-100">
             <h1 class="form-title">
-              Explore 1000s of Designs
+              Wishing got easier with XigWishes
             </h1>
           </div>
 
@@ -92,7 +92,7 @@
               Facebook
             </div>
           </a>
-            <a href="/auth/google" class="social-sign-btn sign-google">
+            <a href="/auth/google" class="social-sign-btn sign-google gbt">
               <div>
                 Google
               </div>
@@ -113,7 +113,7 @@
               </div>
               <div class="form-check-inline form-in">
                 <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" value="">
+                  <input type="checkbox" class="form-check-input chckboxlogin" value="">
                   I want to receive updates, exclusive sales and offers
                 </label>
               </div>
@@ -131,10 +131,10 @@
 
             <div class="w-100  Pricing-text">
               By joining, I agree to the
-              <a class="" href="#">
-                Terms of Service
+              <a class="" href="/others/terms-condition">
+                Terms & Condition
               </a>
-              and <a href="#">Privacy Policy</a>
+              and <a href="/others/privacy-policy">Privacy Policy</a>
             </div>
             <div class="w-100 text-center Pricing-text">
               <input class="sb-submit-btn-modal " id="loginbtn" value="Login" type="submit">
@@ -191,6 +191,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
   $(document).ready(function(){
+
+    
+      
+    // $('.gbt').click(function(e) { 
+    //   alert('work');
+    //   e.preventDefault();
+    // });
+ 
+
     $('.emailOnly').on('input',function(event){
 					this.value=this.value.replace(/\s+/g,'').toLowerCase();
           var b = this.value;

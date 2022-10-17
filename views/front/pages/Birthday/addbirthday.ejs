@@ -1,96 +1,91 @@
-<section class="bd_banner">
-    <div class="bd_banner_main text-center">
-        <h1>Add Birthday</h1>
-        <!-- <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae.</p> -->
-    </div>
-    <div>
-        <a class="btn bd_create_btn" href="/birthday/list" style="color: white;">View Birthday Lists</a>
-    </div>
-</section>
-<!-- <a href="/birthday/list" class="btn btn-primary">birthday list</a>
-<a href="/birthday" class="btn btn-primary">birthday theme list</a> -->
-<section class="form-area">
-    <div class="container">
-
-        <form action="/birthday/add-birthday/action" method="POST" enctype="multipart/form-data">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-md-10">
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Name</label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" placeholder="Enter your name..." name="name">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Birthday</label> 
-                    </div>
-                    <div class="col-md-10">
-                         <input type="date" class="form-control date" name="birthday" id="birthday">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Company Name</label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" name="companyName" id="companyName">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label >Gender</label> 
-                    </div>
-                    <div class="col-md-10">
-                        <select class="form-control" name="gender" id="gender">
-                            <option value="male">male</option>
-                            <option value="female">female</option>
-                            <option value="others">others</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Email</label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input id="email" type="email" name="email" class="form-control">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Phone</label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input id="phone" name="mobile" type="tel" placeholder="(123) 456-7890" class="form-control">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Contact Pic</label> 
-                    </div>
-                    <div class="col-md-10">
-                        <div class="custom-file">
-                            <!-- <input type="file" class="custom-file-input" id="inputGroupFile01"> -->
-                            <input id="cpic" type="file" name="contactPic" class="custom-file-input" />
-                            <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                          </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         
-                    </div>
-                    <div class="col-md-10">
-                        <button type="button" class="btn btn-primary">Reset</button>
-                        <button type="submit" class="btn btn-secondary">Submit</button>
-                    </div>
-                </div>
+<% if(sliders){ %>
+    <% for(var i=0; i< 1; i++) { %>
+        <section class="bd_banner" style="background-image:url('/uploads/slider/<%= sliders[i].image %>');">
+            <div class="bd_banner_main text-center">
+                <h1>Add Birthday</h1>
             </div>
-        </div>
-    </form>
-    </div>
-</section>
+            <div>
+                <a class="btn bd_create_btn" href="/birthday/list" style="color: white;">View Birthday Lists</a>
+            </div>
+        </section>
+        <% }} %>
 
+            <!-- <a href="/birthday/list" class="btn btn-primary">birthday list</a>
+<a href="/birthday" class="btn btn-primary">birthday theme list</a> -->
+            <section class="form-area">
+                <div class="container">
+
+                    <form action="/birthday/add-birthday/action" method="POST" enctype="multipart/form-data">
+                        <div class="row d-flex justify-content-center align-items-center custom_bg">
+                            <div class="col-md-10">
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Name<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" placeholder="Enter your name..."
+                                            name="name">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Birthday<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input type="date" class="form-control date" name="birthday" id="birthday">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Gender</label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <select class="form-control" name="gender" id="gender">
+                                            <option value="male">male</option>
+                                            <option value="female">female</option>
+                                            <option value="others">others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Email<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input id="email" type="email" name="email" placeholder="example@gmail.com"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Phone<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input id="phone" name="mobile" type="tel" placeholder="+91 9876543210"
+                                            class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Contact Pic<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control" name="contactPic" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+
+                                    </div>
+                                    <div class="col-md-10">
+                                        <button type="button" class="btn btn-primary">Reset</button>
+                                        <button type="submit" class="btn btn-secondary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>

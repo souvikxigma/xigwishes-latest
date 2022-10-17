@@ -70,6 +70,7 @@ async function contactUsAction(req,res){
     var email = req.body.email;
     var subject = req.body.subject;
     var message = req.body.message;
+    var captcha = req.body.captcha;
     //validation start
     const validator = new Validator();
     const validationResponse = validator.validate(
@@ -77,11 +78,13 @@ async function contactUsAction(req,res){
         subject: subject,
         email: email,
         message: message,
+        captcha: captcha
       },
       {
         subject: { type: 'string', empty: false, max: '100' },
         email: { type: 'string', empty: false, max: '100' },
         message: { type: 'string', empty: false, max: '100' },
+        captcha: { type: 'string', empty: false, max: '4' },
       }
     );
     if (validationResponse !== true) {
@@ -137,26 +140,27 @@ async function viewCustomizedBannerAction(req,res){
     var mobile = req.body.mobilecustom;
     var requirement = req.body.requirementcustom;
 
-    //validation start
-    // const validator = new Validator();
-    // const validationResponse = validator.validate(
-    //   {
-    //     name: name,
-    //     email: email,
-    //     mobile: mobile,
-    //     requirement: requirement,
-    //   },
-    //   {
-    //     name: { type: 'string', empty: false, max: '100' },
-    //     email: { type: 'string', empty: false, max: '100' },
-    //     message: { type: 'string', empty: false, max: '100' },
-    //   }
-    // );
-    // if (validationResponse !== true) {
-    //   req.flash('error', validationResponse[0].message);
-    //   return res.redirect('/others/contact-us');
-    // }
-    //validation end
+    // validation start
+    const validator = new Validator();
+    const validationResponse = validator.validate(
+      {
+        name: name,
+        email: email,
+        mobile: mobile,
+        requirement: requirement,
+      },
+      {
+        name: { type: 'string', empty: false, max: '100' },
+        email: { type: 'string', empty: false, max: '100' },
+        mobile: { type: 'string', empty: false, min: 10, max: '12' },
+        requirement: { type: 'string', empty: false, max: '600' },
+      }
+    );
+    if (validationResponse !== true) {
+      req.flash('error', validationResponse[0].message);
+      return res.redirect('/others/request-customized-banner');
+    }
+    // validation end
 
     let requirementData = {
         userId: userId,

@@ -114,10 +114,15 @@ app.set('layout', 'front/layouts/layout'); //front  layoub
 app.use(async (req, res, next) => {
   res.locals.moment = moment;
   var usersActiveCount = await Models.User.count({where:{accountActiveStatus:'1'}});
+  var sliders = await Models.Slider.findAll({
+    where: { status: 'Y' },
+    order: [['id', 'ASC']],
+  });
   res.locals.usersActiveCount = usersActiveCount;
-  var themeCount = await Models.Theme.count({where:{status:'1'}});
+  // var themeCount = await Models.Theme.count({where:{status:'1'}});
+  var themeCount = await Models.Subcategory.count();
   res.locals.themeCount = themeCount;
-
+  res.locals.sliders = sliders;
   var ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
   let ipData = {
     ip: ip,

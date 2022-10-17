@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/', anniversaryController.anniversaryThemeList);
 router.get('/list',authUserCheck.authUser, anniversaryController.anniversaryList);
+router.get('/upcoming',authUserCheck.authUser, anniversaryController.upcomingAnniversaryList);
 router.get('/add-anniversary',authUserCheck.authUser,Subscriptioncheck.Subscriptioncheck, anniversaryController.addAnniversary);
 router.post('/add-anniversary/action',authUserCheck.authUser, anniversaryController.addAnniversaryAction);
 
@@ -14,6 +15,10 @@ router.get('/edit/:id',authUserCheck.authUser ,anniversaryController.userAnniver
 router.post('/edit/action',authUserCheck.authUser, anniversaryController.usrAnniversaryEditAction);
 
 router.get('/delete/:id',authUserCheck.authUser, anniversaryController.userDeleteAnniversary);
+
+router.get('/theme/:contactId',authUserCheck.authUser,Subscriptioncheck.Subscriptioncheck, anniversaryController.themeAnniversary);
+
+
 router.get('/fav-theme',authUserCheck.authUser,Subscriptioncheck.Subscriptioncheck, anniversaryController.userFavAnniversaryTheme);
 
 ///ajax///

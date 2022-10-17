@@ -8,20 +8,20 @@ function sendEmail(email, token) {
     var token = token; 
  
     const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,
-        secure: false,
+        host: 'xigwishes.com',
+        port: 465,
+        secure: true,
         auth: {
-          user: 'souvik.hajra@xigmapro.com',
-          pass: 'xigma123'
+          user: 'no-reply@xigwishes.com',
+          pass: 'no-reply@xigwishes'
         }
       });
  
     var mailOptions = {
-        from: 'souvik.hajra@xigmapro.com',
+        from: 'no-reply@xigwishes.com',
         to: email,
         subject: 'Reset Password Link - Xigwishes',
-        html: `<p>You requested for reset password, kindly use this <a href="${BASEPATH}/reset-password?token=' + token + '">link</a> to reset your password</p>`
+        html: `<p>You requested for reset password, kindly use this <a href="${BASEPATH}/reset-password?token=${token}">link</a> to reset your password</p>`
  
     };
  

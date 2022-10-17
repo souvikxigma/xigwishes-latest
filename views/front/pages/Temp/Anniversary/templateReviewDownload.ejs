@@ -34,9 +34,15 @@
 
                 <div class="birth-text">
                     <h2>
-                        <%= contact ? contact.name : 'User' %>’s
+                        <%= contact && contact.brideName ? contact.brideName : 'Mr' %>
                     </h2>
-                    <h3>Anniversary</h3>
+                    <h2>
+                        <%= contact && contact.groomName ? '&' : '&' %>
+                    </h2>
+                    <h2>
+                        <%= contact && contact.groomName ? contact.groomName : 'Mrs' %>’s
+                    </h2>
+                    <!-- <h3>Anniversary</h3> -->
                 </div>
 
                 <div class="top-row">
@@ -56,7 +62,7 @@
                 <div class="birtha-row">
                     <div class="birtha-pic">
                         <img
-                            src="/uploads/birthdayContact/<%= contact && contact.contactPic ?  contact.contactPic : 'profile.png' %>">
+                            src="/uploads/AnniversaryContact/<%= contact && contact.anniversaryPic ?  contact.anniversaryPic : 'profile.png' %>">
                     </div>
                 </div>
 

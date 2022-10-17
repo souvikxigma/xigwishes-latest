@@ -1,0 +1,67 @@
+<% if(sliders){ %>
+    <% for(var i=0; i< 1; i++) { %>
+        <section class="bd_banner" style="background-image:url('/uploads/slider/<%= sliders[i].image %>');">
+            <div class="bd_banner_main text-center">
+                <h1>Upcoming Anniversary Lists</h1>
+            </div>
+            <div>
+                <a href="/anniversary/list" style="color: white;" class="btn bd_create_btn">All Anniversary Lists</a>
+            </div>
+        </section>
+        <% }} %>
+
+            <section class="birthdaylisttable mt-5">
+                <div class="container">
+                    <div class="row custom_bg">
+                        <table class="table w-100" id="example">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" data-field="id">#</th>
+                                    <th scope="col" data-field="name">Name</th>
+                                    <th scope="col" data-field="anniversaryday">Anniversary</th>
+                                    <th scope="col" data-field="email">Email</th>
+                                    <th scope="col" data-field="email">Action</th>
+                                </tr>
+                            </thead>
+                            <% var k=0; %>
+                                <% for(var j=0; j< data.length; j++) { %>
+                                    <% if(data[j] && data[j]['AnniversaryList'] && data[j]['day'] && data[j]['month']){
+                                        %>
+                                        <tbody>
+                                            <% for(var i=0; i< data[j]['AnniversaryList'].length; i++) { %>
+                                                <% k++; %>
+                                                    <tr>
+                                                        <td scope="row">
+                                                            <%= (k) %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[j]['AnniversaryList'][i].brideName + " & " +
+                                                                data[j]['AnniversaryList'][i].groomName %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[j]['AnniversaryList'][i].anniversaryday %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[j]['AnniversaryList'][i].email %>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-sm"
+                                                                href="/anniversary/edit/<%=data[j]['AnniversaryList'][i].id%>"><i
+                                                                    class="fa fa-pencil-square-o"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-sm"
+                                                                href="/anniversary/delete/<%=data[j]['AnniversaryList'][i].id%>"><i
+                                                                    class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-sm"
+                                                                href="/anniversary/theme/<%=data[j]['AnniversaryList'][i].id%>">Theme</a>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                        </tbody>
+                                        <% } %>
+                                            <% } %>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <hr />

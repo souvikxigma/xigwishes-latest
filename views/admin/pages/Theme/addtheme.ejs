@@ -117,11 +117,9 @@
 
     $('#catid').on('change', function () {
       var category_id = this.value;
-      var baseurl = `<%= baseurl %>`;
-      var subthemeajax = baseurl + '/admin/theme/add/subthemeajax';
       $("#sub_cate").html('');
       $.ajax({
-        url: subthemeajax,
+        url: "http://localhost:9128/admin/theme/add/subthemeajax",
         type: "POST",
         data: { cat_id: category_id },
         dataType: 'json',

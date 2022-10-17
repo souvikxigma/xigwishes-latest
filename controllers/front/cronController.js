@@ -64,12 +64,12 @@ async function cronBirthday(req,res){
             //htmltocanvas code//
             console.log('cron working');
             const transporter = nodemailer.createTransport({
-              host: 'smtp.gmail.com',
-              port: 587,
-              secure: false,
+              host: 'xigwishes.com',
+              port: 465,
+              secure: true,
               auth: {
-                user: 'souvik.hajra@xigmapro.com',
-                pass: 'xigma123',
+                user: 'no-reply@xigwishes.com',
+                pass: 'no-reply@xigwishes',
               },
             });
             // console.log("before func",user.email);
@@ -77,7 +77,7 @@ async function cronBirthday(req,res){
               // console.log("inside func",user.email);
               // send mail with defined transport object
               let info = transporter.sendMail({
-                from: 'souvik.hajra@xigmapro.com',
+                from: 'no-reply@xigwishes.com',
                 to: user.email,
                 subject: `Xigwish Birthday Mail for ${contact.name}`,
                 html: url, // html body
@@ -148,18 +148,18 @@ async function cronAnniversary(req,res){
               //htmltocanvas code//
               console.log('cron working');
               const transporter = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 587,
-                secure: false,
+                host: 'xigwishes.com',
+                port: 465,
+                secure: true,
                 auth: {
-                  user: 'souvik.hajra@xigmapro.com',
-                  pass: 'xigma123',
+                  user: 'no-reply@xigwishes.com',
+                  pass: 'no-reply@xigwishes',
                 },
               });
               if (anniversary) {
                 // send mail with defined transport object
                 let info = transporter.sendMail({
-                  from: 'souvik.hajra@xigmapro.com',
+                  from: 'no-reply@xigwishes.com',
                   to: user.email,
                   subject: `Xigwish Anniversary Mail for ${anniversary.brideName} and ${anniversary.groomName}`,
                   html: url, // html body

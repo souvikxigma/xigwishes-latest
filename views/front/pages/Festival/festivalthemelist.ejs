@@ -1,15 +1,11 @@
-<section class="bd_banner">
-    <div class="container">
-        <div class="row">
-            <div class="bd_banner_main text-center w-100">
-                <h1>All Festival Theme</h1>
-                <!-- <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae. -->
-                </p>
-            </div>
-            <!-- <div class="w-100 text-center">
-                <button class="btn bd_create_btn">Create Birthday Invitation</button>
-            </div> -->
-        </div>
+<section class="banner-panel">
+    <div class="owl-carousel owl-theme">
+        <% if(sliders){ %>
+            <% for(var i=4; i< 5; i++) { %>
+                <div class="item">
+                    <img alt="" src="/uploads/slider/<%= sliders[i].image %>">
+                </div>
+                <% }} %>
     </div>
 </section>
 
@@ -17,7 +13,7 @@
 <section class="step_panel mt-5 ">
     <div class="container">
         <div class="w-100">
-            <h3 class="text-center w-100 mt-2 mb-5">All Festival Themes:</h3>
+            <h3 class="text-center w-100 mt-2 mb-5">All Festival Cards:</h3>
             <hr />
         </div>
 
@@ -28,58 +24,54 @@
         <% } } %>
         <div id="allvalfest"></div> -->
 
-                            <div class="form-group pret">
-                                <label for="exampleFormControlSelect1">Sort By</label>
-                                <select class="form-control select2 childpret" id="festivalname" name="festivalname[]"
-                                    multiple="multiple" data-placeholder="Select Festival Event"
-                                    data-dropdown-css-class="select2-purple" style="width: 100%; color: purple;">
-                                    <option value="" disabled="disabled">Choose Festival</option>
-                                    <!-- <option value="all">All</option> -->
-                                    <% if(fest.length){ for(var i=0; i< fest.length; i++) {%>
-                                        <option value="<%= fest[i].id%>" <% if(allFestivalThemeToArray &&
-                                            allFestivalThemeToArray.includes( fest[i].id ) ){ %> selected <% } %>>
-                                                <%= fest[i].festivalName %>
-                                        </option>
-                                        <% } } %>
+        <div class="form-group pret">
+            <label for="exampleFormControlSelect1">Sort By</label>
+            <select class="form-control select2 childpret" id="festivalname" name="festivalname[]" multiple="multiple"
+                data-placeholder="Select Festival Event" data-dropdown-css-class="select2-purple"
+                style="width: 100%; color: purple;">
+                <option value="" disabled="disabled">Choose Festival</option>
+                <!-- <option value="all">All</option> -->
+                <% if(fest.length){ for(var i=0; i< fest.length; i++) {%>
+                    <option value="<%= fest[i].id%>" <% if(allFestivalThemeToArray && allFestivalThemeToArray.includes(
+                        fest[i].id ) ){ %> selected <% } %>>
+                            <%= fest[i].festivalName %>
+                    </option>
+                    <% } } %>
 
 
-                                </select>
-                            </div>
+            </select>
+        </div>
 
-                            <div class="row d-flex justify-content-center" id="festival-all">
-                                <input type="hidden" value="<%= process.env.BASE_URL %>" id="baseurls" />
-                                <% for(var i=0; i< theme.length; i++) { %>
-                                    <div class="card customcard">
-                                        <img src="/uploads/sample/<%= theme[i].subcategoryImage %>" class="card-img-top"
-                                            alt="...">
+        <div class="row d-flex justify-content-center" id="festival-all">
+            <input type="hidden" value="<%= process.env.BASE_URL %>" id="baseurls" />
+            <% for(var i=0; i< theme.length; i++) { %>
+                <div class="card customcard">
+                    <img src="/uploads/sample/<%= theme[i].subcategoryImage %>" class="card-img-top" alt="...">
 
-                                        <div class="card-body">
+                    <div class="card-body">
 
-                                            <!-- <a class="btn btn-info" onclick="setFestivalModal('<%= theme[i].subcategoryImage %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a> -->
-                                            <input type="hidden" id="hidauthval" value="<%= loginAuthCheck %> " />
-                                            <input type="hidden" id="hidfestarrval"
-                                                value="<%= allFestivalThemeToArray %> " />
-                                            <% if (loginAuthCheck) { %>
-                                                <a class="btn btn-info"
-                                                    onclick="setFestivalModal('<%= theme[i].subcategoryImageScreenShot %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')"
-                                                    data-toggle="modal" data-target="#birthdayThemeModal"
-                                                    href="#">Preview</a>&nbsp;
-                                                <!-- <input class="wishlistdiv" type="checkbox" <% if( allFestivalThemeToArray  && (allFestivalThemeToArray.includes(theme[i].subcategoryUniqueCode))){ %>  checked  <% } %>   id="birthdaycheckbox_<%= theme[i].subcategoryUniqueCode %>"  value="<%= theme[i].subcategoryUniqueCode %>" /> -->
-                                                <% }else{ %>
-                                                    <a class="btn btn-info" data-toggle="modal"
-                                                        data-target="#LogInModal" href="#">Preview</a>
-                                                    <% } %>
+                        <input type="hidden" id="hidauthval" value="<%= loginAuthCheck %> " />
+                        <input type="hidden" id="hidfestarrval" value="<%= allFestivalThemeToArray %> " />
+                        <% if (loginAuthCheck) { %>
+                            <a class="btn btn-info"
+                                onclick="setFestivalModal('<%= theme[i].subcategoryImageScreenShot %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')"
+                                data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>&nbsp;
 
-                                        </div>
-                                    </div>
-                                    <% } %>
+                            <% }else{ %>
+                                <a class="btn btn-info" data-toggle="modal" data-target="#LogInModal"
+                                    href="#">Preview</a>
+                                <% } %>
+
+                    </div>
+                </div>
+                <% } %>
 
 
 
-                            </div>
-                            <div class="row d-flex justify-content-center" id="festival-filter">
-                                <div id="festival-card" class="row d-flex justify-content-center"></div>
-                            </div>
+        </div>
+        <div class="row d-flex justify-content-center" id="festival-filter">
+            <div id="festival-card" class="row d-flex justify-content-center"></div>
+        </div>
     </div>
 </section>
 
@@ -105,7 +97,7 @@
                         <form>
                             <input type="hidden" name="uniquecode" id="uniquecode">
                         </form>
-                        <a class="btn btn-primary btn-sm" target="_blank" id="full_view"  >Full view</a>
+                        <a class="btn btn-primary btn-sm" target="_blank" id="full_view">Preview Your Personalized Details</a>
 
                     </div>
                 </div>
@@ -119,14 +111,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="/front/assets/select2/js/select2.full.min.js"></script>
 <script>
-    function setFestivalModal(imagename, uniquecode,authId) {
+    function setFestivalModal(imagename, uniquecode, authId) {
         console.log(imagename, uniquecode);
         document.getElementById("uniquecode").value = uniquecode;
         document.getElementById("modalimgid").src = "/uploads/sample/screenshot/" + imagename;
-        if(authId){
-            document.getElementById("full_view").href="/temp/holiday-review/download/"+authId+"/"+uniquecode+"/null"; 
-        }else{
-            document.getElementById("full_view").style.display = 'none'; 
+        if (authId) {
+            document.getElementById("full_view").href = "/temp/holiday-review/download/" + authId + "/" + uniquecode + "/null";
+        } else {
+            document.getElementById("full_view").style.display = 'none';
         }
     }
 </script>
@@ -144,7 +136,7 @@
         //ajax//
         $("#festival-card").html('');
         $("#allvalfest").html('');
-        
+
         $.ajax({
             //url: "http://localhost:9128/holidays/sort/ajax/new",
             url: sortnewajaxholiday,
@@ -166,10 +158,9 @@
                     htmldata += '<div class="card customcard">';
                     htmldata += '<img src="/uploads/sample/screenshot/' + value.subcategoryImageScreenShot + '" class="card-img-top" />';
                     htmldata += '<div class="card-body" id="ll">';
-
-                    if (authValue) {
+                    if (result && result.authId) {
                         var authId = "'" + result.authId.toString() + "'";
-                        htmldata += '<a class="btn btn-info" onclick="setFestivalModal(' + img + ',' + code + ',' + authId + ')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>';   
+                        htmldata += '<a class="btn btn-info" onclick="setFestivalModal(' + img + ',' + code + ',' + authId + ')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>';
                     } else {
                         htmldata += '<a class="btn btn-info" data-toggle="modal" data-target="#LogInModal" href="#">Preview</a>';
                     }
@@ -193,28 +184,28 @@
 
     $('.select2').select2({
         templateSelection: formatState,
-        templateResult: function(option) {
+        templateResult: function (option) {
             //alert(option.element);
             console.log(option.element);
-        // if(option.element && (option.element).hasAttribute('hidden')){
-        //         return null;
-        //     }
-            if(!option.element){
+            // if(option.element && (option.element).hasAttribute('hidden')){
+            //         return null;
+            //     }
+            if (!option.element) {
                 return null;
             }
             return option.text;
         }
     });
-    
+
 
 
 
     function generateRandomColor() {
         let color = "#";
         for (let i = 0; i < 3; i++)
-        color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
+            color += ("0" + Math.floor(Math.random() * Math.pow(16, 2) / 2).toString(16)).slice(-2);
         return color;
-        
+
     }
 
     function formatState(state) {

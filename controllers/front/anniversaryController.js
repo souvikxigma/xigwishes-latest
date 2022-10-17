@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const Models = require('../../models');
 var Sequelize = require('sequelize');
 var Op = Sequelize.Op;
+const moment = require('moment');
 
 async function anniversaryThemeList(req, res) {
   console.log('jik', loginAuthCheck);
@@ -63,9 +64,6 @@ async function addAnniversary(req, res) {
 }
 
 async function addAnniversaryAction(req, res) {
-  // var brideName = req.body.brideName;
-  // var groomName = req.body.groomName;
-  // var anniversaryday = req.body.anniversaryday;
 
   const { brideName, groomName, anniversaryday, email, mobile } = req.body;
 
@@ -78,8 +76,8 @@ async function addAnniversaryAction(req, res) {
       anniversaryday: anniversaryday,
     },
     {
-      brideName: { type: 'string', empty: false, max: '100' },
-      groomName: { type: 'string', empty: false, max: '100' },
+      brideName: { type: 'string', empty: false, max: '30' },
+      groomName: { type: 'string', empty: false, max: '30' },
       anniversaryday: { type: 'string', empty: false, max: '100' },
     }
   );
@@ -101,10 +99,13 @@ async function addAnniversaryAction(req, res) {
       function (err) {
         if (err) {
           req.flash('error', 'Image not uploaded');
-          res.redirect('/user/profile');
+          res.redirect('/anniversary/add-anniversary');
         }
       }
     );
+  }else{
+    req.flash('error', 'Please choose a Contact Pic.');
+    res.redirect('/anniversary/add-anniversary');
   }
   //end image upload//
 
@@ -113,7 +114,6 @@ async function addAnniversaryAction(req, res) {
     brideName: brideName,
     groomName: groomName,
     anniversaryday: format(anniversaryday),
-    // companyName: companyName,
     email: email,
     mobile: mobile,
     anniversaryPic: imgname,
@@ -132,13 +132,6 @@ async function setAnniversaryThemeAction(req, res) {
   var uid = req.id;
   var user = await Models.User.findOne({ where: { id: uid } });
   var selectAnniversaryImage = req.body.uniquecode;
-
-  // if(user.anniversaryThemes.split(',').length == 3){
-  //   return res.json({
-  //     msg: 'user maximum selected 3 themes',
-  //     scode: 1,
-  //   });
-  // }
 
   if (!user.anniversaryThemes) {
     const updateUser = {
@@ -175,7 +168,6 @@ async function setAnniversaryThemeAction(req, res) {
     });
   }
 
-  //selectpackages.split(",").find(function(val){return val == "1";})
 }
 
 async function setAnniversaryRemoveThemeAction(req, res) {
@@ -262,11 +254,37 @@ async function userAnniversaryEdit(req, res) {
 }
 
 async function usrAnniversaryEditAction(req, res) { 
+  console.log();
   var anniversayid = req.body.anniversaryid;
+  var brideName = req.body.brideName;  
+  var groomName = req.body.groomName;  
+  var anniversaryday = req.body.anniversaryday;  
   var imgname =null;
   var anniversaryData;
   var anniversaryDataInfo = await Models.Anniversary.findOne({ where: { id: anniversayid } });
   if(anniversaryDataInfo){
+
+    //validation start
+    const validator = new Validator();
+    const validationResponse = validator.validate(
+      {
+        brideName: brideName,
+        groomName: groomName,
+        anniversaryday: anniversaryday,
+      },
+      {
+        brideName: { type: 'string', empty: false, max: '30' },
+        groomName: { type: 'string', empty: false, max: '30' },
+        anniversaryday: { type: 'string', empty: false, max: '100' },
+      }
+    );
+    if (validationResponse !== true) {
+      req.flash('error', validationResponse[0].message);
+      return res.redirect(`/anniversary/edit/${anniversayid}`);
+    }
+    //validation end
+
+
       if (req.files && req.files.anniversaryPic) {
           var documentFile = req.files.anniversaryPic;
           var imgString = documentFile.name;
@@ -322,6 +340,99 @@ async function userDeleteAnniversary(req,res){
     }
 }
 
+
+async function themeAnniversary(req, res) {
+  var contactId = req.params.contactId;
+  var anniversary = await Models.Anniversary.findOne({ where: { id: contactId } });
+  if (anniversary) {
+    var userid = req.id;
+    var allAnniversaryThemeToArray = [];
+    var userinfo = await Models.User.findOne({ where: { id: userid } });
+    if (userinfo.anniversaryThemes) {
+      allAnniversaryThemeToArray = userinfo.anniversaryThemes.split(',');
+    }
+    const allFavAnniversaryData = await Models.Subcategory.findAll({
+      where: {
+        [Op.and]: [
+          { categoryId: 2 },
+          { subcategoryUniqueCode: { [Op.in]: allAnniversaryThemeToArray } },
+        ],
+      },
+      include: [
+        {
+          model: Models.Category,
+          attributes: ['name'],
+        },
+      ],
+    });
+  
+    return res.render('front/pages/Anniversary/themeSelectAnniversary', {
+      page_name: 'anniversary',
+      theme: allFavAnniversaryData,
+      authId: userid,
+      anniversary: anniversary,
+    });
+  } else {
+    req.flash('error', 'Anniversary theme list not found');
+    return res.redirect(`/anniversary/list`);
+  }
+}
+
+async function upcomingAnniversaryList(req, res) {
+  const Op = Sequelize.Op;
+  var userId = req.id;
+  var anniversaryArray = [];
+  var month = moment().month() + 1; //current month
+  var day = moment().add(1, 'days').date(); //current day
+  for (var i = 1; i <= 30; i++){
+    day = moment().add(i, 'days').date(); //current day
+    if(day == 1 && i > 1){
+      month = moment().month() + 2; //next month
+    }
+    var AnniversaryList = await Models.Anniversary.findAll({
+      where: {
+        [Op.and]: [{ userId: userId }],
+        [Op.or]: [
+          {
+            [Op.and]: [
+              {
+                anniversaryday: Sequelize.where(
+                  Sequelize.fn('month', Sequelize.col('anniversaryday')),
+                  month
+                ),
+              },
+              {
+                anniversaryday: Sequelize.where(
+                  Sequelize.fn('day', Sequelize.col('anniversaryday')),
+                  day
+                ),
+              },
+            ],
+          },
+        ],
+      },
+    });
+
+    if(day && month && AnniversaryList && AnniversaryList.length > 0){
+      anniversaryArray[i] = {
+        day:day,
+        month:month,
+        AnniversaryList:AnniversaryList,
+      };
+    }
+  }
+
+  if (anniversaryArray) {
+    return res.render('front/pages/Anniversary/upcominganniversarylist', {
+      page_name: 'anniversary',
+      data: anniversaryArray,
+    });
+  }else{
+    req.flash('error', 'Upcomming Anniversary list not found');
+    return res.redirect(`/anniversary/list`);
+  }
+}
+
 module.exports = {
   anniversaryThemeList: anniversaryThemeList,
   anniversaryList: anniversaryList,
@@ -331,6 +442,8 @@ module.exports = {
   userAnniversaryEdit: userAnniversaryEdit,
   usrAnniversaryEditAction: usrAnniversaryEditAction,
   userDeleteAnniversary: userDeleteAnniversary,
+  themeAnniversary:themeAnniversary,
+  upcomingAnniversaryList:upcomingAnniversaryList,
 
   //ajax//
   setAnniversaryThemeAction: setAnniversaryThemeAction,

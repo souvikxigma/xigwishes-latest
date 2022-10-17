@@ -1,82 +1,85 @@
-<section class="bd_banner">
-    <div class="container">
+<% if(sliders){ %>
+  <% for(var i=0; i< 1; i++) { %>
+    <section class="bd_banner" style="background-image:url('/uploads/slider/<%= sliders[i].image %>');">
+      <div class="container">
         <div class="row">
-            <div class="bd_banner_main text-center w-100">
-                <h1>Selected Holiday Theme</h1>
-                <!-- <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae. -->
-                </p>
-            </div>
-            <!-- <div class="w-100 text-center">
-                <button class="btn bd_create_btn">Create Birthday Invitation</button>
-            </div> -->
-        </div>
-    </div>
-</section>
-
-<section class="step_panel mt-5 ">
-    <div class="container">
-        <div class="w-100">
-            <h3 class="text-center w-100 mt-2 mb-5">My favorite Selected Holiday Themes:</h3><hr/>
-        </div>
-        
-
-        <div class="row d-flex justify-content-center">
-            <% for(var i=0; i< theme.length; i++) { %>
-            <div class="card customcard" >
-                <img src="/uploads/sample/screenshot/<%= theme[i].subcategoryImageScreenShot %>" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <!-- <h5 class="card-title">Card title</h5> -->
-                  <a class="btn btn-info" onclick="setFestivalModal('<%= theme[i].subcategoryImageScreenShot %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
-                </div>
-            </div>
-            <% } %>
-        </div>
-    </div>
-</section>
-
-
-
-<hr/>
-
-<!-- modal -->
-<div class="modal fade" id="birthdayThemeModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Xig Wishes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="popup-box-modal pt-0">
-                  <div class="w-100 text-center">
-                    <img class="img-fluid" id="modalimgid" />
-                    
-                    <form>
-                        <input type="hidden" name="uniquecode" id="uniquecode">
-                        
-                    </form>
-                    <a class="btn btn-primary btn-sm" target="_blank" id="full_view"  >Full view</a>
-
-                </div>     
+          <div class="bd_banner_main text-center w-100">
+            <h1>Selected Holiday Card</h1>
+            </p>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
-    function setFestivalModal(imagename,uniquecode,authId){  
-        document.getElementById("uniquecode").value = uniquecode;
-        document.getElementById("modalimgid").src= "/uploads/sample/screenshot/"+imagename;
-        if(authId){
-            document.getElementById("full_view").href="/temp/holiday-review/download/"+authId+"/"+uniquecode+"/null"; 
-        }else{
-            document.getElementById("full_view").style.display = 'none'; 
+    </section>
+    <% }} %>
+
+      <section class="step_panel mt-5 ">
+        <div class="container">
+          <div class="w-100">
+            <h3 class="text-center w-100 mt-2 mb-5">My favorite Selected Holiday Cards:</h3>
+            <hr />
+          </div>
+
+
+          <div class="row d-flex justify-content-center">
+            <% for(var i=0; i< theme.length; i++) { %>
+              <div class="card customcard">
+                <img src="/uploads/sample/screenshot/<%= theme[i].subcategoryImageScreenShot %>" class="card-img-top"
+                  alt="...">
+                <div class="card-body">
+                  <!-- <h5 class="card-title">Card title</h5> -->
+                  <a class="btn btn-info"
+                    onclick="setFestivalModal('<%= theme[i].subcategoryImageScreenShot %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')"
+                    data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
+                </div>
+              </div>
+              <% } %>
+          </div>
+        </div>
+      </section>
+
+
+
+      <hr />
+
+      <!-- modal -->
+      <div class="modal fade" id="birthdayThemeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Xig Wishes</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="popup-box-modal pt-0">
+                <div class="w-100 text-center">
+                  <img class="img-fluid" id="modalimgid" />
+
+                  <form>
+                    <input type="hidden" name="uniquecode" id="uniquecode">
+
+                  </form>
+                  <a class="btn btn-primary btn-sm" target="_blank" id="full_view">Preview Your Personalized Details</a>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+        integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script>
+        function setFestivalModal(imagename, uniquecode, authId) {
+          document.getElementById("uniquecode").value = uniquecode;
+          document.getElementById("modalimgid").src = "/uploads/sample/screenshot/" + imagename;
+          if (authId) {
+            document.getElementById("full_view").href = "/temp/holiday-review/download/" + authId + "/" + uniquecode + "/null";
+          } else {
+            document.getElementById("full_view").style.display = 'none';
+          }
         }
-    }
-   
-  </script>
- 
+
+      </script>

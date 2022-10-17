@@ -23,32 +23,29 @@
                                 <li><a href="#">How it work</a></li>
                                 <li><a href="#">Blog</a></li>
                         </ul> -->
-                        <nav class="dropdownmenu">
+                        
+                        <nav id="nav">
                             <ul>
-                                <li><a href="/birthday">Birthday</a>
-                                    <ul id="submenu">
-                                        <li><a href="/birthday">Birthday Template</a></li>
-                                        <li><a href="/birthday/list">My Birthday List</a></li>
-                                        <li><a href="/birthday/add-birthday">Add Birthday</a></li>
-
-                                    </ul>
-                                </li>
-                                <li><a href="/anniversary">Anniversary</a>
-                                    <ul id="submenu">
-                                        <li><a href="/anniversary">Anniversary Template</a></li>
-                                        <li><a href="/anniversary/list">My Anniversary List</a></li>
-                                        <li><a href="/anniversary/add-anniversary">Add Anniversary</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="/holidays">Holidays</a></li>
-                                <!-- <li><a href="#">Pricing</a></li> -->
-                                <% if (!loginAuthCheck) { %>
+                              <li><span class="submenu">Birthday</span>
+                                <ul class="submenu">
+                                    <li><a href="/birthday">Birthday Card</a></li>
+                                    <li><a href="/birthday/list">My Birthday List</a></li>
+                                    <li><a href="/birthday/add-birthday">Add Birthday</a></li>
+                                </ul>
+                              </li>
+                              <li><span class="submenu">Anniversary</span>
+                                <ul class="submenu">
+                                    <li><a href="/anniversary">Anniversary Card</a></li>
+                                    <li><a href="/anniversary/list">My Anniversary List</a></li>
+                                    <li><a href="/anniversary/add-anniversary">Add Anniversary</a></li>
+                                </ul>
+                              </li>
+                              <li><a href="/holidays">Holidays</a></li>
+                              <% if (!loginAuthCheck) { %>
                                 <li><a data-toggle="modal" data-target=".bd-example-modal-lg" href="#">Pricing</a></li>
                                 <% }else{ %>
-                                    <!-- <li><a href="/package">Pricing</a></li> -->
                                 <% } %> 
-                                <li><a href="/others//how-it-work">How it work</a></li>
-                                <!-- <li><a href="#">Blog</a></li> -->
+                                <li><a href="/others/how-it-work">How it work</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -91,6 +88,8 @@
                               <a class="dropdown-item" href="/anniversary/fav-theme">My fav Anniversary Theme</a>
                               <a class="dropdown-item" href="/holidays/fav-theme">My fav Holiday Theme</a>
                               <a class="dropdown-item" href="/others/request-customized-banner">Request Customized Banner</a>
+                              <a class="dropdown-item" href="/birthday/upcoming">Upcoming Birthday</a>
+                              <a class="dropdown-item" href="/anniversary/upcoming">Upcoming Anniversary</a>
                               <a class="dropdown-item" href="/package">Package</a>
                               <a class="dropdown-item" href="/others/about-us">About Us</a>
                               <a class="dropdown-item" href="/logout">Log out</a>

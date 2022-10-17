@@ -1,95 +1,92 @@
-<section class="bd_banner">
-    <div class="bd_banner_main text-center">
-        <h1>Add Anniversary</h1>
-        <!-- <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae.</p> -->
-    </div>
-    <div>
-        <a href="/anniversary/list" style="color: white;" class="btn bd_create_btn">View Anniversary Lists</a>
-    </div>
-</section>
-<!-- <a href="/anniversary/list" class="btn btn-primary">Anniversary list</a>
-<a href="/anniversary" class="btn btn-primary">Anniversary theme list</a> -->
-<section class="form-area">
-    <div class="container">
-        <form action="/anniversary/add-anniversary/action" method="POST" enctype="multipart/form-data">
-        <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-md-10">
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Bride Name<span class="c-red">*</span></label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="brideName"
-                        placeholder="Enter your brideName..." name="brideName">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Groom Name<span class="c-red">*</span></label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" id="groomName"
-                        placeholder="Enter your groomName..." name="groomName">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Anniversary Day<span class="c-red">*</span></label> 
-                    </div>
-                    <div class="col-md-10">
-                         <input class="form-control date" name="anniversaryday" id="anniversaryday" type="date">
-                    </div>
-                </div>
-                <!-- <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Company Name</label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" name="companyName" id="companyName">
-                    </div>
-                </div> -->
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Email<span class="c-red">*</span></label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input id="email" type="email" name="email" class="form-control">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Phone<span class="c-red">*</span></label> 
-                    </div>
-                    <div class="col-md-10">
-                        <input id="phone" name="mobile" type="tel" placeholder="(123) 456-7890" class="form-control">
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         <label>Anniversary Image<span class="c-red">*</span></label> 
-                    </div>
-                    <div class="col-md-10">
-                        <div class="custom-file">
-                            <input type="file" class="form-control" type="file" name="contactPic">
-                          </div>
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-2">
-                         
-                    </div>
-                    <div class="col-md-10">
-                        <button type="button" class="btn btn-primary">Reset</button>
-                        <button type="submit" class="btn btn-secondary">Submit</button>
-                    </div>
-                </div>
+<% if(sliders){ %>
+    <% for(var i=0; i< 1; i++) { %>
+        <section class="bd_banner" style="background-image:url('/uploads/slider/<%= sliders[i].image %>');">
+            <div class="bd_banner_main text-center">
+                <h1>Add Anniversary</h1>
             </div>
-        </div>
-    </form>
-    </div>
-</section>
+            <div>
+                <a href="/anniversary/list" style="color: white;" class="btn bd_create_btn">View Anniversary Lists</a>
+            </div>
+        </section>
+        <% }} %>
 
+            <!-- <a href="/anniversary/list" class="btn btn-primary">Anniversary list</a>
+<a href="/anniversary" class="btn btn-primary">Anniversary theme list</a> -->
+            <section class="form-area">
+                <div class="container">
+                    <form action="/anniversary/add-anniversary/action" method="POST" enctype="multipart/form-data">
+                        <div class="row d-flex justify-content-center align-items-center custom_bg">
+                            <div class="col-md-10">
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Bride Name<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="brideName"
+                                            placeholder="Enter your bride Name..." name="brideName">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Groom Name<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="groomName"
+                                            placeholder="Enter your groom Name..." name="groomName">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Anniversary Day<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input class="form-control date" name="anniversaryday" id="anniversaryday"
+                                            type="date">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Email<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input id="email" type="email" name="email" class="form-control"
+                                            placeholder="example@gmail.com">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Phone<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input id="phone" name="mobile" type="tel" placeholder="+91 9884443234"
+                                            class="form-control">
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+                                        <label>Anniversary Image<span class="c-red">*</span></label>
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control" type="file" name="contactPic">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-2">
+
+                                    </div>
+                                    <div class="col-md-10">
+                                        <button type="button" class="btn btn-primary">Reset</button>
+                                        <button type="submit" class="btn btn-secondary">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>

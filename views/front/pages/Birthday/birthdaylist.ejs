@@ -1,47 +1,59 @@
-<section class="bd_banner">
-    <div class="bd_banner_main text-center">
-        <h1>Birthday Lists</h1>
-        <!-- <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae.</p> -->
-    </div>
-    <div>
-        <a href="/birthday/add-birthday" style="color: white;" class="btn bd_create_btn">Add Birthday</a>
-    </div>
-</section>
+<% if(sliders){ %>
+    <% for(var i=0; i< 1; i++) { %>
+        <section class="bd_banner" style="background-image:url('/uploads/slider/<%= sliders[i].image %>');">
+            <div class="bd_banner_main text-center">
+                <h1>Birthday Lists</h1>
+            </div>
+            <div>
+                <a href="/birthday/add-birthday" style="color: white;" class="btn bd_create_btn">Add Birthday</a>
+            </div>
+        </section>
+        <% }} %>
 
+            <section class="birthdaylisttable mt-5">
+                <div class="container">
+                    <div class="row custom_bg">
+                        <table class="table w-100" id="example">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" data-field="id">#</th>
+                                    <th scope="col" data-field="name">Name</th>
+                                    <th scope="col" data-field="birthday">Birthday</th>
+                                    <th scope="col" data-field="email">Email</th>
+                                    <th scope="col" data-field="email">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i=0; i< data.length; i++) { %>
+                                    <tr>
+                                        <td scope="row">
+                                            <%= (i+1) %>
+                                        </td>
+                                        <td>
+                                            <%= data[i].name %>
+                                        </td>
+                                        <td>
+                                            <%= data[i].birthday %>
+                                        </td>
+                                        <td>
+                                            <%= data[i].email %>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-info btn-sm"
+                                                href="/birthday/edit-birthday/<%=data[i].id%>"><i
+                                                    class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                            <a class="btn btn-danger btn-sm"
+                                                href="/birthday/delete-birthday/<%=data[i].id%>"><i
+                                                    class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            <a class="btn btn-danger btn-sm"
+                                                href="/birthday/theme/<%=data[i].id%>">Card</a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
 
-<section class="birthdaylisttable mt-5">
-    <div class="container">
-        <div class="row">
-            <table class="table w-100" id="example">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col" data-field="id">#</th>
-                        <th scope="col" data-field="name">Name</th>
-                        <th scope="col" data-field="birthday">Birthday</th>
-                        <th scope="col" data-field="email">Email</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(var i=0; i< data.length; i++) { %>
-                        <tr>
-                            <td scope="row">
-                                <%= (i+1) %>
-                            </td>
-                            <td>
-                                <%= data[i].name %>
-                            </td>
-                            <td>
-                                <%= data[i].birthday %>
-                            </td>
-                            <td>
-                                <%= data[i].email %>
-                            </td>
-                        </tr>
-                    <% } %>
-
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-<hr />
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <hr />

@@ -1,62 +1,65 @@
-<section class="bd_banner">
-    <div class="bd_banner_main text-center">
-        <!-- <h1>Online Anniversary Invitations for a Party They’ll <br>Never Forget</h1>
-        <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae.</p> -->
-        <h1>Anniversary Lists</h1>
-    </div>
-    <div>
-        <a class="btn bd_create_btn" href="/anniversary/add-anniversary" style="color: white;">Add Anniversary</a>
-    </div>
-</section>
+<% if(sliders){ %>
+    <% for(var i=0; i< 1; i++) { %>
+        <section class="bd_banner" style="background-image:url('/uploads/slider/<%= sliders[i].image %>');">
+            <div class="bd_banner_main text-center">
+                <h1>Anniversary Lists</h1>
+            </div>
+            <div>
+                <a class="btn bd_create_btn" href="/anniversary/add-anniversary" style="color: white;">Add
+                    Anniversary</a>
+            </div>
+        </section>
+        <% }} %>
 
 
-<section class="birthdaylisttable mt-5">
-    <div class="container">
-        <div class="row">
-            <table class="table w-100" id="example">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col" data-field="id">#</th>
-                        <th scope="col" data-field="name">brideName</th>
-                        <th scope="col" data-field="birthday">groomName</th>
-                        <th scope="col" data-field="email">anniversaryday</th>
-                        <th scope="col" data-field="email">Email</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(var i=0; i< data.length; i++) { %>
-                        <tr>
-                            <td scope="row">
-                                <%= (i+1) %>
-                            </td>
-                            <td>
-                                <%= data[i].brideName %>
-                            </td>
-                            <td>
-                                <%= data[i].groomName %>
-                            </td>
-                            <td>
-                                <%= data[i].anniversaryday %>
-                            </td>
-                            <td>
-                                <%= data[i].email %>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary btn-sm"
-                                href="/anniversary/edit/<%=data[i].id%>">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                                <a class="btn btn-danger btn-sm"
-                                onclick="return confirm('Are you sure you want to delete this anniversary?')"
-                                href="/anniversary/delete/<%=data[i].id%>">
-                                <i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                            </td>
-                        </tr>
-                    <% } %>
+            <section class="birthdaylisttable mt-5">
+                <div class="container">
+                    <div class="row custom_bg">
+                        <table class="table w-100" id="example">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" data-field="id">#</th>
+                                    <th scope="col" data-field="name">Bride Name</th>
+                                    <th scope="col" data-field="birthday">Groom Name</th>
+                                    <th scope="col" data-field="email">Anniversary Day</th>
+                                    <th scope="col" data-field="email">Email</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i=0; i< data.length; i++) { %>
+                                    <tr>
+                                        <td scope="row">
+                                            <%= (i+1) %>
+                                        </td>
+                                        <td>
+                                            <%= data[i].brideName %>
+                                        </td>
+                                        <td>
+                                            <%= data[i].groomName %>
+                                        </td>
+                                        <td>
+                                            <%= data[i].anniversaryday %>
+                                        </td>
+                                        <td>
+                                            <%= data[i].email %>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="/anniversary/edit/<%=data[i].id%>">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                            <a class="btn btn-danger btn-sm"
+                                                onclick="return confirm('Are you sure you want to delete this anniversary?')"
+                                                href="/anniversary/delete/<%=data[i].id%>">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            <a class="btn btn-danger btn-sm"
+                                                href="/anniversary/theme/<%=data[i].id%>">Theme</a>
+                                        </td>
+                                    </tr>
+                                    <% } %>
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
-<hr />
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <hr />

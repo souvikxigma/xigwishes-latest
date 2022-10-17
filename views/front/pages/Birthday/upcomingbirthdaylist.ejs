@@ -1,0 +1,65 @@
+<% if(sliders){ %>
+    <% for(var i=0; i< 1; i++) { %>
+        <section class="bd_banner" style="background-image:url('/uploads/slider/<%= sliders[i].image %>');">
+            <div class="bd_banner_main text-center">
+                <h1>Upcoming Birthday Lists</h1>
+            </div>
+            <div>
+                <a href="/birthday/list" style="color: white;" class="btn bd_create_btn">All Birthday Lists</a>
+            </div>
+        </section>
+        <% }} %>
+
+            <section class="birthdaylisttable mt-5">
+                <div class="container">
+                    <div class="row custom_bg">
+                        <table class="table w-100" id="example">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col" data-field="id">#</th>
+                                    <th scope="col" data-field="name">Name</th>
+                                    <th scope="col" data-field="birthday">Birthday</th>
+                                    <th scope="col" data-field="email">Email</th>
+                                    <th scope="col" data-field="email">Action</th>
+                                </tr>
+                            </thead>
+                            <% var k=0; %>
+                                <% for(var j=0; j< data.length; j++) { %>
+                                    <% if(data[j] && data[j]['BirthdayList'] && data[j]['day'] && data[j]['month']){ %>
+                                        <tbody>
+                                            <% for(var i=0; i< data[j]['BirthdayList'].length; i++) { %>
+                                                <% k++; %>
+                                                    <tr>
+                                                        <td scope="row">
+                                                            <%= (k) %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[j]['BirthdayList'][i].name %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[j]['BirthdayList'][i].birthday %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data[j]['BirthdayList'][i].email %>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-info btn-sm"
+                                                                href="/birthday/edit-birthday/<%=data[j]['BirthdayList'][i].id%>"><i
+                                                                    class="fa fa-pencil-square-o"
+                                                                    aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-sm"
+                                                                href="/birthday/delete-birthday/<%=data[j]['BirthdayList'][i].id%>"><i
+                                                                    class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                            <a class="btn btn-danger btn-sm"
+                                                                href="/birthday/theme/<%=data[j]['BirthdayList'][i].id%>">Theme</a>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                        </tbody>
+                                        <% } %>
+                                            <% } %>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            <hr />

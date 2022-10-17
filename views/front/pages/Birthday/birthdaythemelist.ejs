@@ -1,50 +1,54 @@
-<section class="bd_banner">
-    <div class="container">
-        <div class="row">
-            <div class="bd_banner_main text-center w-100">
-                <h1>Online Birthday Invitations for a Party They’ll <br>Never Forget</h1>
-                <p class="text-center">The birthday Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, quae.
-                </p>
-            </div>
-            <!-- <div class="w-100 text-center">
-                <button class="btn bd_create_btn">Create Birthday Invitation</button>
-            </div> -->
-        </div>
+<section class="banner-panel">
+    <div class="owl-carousel owl-theme">
+        <% if(sliders){ %>
+            <% for(var i=2; i< 3; i++) { %>
+                <div class="item">
+                    <img alt="" src="/uploads/slider/<%= sliders[i].image %>">
+                </div>
+                <% }} %>
     </div>
 </section>
 
 <section class="step_panel mt-5 ">
     <div class="container">
         <div class="row ">
-            <h3 class="text-center w-100 mt-2 mb-5">Choose Your Birthday Theme</h3><hr/>
+            <h3 class="text-center w-100 mt-2 mb-5">CHOOSE YOUR BIRTHDAY CARD</h3>
+            <hr />
             <div class="template_slider mt-5 w-100">
 
                 <div class="slider-box w-100">
                     <div class="owl-carousel birthday2 owl-theme">
                         <% for(var i=0; i< theme.length; i++) { %>
-                            
-                        <div class="item">
-                            <!-- <img alt="" src="/uploads/sample/<%= theme[i].subcategoryImage %>"> -->
-                            <img alt="<%= theme[i].subcategoryTitle %>" src="/uploads/sample/screenshot/<%= theme[i].subcategoryImageScreenShot %>">
-                            <input type="hidden" value="<%= process.env.BASE_URL %>" id="baseurls" />
-                            <% if (loginAuthCheck) { %>
-                                <a class="btn btn-info" onclick="setBirthdayModal('<%= theme[i].subcategoryImageScreenShot %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')" data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
-                                
-                                  <!-- <div class="checkbox-container">
+
+                            <div class="item">
+                                <!-- <img alt="" src="/uploads/sample/<%= theme[i].subcategoryImage %>"> -->
+                                <img alt="<%= theme[i].subcategoryTitle %>"
+                                    src="/uploads/sample/screenshot/<%= theme[i].subcategoryImageScreenShot %>">
+                                <input type="hidden" value="<%= process.env.BASE_URL %>" id="baseurls" />
+                                <% if (loginAuthCheck) { %>
+                                    <a class="btn btn-info"
+                                        onclick="setBirthdayModal('<%= theme[i].subcategoryImageScreenShot %>','<%= theme[i].subcategoryUniqueCode %>','<%= authId %>')"
+                                        data-toggle="modal" data-target="#birthdayThemeModal" href="#">Preview</a>
+
+                                    <!-- <div class="checkbox-container">
                                     <input type="checkbox" id="apple"/>
                                     <label class="checkbox" for="apple">Apple Mac</label>
                                   </div> -->
-                                    
-                                    
-                                    <input class="wishlistdiv" type="checkbox" <% if( allBirthdayThemeToArray  && (allBirthdayThemeToArray.includes(theme[i].subcategoryUniqueCode))){ %>  checked  <% } %>   id="birthdaycheckbox_<%= theme[i].subcategoryUniqueCode %>"  value="<%= theme[i].subcategoryUniqueCode %>" />
 
-                                    
-                               
-                                <% }else{ %>
-                                <a class="btn btn-info" data-toggle="modal" data-target="#LogInModal" href="#">Preview</a>
+
+                                    <input class="wishlistdiv" type="checkbox" <% if( allBirthdayThemeToArray &&
+                                        (allBirthdayThemeToArray.includes(theme[i].subcategoryUniqueCode))){ %> checked
+                                    <% } %> id="birthdaycheckbox_<%= theme[i].subcategoryUniqueCode %>" value="<%=
+                                                theme[i].subcategoryUniqueCode %>" />
+
+
+
+                                                <% }else{ %>
+                                                    <a class="btn btn-info" data-toggle="modal"
+                                                        data-target="#LogInModal" href="#">Preview</a>
+                                                    <% } %>
+                            </div>
                             <% } %>
-                        </div>
-                        <% } %>
                     </div>
                 </div>
             </div>
@@ -60,21 +64,25 @@
                     <h2 class="step_no">1</h2>
                     <hr>
                     <h2 class="step_title">Choose a birthday invitation template</h2>
-                    <p>Our birthday invitation maker is loaded with fun designs. Find the one that appeals to you the
+                    <p>Our birthday invitation maker is loaded with fun designs. Find the one that appeals
+                        to you the
                         most,
-                        click it, and then click “Personalize”.</p>
+                        click it.</p>
                 </div>
                 <div class="step2 text-center">
                     <button class="line"></button>
                     <hr>
                     <h2 class="step_no">2</h2>
                     <hr>
-                    <h2 class="step_title">Find a favorite bday photo</h2>
-                    <p>Over the past year (or many years), you’ve been taking photos of the birthday boy or girl. Now
+                    <h2 class="step_title">Find a favorite birthday photo</h2>
+                    <p>Over the past year (or many years), you’ve been taking photos of the birthday boy or
+                        girl. Now
                         it’s
-                        time to use the best of the bunch for the invitation. Smilebox’s online birthday invitation
+                        time to use the best of the bunch for the invitation. Xigwishes’s online birthday
+                        invitation
                         maker
-                        lets you select a photo from your computer, phone, or social media account – just click “Add
+                        lets you select a photo from your computer, phone, or social media account – just
+                        click “Select
                         Photos”.</p>
                 </div>
                 <div class="step3 text-center">
@@ -83,12 +91,7 @@
                     <h2 class="step_no">3</h2>
                     <hr>
                     <h2 class="step_title">Personalize</h2>
-                    <p>Xig-Wish offers loads of customization options for color, text, fonts, and music. Decorate the
-                        online
-                        birthday invitation with your kid’s favorite colors, change the text with the details of the
-                        party,
-                        and make any final artistic adjustments. You can always experiment by combining different
-                        selections, which change the digital birthday invitation template instantly.</p>
+                    <p>XigWishes customize your selected card as per your company/personal details</p>
                 </div>
                 <div class="step4 text-center">
                     <button class="line"></button>
@@ -96,191 +99,186 @@
                     <h2 class="step_no">4</h2>
                     <hr>
                     <h2 class="step_title">Share</h2>
-                    <p>Click “Preview” to make sure your invitation looks perfect. Now you’re ready to share with
-                        guests!
-                        Simply click “Share or Print”. Online sharing options include email, text message, social media
-                        and
-                        more. Or, if you want a high-quality invitation guests can hang on their fridge, opt for printed
-                        invites! If you have a good printer at home, you can print them yourself. Or use our first-class
-                        print service, where you choose your desired paper type, finish, colors and more—and we get them
-                        to
-                        your door in a flash.</p>
+                    <p>Click “Preview” to make sure your greetings looks perfect. Now you’re ready to share
+                        with
+                        guests through mail.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<section class="bd_features mt-4">
-    <div class="container">
-        <div class="row">
-            <h2 class="text-center mt-4 w-100">Xig Wishes Features</h2>
-            <div class="row text-center mt-4">
-                <div class="col-3 ">
-                    <img alt="" src="/front/assets/images/banner.jpg">
-                    <h6>Simple and Fast</h6>
-                    <p>Add photos, captions, colors and animations with ease.</p>
-                </div>
-                <div class="col-3 ">
-                    <img alt="" src="/front/assets/images/banner.jpg">
-                    <h6>Unlimited storage</h6>
-                    <p>All your photos are safely stored and backed up.</p>
-                </div>
-                <div class="col-3 ">
-                    <img alt="" src="/front/assets/images/banner.jpg">
-                    <h6>Custom music</h6>
-                    <p>Choose from our vast collection of tunes, or upload your own songs.</p>
-                </div>
-                <div class="col-3 ">
-                    <img alt="" src="/front/assets/images/banner.jpg">
-                    <h6>Business signature</h6>
-                    <p>Brand your creation with your logo and info to boost business.</p>
-                </div>
+<!--<section class="bd_features mt-4">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <h2 class="text-center mt-4 w-100">Xig Wishes Features</h2>-->
+<!--            <div class="row text-center mt-4">-->
+<!--                <div class="col-md-3 col-sm-12">-->
+<!--                    <img alt="" src="/front/assets/images/banner.jpg">-->
+<!--                    <h6>Simple and Fast</h6>-->
+<!--                    <p>Add photos, captions, colors and animations with ease.</p>-->
+<!--                </div>-->
+<!--                <div class="col-md-3 col-sm-12">-->
+<!--                    <img alt="" src="/front/assets/images/banner.jpg">-->
+<!--                    <h6>Unlimited storage</h6>-->
+<!--                    <p>All your photos are safely stored and backed up.</p>-->
+<!--                </div>-->
+<!--                <div class="col-md-3 col-sm-12">-->
+<!--                    <img alt="" src="/front/assets/images/banner.jpg">-->
+<!--                    <h6>Custom music</h6>-->
+<!--                    <p>Choose from our vast collection of tunes, or upload your own songs.</p>-->
+<!--                </div>-->
+<!--                <div class="col-md-3 col-sm-12">-->
+<!--                    <img alt="" src="/front/assets/images/banner.jpg">-->
+<!--                    <h6>Business signature</h6>-->
+<!--                    <p>Brand your creation with your logo and info to boost business.</p>-->
+<!--                </div>-->
 
 
-            </div>
-            <div class="text-center mb-5 mt-lg-4 w-100">
-                <button class="btn bd_create_btn">Create Birthday Invitation</button>
-            </div>
-        </div>
-    </div>
-</section>
-<hr/>
+<!--            </div>-->
+<!--            <div class="text-center mb-5 mt-lg-4 w-100">-->
+<!--                <button class="btn bd_create_btn">Create Birthday Invitation</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
+<hr />
 
 <!--preview modal -->
 <div class="modal fade" id="birthdayThemeModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Xig Wishes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xig Wishes</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="popup-box-modal pt-0">
+                    <div class="w-100 text-center">
+                        <img class="img-fluid" id="modalimgid" />
+
+                        <form>
+                            <input type="hidden" name="uniquecode" id="uniquecode" />
+                        </form>
+                        <a class="btn btn-primary btn-sm" target="_blank" id="full_view">Preview Your Personalized Details</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="popup-box-modal pt-0">
-                  <div class="w-100 text-center">
-                    <img class="img-fluid" id="modalimgid" />
-                    
-                    <form>
-                        <input type="hidden" name="uniquecode" id="uniquecode" />
-                    </form>
-                    <a class="btn btn-primary btn-sm" target="_blank" id="full_view"  >Full view</a>
-                </div>     
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 
 
-  <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+    integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-  <script>
-    function setBirthdayModal(imagename,uniquecode,authId){  
+<script>
+    function setBirthdayModal(imagename, uniquecode, authId) {
         document.getElementById("uniquecode").value = uniquecode;
         //document.getElementById("modalimgid").src= "/uploads/sample/"+imagename;
-        document.getElementById("modalimgid").src= "/uploads/sample/screenshot/"+imagename;
-        if(authId){
-            document.getElementById("full_view").href="/temp/review/download/"+authId+"/"+uniquecode+"/null"; 
-        }else{
-            document.getElementById("full_view").style.display = 'none'; 
+        document.getElementById("modalimgid").src = "/uploads/sample/screenshot/" + imagename;
+        if (authId) {
+            document.getElementById("full_view").href = "/temp/review/download/" + authId + "/" + uniquecode + "/null";
+        } else {
+            document.getElementById("full_view").style.display = 'none';
         }
     }
-    
-  </script>
-  <script>
-    $(document).ready(function(){
+
+</script>
+<script>
+    $(document).ready(function () {
         var baseUrl = $("#baseurls").val();
-        var fullplusPathUrl = baseUrl+"/birthday/set-birthday-theme";
-        var fullminusPathUrl = baseUrl+"/birthday/remove-birthday-theme";
+        var fullplusPathUrl = baseUrl + "/birthday/set-birthday-theme";
+        var fullminusPathUrl = baseUrl + "/birthday/remove-birthday-theme";
         //alert(baseUrl);
         $('.birthday2').on('click', '.wishlistdiv', function () {
-            var uniquecode =  $(this).attr('value');
-            if($(this).prop("checked")){
+            var uniquecode = $(this).attr('value');
+            if ($(this).prop("checked")) {
                 //alert("checked");
                 $.ajax({
-                //url: "http://localhost:9128/birthday/set-birthday-theme",
-                url: fullplusPathUrl,
-                type: "POST",
-                data: { uniquecode: uniquecode },
-                dataType: 'json',
-                success: function (result) {    
-                    if(result.scode == 1){
-                       //alert(result.msg);
+                    //url: "http://localhost:9128/birthday/set-birthday-theme",
+                    url: fullplusPathUrl,
+                    type: "POST",
+                    data: { uniquecode: uniquecode },
+                    dataType: 'json',
+                    success: function (result) {
+                        if (result.scode == 1) {
+                            //alert(result.msg);
 
-                        Toastify({
-                        text: result.msg,
-                        duration: 2000,
-                        newWindow: true,
-                        close: true,
-                        gravity: "top", // `top` or `bottom`
-                        position: "right", // `left`, `center` or `right`
-                        stopOnFocus: true, // Prevents dismissing of toast on hover
-                        style: {
-                            background: "linear-gradient(to right, #00b09b, #96c93d)",
-                        },
-                        callback: function(){
-                            location.reload();
-                        },
-                        onClick: function(){
-                            location.reload();
-                        } // Callback after click
-                        }).showToast();
-                        //location.reload();
-                    }else{
-                       // alert(result.msg);
-                        Toastify({
-                        text: result.msg,
-                        duration: 3000,
-                        newWindow: true,
-                        close: true,
-                        gravity: "top", // `top` or `bottom`
-                        position: "right", // `left`, `center` or `right`
-                        stopOnFocus: true, // Prevents dismissing of toast on hover
-                        style: {
-                            background: "linear-gradient(to right, #00b09b, #96c93d)",
-                        },
-                        onClick: function(){} // Callback after click
-                        }).showToast();
+                            Toastify({
+                                text: result.msg,
+                                duration: 2000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                                callback: function () {
+                                    location.reload();
+                                },
+                                onClick: function () {
+                                    location.reload();
+                                } // Callback after click
+                            }).showToast();
+                            //location.reload();
+                        } else {
+                            // alert(result.msg);
+                            Toastify({
+                                text: result.msg,
+                                duration: 3000,
+                                newWindow: true,
+                                close: true,
+                                gravity: "top", // `top` or `bottom`
+                                position: "right", // `left`, `center` or `right`
+                                stopOnFocus: true, // Prevents dismissing of toast on hover
+                                style: {
+                                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                                },
+                                onClick: function () { } // Callback after click
+                            }).showToast();
+                        }
+
+                    },
+                    error: function (err) {
+                        console.log(err);
                     }
-                    
-                }, 
-                error: function (err) {
-                    console.log(err);
-                }
-            })
-            }else{
+                })
+            } else {
                 //alert("unchecked");
                 $.ajax({
-                //url: "http://localhost:9128/birthday/remove-birthday-theme",
-                url: fullminusPathUrl,
-                type: "POST",
-                data: { uniquecode: uniquecode },
-                dataType: 'json',
-                success: function (result) {    
-                    //alert(result.msg);
-                    Toastify({
-                        text: result.msg,
-                        duration: 3000,
-                        newWindow: true,
-                        close: true,
-                        gravity: "top", // `top` or `bottom`
-                        position: "right", // `left`, `center` or `right`
-                        stopOnFocus: true, // Prevents dismissing of toast on hover
-                        style: {
-                            background: "linear-gradient(to right, #ed213a, #93291e)",
-                        },
-                        onClick: function(){} // Callback after click
+                    //url: "http://localhost:9128/birthday/remove-birthday-theme",
+                    url: fullminusPathUrl,
+                    type: "POST",
+                    data: { uniquecode: uniquecode },
+                    dataType: 'json',
+                    success: function (result) {
+                        //alert(result.msg);
+                        Toastify({
+                            text: result.msg,
+                            duration: 3000,
+                            newWindow: true,
+                            close: true,
+                            gravity: "top", // `top` or `bottom`
+                            position: "right", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "linear-gradient(to right, #ed213a, #93291e)",
+                            },
+                            onClick: function () { } // Callback after click
                         }).showToast();
-                }, 
-                error: function (err) {
-                    console.log(err);
-                }
-            })
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                })
             }
 
         });
     });
-  </script>
+</script>

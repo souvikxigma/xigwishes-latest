@@ -50,7 +50,7 @@
                 </div>
             </div>
             <div class="col-7 mb-4  ">
-                <form class="mt-4" action="/others/contact-us/action" method="POST" >
+                <form class="mt-4" id="contactUsForm" action="/others/contact-us/action" method="POST" >
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Subject</label>
                         <input type="text" name="subject" class="form-control" id="exampleFormControlInput1"
@@ -65,8 +65,18 @@
                         <label for="exampleFormControlmessage">Message</label>
                         <textarea class="form-control" name="message" id="exampleFormControlmessage" rows="3"></textarea>
                     </div>
+
+                    <div class="form-group">
+                        <div class="captchagroup">
+                            <label>Type the captcha</label>
+                            <canvas style="border: 2px solid #000;" id="canvas"></canvas>
+                            <span id="refreshcaptcha"><i class="fa fa-refresh" aria-hidden="true"></i></span>
+                        </div>
+                        <input id="captcha" name="captcha" placeholder="Type the captcha" class="form-control">
+                    </div>
+
                     <center>
-                        <button type="submit" class="btn btn-outline-info btn-lg">Send</button>
+                        <button type="button" id="valid" class="btn btn-outline-info btn-lg">Send</button>
                     </center>
                 </form>
             </div>
@@ -79,3 +89,28 @@
 
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+<script src="/front/assets/js/jquery-captcha.js"></script>
+<script>
+const captcha = new Captcha($('#canvas'),{
+        length: 4
+      });
+      // api
+      //captcha.refresh();
+      //captcha.getCode();
+      //captcha.valid("");
+
+      $('#valid').on('click', function() {
+        const ans = captcha.valid($('#captcha').val());
+        //alert(ans);
+        if(ans){
+            $("#contactUsForm").submit();
+        }else{
+            captcha.refresh();
+            $('#captcha').val('');
+        }
+      })
+      $('#refreshcaptcha').on('click', function() {
+        captcha.refresh();
+      });
+</script>
